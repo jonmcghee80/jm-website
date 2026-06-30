@@ -1,0 +1,28 @@
+{
+  "servers": [
+    {
+      "name": "Python HTTP Server",
+      "description": "Python 3 built-in static file server",
+      "command": "python3 -m http.server 8080",
+      "cwd": ".",
+      "url": "http://localhost:8080",
+      "type": "static"
+    },
+    {
+      "name": "npx serve",
+      "description": "Node-based static server with directory listing",
+      "command": "npx serve . --listen 3000",
+      "cwd": ".",
+      "url": "http://localhost:3000",
+      "type": "static"
+    },
+    {
+      "name": "npx live-server",
+      "description": "Static server with live-reload on file changes",
+      "command": "npx live-server --port=5500 --open=index.html",
+      "cwd": ".",
+      "url": "http://localhost:5500",
+      "type": "static"
+    }
+  ]
+}
