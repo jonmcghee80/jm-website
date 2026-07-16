@@ -162,6 +162,24 @@
     .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
     /* ─────────────────────────────────────────
+       ROTATING STAMP
+    ───────────────────────────────────────── */
+    .carousel-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .star-badge {
+      position: absolute;
+      bottom: -40px;
+      right: 10px;
+      width: 160px;
+      height: 160px;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+/* ─────────────────────────────────────────
        HERO CAROUSEL
     ───────────────────────────────────────── */
     .hero-carousel {
@@ -296,8 +314,8 @@
 
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
     }
 
     .card {
@@ -465,14 +483,19 @@
         </div>
 
         <!-- Carousel -->
-        <div class="hero-carousel" id="hero-carousel">
-          <div class="slide active"><img src="Frame-1.png" alt="HCL Fintech Lab — mobile, web and branding for a global investment bank" loading="lazy"></div>
-          <div class="slide"><img src="Frame-2.png" alt="Cargill — enterprise trading application design system" loading="lazy"></div>
-          <div class="slide"><img src="Frame-3.png" alt="HCL Fintech Lab — user engagement workshops and high-fidelity prototyping" loading="lazy"></div>
-          <div class="slide"><img src="Frame-4.png" alt="Turner & Townsend — responsive data-service application" loading="lazy"></div>
-          <div class="slide"><img src="Frame-5.png" alt="LSEG / Refinitiv — Workspace financial data platform and Halo Design System" loading="lazy"></div>
-          <div class="slide"><img src="Frame-6.png" alt="Cargill — complex trading workflow UX" loading="lazy"></div>
-          <div class="carousel-dots" id="carousel-dots"></div>
+        <div class="carousel-wrap">
+          <div class="hero-carousel" id="hero-carousel">
+            <div class="slide active"><img src="Frame-1.png" alt="HCL Fintech Lab — mobile, web and branding for a global investment bank" loading="lazy"></div>
+            <div class="slide"><img src="Frame-2.png" alt="Cargill — enterprise trading application design system" loading="lazy"></div>
+            <div class="slide"><img src="Frame-3.png" alt="HCL Fintech Lab — user engagement workshops and high-fidelity prototyping" loading="lazy"></div>
+            <div class="slide"><img src="Frame-4.png" alt="Turner & Townsend — responsive data-service application" loading="lazy"></div>
+            <div class="slide"><img src="Frame-5.png" alt="LSEG / Refinitiv — Workspace financial data platform and Halo Design System" loading="lazy"></div>
+            <div class="slide"><img src="Frame-6.png" alt="Cargill — complex trading workflow UX" loading="lazy"></div>
+            <div class="carousel-dots" id="carousel-dots"></div>
+          </div>
+
+          <!-- Star badge -->
+          <img src="Star.svg" class="star-badge" alt="More coming soon">
         </div>
 
         <p class="hero-statement">
@@ -545,28 +568,6 @@
             <p class="card-client">Turner &amp; Townsend</p>
             <p class="card-role">Senior Designer, UI/UX</p>
             <p class="card-outcome">Designed a bespoke responsive data-service application for cost managers from concept to delivery, streamlining complex workflows.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-thumb">
-            <img src="Frame-3.png" alt="HCL Fintech Lab — user engagement workshops and high-fidelity prototyping for a global investment bank" loading="lazy">
-          </div>
-          <div class="card-body">
-            <p class="card-client">HCL Fintech Lab</p>
-            <p class="card-role">Creative Lead, UI/UX</p>
-            <p class="card-outcome">Led user engagement workshops and presented high-fidelity prototypes to stakeholders. Acted as brand ambassador following a full rebrand of the product suite.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-thumb">
-            <img src="Frame-6.png" alt="Cargill — complex trading workflow UX, translating requirements into usable product" loading="lazy">
-          </div>
-          <div class="card-body">
-            <p class="card-client">Cargill</p>
-            <p class="card-role">Product Design Lead, UI/UX</p>
-            <p class="card-outcome">Translated complex trading requirements into usable UX across Cargill's global trading applications, partnering closely with product and engineering.</p>
           </div>
         </div>
 
