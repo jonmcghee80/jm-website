@@ -25,6 +25,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
 
   <style>
+    /* PASSWORD GATE */
+    #password-gate {
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      font-family: 'Nunito Sans', sans-serif;
+    }
+    #password-gate h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000;
+    }
+    #password-gate p {
+      font-size: 14px;
+      color: #767676;
+    }
+    #password-gate input {
+      border: 1.5px solid #000;
+      padding: 10px 16px;
+      font-size: 16px;
+      font-family: inherit;
+      width: 260px;
+      outline: none;
+    }
+    #password-gate button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      width: 260px;
+    }
+    #password-gate .error {
+      font-size: 13px;
+      color: #c00;
+      min-height: 18px;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -669,6 +720,29 @@
 
       resetTimer();
     })();
+  </script>
+  <div id="password-gate">
+    <h1>Jonathan McGhee</h1>
+    <p>Enter password to continue</p>
+    <input type="password" id="pw-input" placeholder="Password" autocomplete="off">
+    <button onclick="checkPassword()">Enter</button>
+    <span class="error" id="pw-error"></span>
+  </div>
+
+  <script>
+    document.getElementById('pw-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassword();
+    });
+    function checkPassword() {
+      var val = document.getElementById('pw-input').value;
+      if (val === 'HelloJon2026') {
+        document.getElementById('password-gate').style.display = 'none';
+      } else {
+        document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
   </script>
 </body>
 </html>
