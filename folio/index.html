@@ -70,12 +70,6 @@
 </head>
 <body>
 
-  <iframe
-    id="folio-frame"
-    src="https://www.figma.com/proto/FX6JLwUERvlUYH7Ye8F7yy/About-Jon?node-id=1322-5696&viewport=9367%2C-424%2C0.82&t=kuZtAvL4PW5Jx6od-1&scaling=contain&content-scaling=fixed&starting-point-node-id=1322%3A5825&page-id=1322%3A5594"
-    allowfullscreen>
-  </iframe>
-
   <div id="password-gate">
     <h1>Jonathan McGhee</h1>
     <p>Enter password to continue</p>
@@ -91,7 +85,7 @@
     function checkPassword() {
       var val = document.getElementById('pw-input').value;
       if (val === 'HelloJon2026') {
-        document.getElementById('password-gate').style.display = 'none';
+        window.location.href = 'https://www.figma.com/proto/FX6JLwUERvlUYH7Ye8F7yy/About-Jon?node-id=1322-5696&viewport=9367%2C-424%2C0.82&t=kuZtAvL4PW5Jx6od-1&scaling=contain&content-scaling=fixed&starting-point-node-id=1322%3A5825&page-id=1322%3A5594';
       } else {
         document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
         document.getElementById('pw-input').value = '';
