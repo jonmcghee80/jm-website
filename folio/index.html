@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jonathan McGhee — Folio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body { background: #000; height: 100vh; overflow: hidden; font-family: 'Nunito Sans', Arial, sans-serif; }
+
+    #folio-frame {
+      width: 100%;
+      height: 100vh;
+      border: none;
+      display: block;
+    }
+
+    /* PASSWORD GATE */
+    #password-gate {
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      font-family: Arial, sans-serif;
+    }
+    #password-gate h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000;
+    }
+    #password-gate p {
+      font-size: 14px;
+      color: #767676;
+    }
+    #password-gate input {
+      border: 1.5px solid #000;
+      padding: 10px 16px;
+      font-size: 16px;
+      font-family: inherit;
+      width: 260px;
+      outline: none;
+    }
+    #password-gate button {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      width: 260px;
+    }
+    #password-gate .error {
+      font-size: 13px;
+      color: #c00;
+      min-height: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <iframe
+    id="folio-frame"
+    src="https://www.figma.com/proto/FX6JLwUERvlUYH7Ye8F7yy/About-Jon?node-id=1322-5696&viewport=9367%2C-424%2C0.82&t=kuZtAvL4PW5Jx6od-1&scaling=contain&content-scaling=fixed&starting-point-node-id=1322%3A5825&page-id=1322%3A5594"
+    allowfullscreen>
+  </iframe>
+
+  <div id="password-gate">
+    <h1>Jonathan McGhee</h1>
+    <p>Enter password to continue</p>
+    <input type="password" id="pw-input" placeholder="Password" autocomplete="off">
+    <button onclick="checkPassword()">Enter</button>
+    <span class="error" id="pw-error"></span>
+  </div>
+
+  <script>
+    document.getElementById('pw-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassword();
+    });
+    function checkPassword() {
+      var val = document.getElementById('pw-input').value;
+      if (val === 'HelloJon2026') {
+        document.getElementById('password-gate').style.display = 'none';
+      } else {
+        document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
+  </script>
+
+</body>
+</html>
