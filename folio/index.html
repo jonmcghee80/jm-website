@@ -66,11 +66,19 @@
       color: #c00;
       min-height: 18px;
     }
+    #password-gate .logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 <body>
 
   <div id="password-gate">
+    <img src="../assets/logo/jm-logo.png" alt="JM" class="logo">
     <h1>Jonathan McGhee</h1>
     <p>Enter password to continue</p>
     <input type="password" id="pw-input" placeholder="Password" autocomplete="off">
