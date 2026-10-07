@@ -10,6 +10,8 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html { overflow-x: hidden; }
+
     :root {
       --black:     #010101;
       --white:     #ffffff;
@@ -96,6 +98,7 @@
       width: 100%;
       position: relative;
       isolation: isolate;
+      overflow-x: hidden;
     }
 
     /* ── HEADER ── */
