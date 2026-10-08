@@ -26,59 +26,90 @@
 
     /* ── PASSWORD GATE ── */
     #password-gate {
-      position: fixed;
-      inset: 0;
-      background: #fff;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 16px;
+      position: fixed; inset: 0; background: #fff; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pg-content {
+      display: flex; flex-direction: column; gap: 80px;
+      align-items: center; width: 241px;
+    }
+    .pg-identity {
+      display: flex; flex-direction: column; gap: 8px;
+      align-items: center; width: 100%;
+    }
+    .pg-logo {
+      width: 140px; height: 140px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .pg-name {
+      position: relative; width: 100%; height: 107px;
+      font-size: 47.41px; line-height: 60.614px; color: #010101;
+    }
+    .pg-name-first {
+      position: absolute; top: 0; left: 0; right: 23.73%;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-weight: 300; letter-spacing: -1.8964px;
+      white-space: nowrap;
+    }
+    .pg-name-last {
+      position: absolute; top: 42.69%; left: 30.38%; right: 0; bottom: 0;
       font-family: 'Source Serif 4', serif;
+      font-weight: 700; font-style: italic;
+      white-space: nowrap;
     }
-    #password-gate .pg-logo {
-      width: 72px;
-      height: 72px;
+    .pg-form {
+      display: flex; flex-direction: column; gap: 24px; width: 100%;
+    }
+    .pg-subtitle {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-weight: 500; font-size: 16px; line-height: 32px;
+      letter-spacing: -0.48px; color: #b2b2b2; text-align: center;
+    }
+    #pw-input {
+      height: 48px; width: 100%; box-sizing: border-box;
+      border: 2px solid #010101; border-radius: 8px;
+      padding: 0 16px; outline: none;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-weight: 500; font-size: 16px; letter-spacing: -0.48px;
+      color: #010101; background: transparent;
+      transition: border-color 0.2s;
+    }
+    #pw-input::placeholder { color: #b2b2b2; }
+    #pw-input.pg-state-error { border-color: #d30000; }
+    #pw-input.pg-state-success { border-color: #01fffe; }
+    .pg-error-text {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-weight: 500; font-size: 16px; line-height: 18px;
+      letter-spacing: -0.48px; color: #d30000; text-align: center;
+      display: none;
+    }
+    .pg-error-text.visible { display: block; }
+    .pg-button-row {
+      position: relative; display: flex; align-items: center;
+    }
+    .pg-spinner {
+      position: absolute; left: -34px;
+      width: 20px; height: 20px;
+      border: 3px solid rgba(1,255,254,0.25);
+      border-top-color: #01fffe;
       border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 8px;
+      animation: pg-spin 0.8s linear infinite;
+      display: none;
     }
-    #password-gate h1 {
-      font-size: 20px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      color: #010101;
+    .pg-spinner.visible { display: block; }
+    @keyframes pg-spin { to { transform: rotate(360deg); } }
+    #pw-button {
+      height: 48px; width: 100%; border: none;
+      border-radius: 40px; background: #b2b2b2; color: #fff;
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px; font-weight: 400; line-height: 28px;
+      cursor: default; transition: background 0.2s;
     }
-    #password-gate p {
-      font-size: 14px;
-      color: #b2b2b2;
-    }
-    #password-gate input {
-      border: 1.5px solid #010101;
-      padding: 10px 16px;
-      font-size: 16px;
-      font-family: inherit;
-      width: 260px;
-      outline: none;
-      border-radius: 4px;
-    }
-    #password-gate button {
-      background: #010101;
-      color: #fff;
-      border: none;
-      padding: 10px 24px;
-      font-size: 14px;
-      font-family: inherit;
-      cursor: pointer;
-      width: 260px;
-      border-radius: 40px;
-    }
-    #password-gate .error {
-      font-size: 13px;
-      color: #c00;
-      min-height: 18px;
-    }
+    #pw-button.active { background: #010101; cursor: pointer; }
 
     html { scroll-behavior: smooth; }
 
@@ -1240,25 +1271,58 @@
 
 <!-- PASSWORD GATE -->
 <div id="password-gate">
-  <img src="assets/logo/jm-logo.png" alt="JM" class="pg-logo">
-  <h1>Jonathan McGhee</h1>
-  <p>Enter password to continue</p>
-  <input type="password" id="pw-input" placeholder="Password" autocomplete="off">
-  <button onclick="checkPassword()">Enter</button>
-  <span class="error" id="pw-error"></span>
+  <div class="pg-content">
+    <div class="pg-identity">
+      <img src="assets/logo/jm-logo.png" alt="JM" class="pg-logo">
+      <div class="pg-name">
+        <span class="pg-name-first">Jonathan</span>
+        <span class="pg-name-last">McGhee</span>
+      </div>
+    </div>
+    <div class="pg-form">
+      <p class="pg-subtitle">Enter the password to continue</p>
+      <input type="password" id="pw-input" placeholder="Password" autocomplete="off">
+      <p class="pg-error-text" id="pw-error"></p>
+      <div class="pg-button-row">
+        <div class="pg-spinner" id="pw-spinner"></div>
+        <button id="pw-button" onclick="checkPassword()">Enter</button>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
-  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  var pwInput = document.getElementById('pw-input');
+  var pwButton = document.getElementById('pw-button');
+  var pwError = document.getElementById('pw-error');
+  var pwSpinner = document.getElementById('pw-spinner');
+
+  pwInput.addEventListener('input', function() {
+    pwButton.classList.toggle('active', this.value.length > 0);
+    pwInput.classList.remove('pg-state-error');
+    pwError.classList.remove('visible');
+    pwError.textContent = '';
+  });
+
+  pwInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') checkPassword();
   });
+
   function checkPassword() {
-    var val = document.getElementById('pw-input').value;
+    var val = pwInput.value;
     if (val === 'HelloJon2026') {
-      document.getElementById('password-gate').style.display = 'none';
+      pwInput.classList.add('pg-state-success');
+      pwSpinner.classList.add('visible');
+      pwButton.classList.add('active');
+      setTimeout(function() {
+        document.getElementById('password-gate').style.display = 'none';
+      }, 700);
     } else {
-      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
-      document.getElementById('pw-input').value = '';
-      document.getElementById('pw-input').focus();
+      pwInput.classList.add('pg-state-error');
+      pwButton.classList.remove('active');
+      pwError.textContent = 'The password entered is incorrect';
+      pwError.classList.add('visible');
+      pwInput.value = '';
+      pwInput.focus();
     }
   }
 </script>
