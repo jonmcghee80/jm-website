@@ -1238,5 +1238,30 @@
 
 </div><!-- /.page -->
 
+<!-- PASSWORD GATE -->
+<div id="password-gate">
+  <img src="assets/logo/jm-logo.png" alt="JM" class="pg-logo">
+  <h1>Jonathan McGhee</h1>
+  <p>Enter password to continue</p>
+  <input type="password" id="pw-input" placeholder="Password" autocomplete="off">
+  <button onclick="checkPassword()">Enter</button>
+  <span class="error" id="pw-error"></span>
+</div>
+<script>
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+  function checkPassword() {
+    var val = document.getElementById('pw-input').value;
+    if (val === 'HelloJon2026') {
+      document.getElementById('password-gate').style.display = 'none';
+    } else {
+      document.getElementById('pw-error').textContent = 'Incorrect password. Please try again.';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+</script>
+
 </body>
 </html>
