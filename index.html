@@ -446,6 +446,17 @@
       gap: 16px;
     }
 
+    .experience-chevron {
+      display: none;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--grey-mid);
+      transition: transform 0.2s ease-out;
+    }
+
+    .experience-item.open .experience-chevron { transform: rotate(90deg); }
+
     .experience-logo {
       width: 80px;
       height: 40px;
@@ -719,17 +730,22 @@
 
     @media (max-width: 640px) {
       :root { --pad: 24px; }
-      /* Header: centre logo, hide CV button */
-      .header { justify-content: center; }
-      .header-logo { flex: none; }
+      /* Header: logo only */
       .header-right { display: none; }
       .hero-intro { font-size: 24px; line-height: 30px; letter-spacing: -0.72px; }
       .work-blob { left: 20%; width: 600px; height: 600px; top: -300px; }
       /* Allow card titles and meta to wrap */
       .work-card-title { white-space: normal; }
-      .work-card-meta { flex-wrap: wrap; gap: 12px; }
-      .experience-item { flex-direction: column; gap: 16px; }
-      .experience-side { width: 100%; flex-direction: row; align-items: center; }
+      .work-card-meta { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .badge { height: 26px; padding: 0 10px; font-size: 13px; }
+      /* Experience: collapsible rows */
+      .experience-list { gap: 24px; }
+      .experience-item { flex-direction: column; gap: 24px; }
+      .experience-side { width: 100%; flex-direction: row; align-items: center; gap: 8px; cursor: pointer; }
+      .experience-side .experience-years { margin-left: auto; }
+      .experience-chevron { display: block; }
+      .experience-logo { display: flex; align-items: center; }
+      .experience-item:not(.open) .experience-body { display: none; }
       .experience-logo.wide { width: 100px; }
       .about-visual { width: 100%; }
       .about-photo { width: 83.33%; height: auto; aspect-ratio: 400 / 410.105; margin-right: -37.5%; }
@@ -778,7 +794,7 @@
 
   <!-- HERO -->
   <section class="hero-section">
-    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer specialising in fintech platforms, design systems, and art direction. Bringing two decades of crafting intuitive user experiences, and <strong>creating work that works.</strong></h1>
+    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer specialising in fintech, design systems and brand. <strong>Creating work that works.</strong></h1>
   </section>
 
   <!-- WORK -->
@@ -922,6 +938,7 @@
       <ul class="experience-list">
         <li class="experience-item">
           <div class="experience-side">
+            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             <div class="experience-logo">
               <div class="logo-cargill" role="img" aria-label="Cargill">
                 <img class="text" src="assets/logo/experience/cargill-text.svg" alt="">
@@ -938,6 +955,7 @@
 
         <li class="experience-item">
           <div class="experience-side">
+            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             <div class="experience-logo">
               <img src="assets/logo/experience/bp.svg" alt="bp">
             </div>
@@ -951,6 +969,7 @@
 
         <li class="experience-item">
           <div class="experience-side">
+            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             <div class="experience-logo">
               <div class="logo-lseg" role="img" aria-label="LSEG">
                 <div class="logo-lseg-inner">
@@ -968,6 +987,7 @@
 
         <li class="experience-item">
           <div class="experience-side">
+            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             <div class="experience-logo wide">
               <img src="assets/logo/experience/tt-long.svg" alt="Turner &amp; Townsend">
             </div>
@@ -981,6 +1001,7 @@
 
         <li class="experience-item">
           <div class="experience-side">
+            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
             <div class="experience-logo">
               <img src="assets/logo/experience/hcltech.svg" alt="HCLTech">
             </div>
@@ -1102,6 +1123,43 @@
       pwInput.focus();
     }
   }
+</script>
+
+<script>
+  // Experience rows collapse into an accordion on small screens
+  (function() {
+    var mq = window.matchMedia('(max-width: 640px)');
+    var items = document.querySelectorAll('.experience-item');
+
+    function sync() {
+      items.forEach(function(item) {
+        var side = item.querySelector('.experience-side');
+        if (mq.matches) {
+          side.setAttribute('role', 'button');
+          side.setAttribute('tabindex', '0');
+          side.setAttribute('aria-expanded', item.classList.contains('open'));
+        } else {
+          side.removeAttribute('role');
+          side.removeAttribute('tabindex');
+          side.removeAttribute('aria-expanded');
+        }
+      });
+    }
+
+    items.forEach(function(item) {
+      var side = item.querySelector('.experience-side');
+      side.addEventListener('click', function() {
+        if (!mq.matches) return;
+        side.setAttribute('aria-expanded', item.classList.toggle('open'));
+      });
+      side.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); side.click(); }
+      });
+    });
+
+    mq.addEventListener('change', sync);
+    sync();
+  })();
 </script>
 
 </body>
