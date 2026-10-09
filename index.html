@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="gate-open">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +26,8 @@
     }
 
     /* ── PASSWORD GATE ── */
+    /* Stop the page behind the gate scrolling (e.g. when the mobile keyboard opens) */
+    html.gate-open, html.gate-open body { overflow: hidden; height: 100%; }
     #password-gate {
       position: fixed; inset: 0; background: #fff; z-index: 9999;
       display: flex; align-items: center; justify-content: center;
@@ -1106,6 +1108,8 @@
   </div>
 </div>
 <script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   var pwInput = document.getElementById('pw-input');
   var pwButton = document.getElementById('pw-button');
   var pwError = document.getElementById('pw-error');
@@ -1129,6 +1133,9 @@
       pwSpinner.classList.add('visible');
       pwButton.classList.add('active');
       setTimeout(function() {
+        pwInput.blur();
+        document.documentElement.classList.remove('gate-open');
+        window.scrollTo({ top: 0, behavior: 'instant' });
         document.getElementById('password-gate').style.display = 'none';
       }, 700);
     } else {
