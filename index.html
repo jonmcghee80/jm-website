@@ -62,6 +62,10 @@
       transition: border-color 0.2s;
     }
     #pw-input::placeholder { color: #b2b2b2; }
+    /* Bricolage's bullet glyph is tiny - draw the masked dots with a system font */
+    #pw-input:not(:placeholder-shown) {
+      font-family: Verdana, system-ui, sans-serif; letter-spacing: 2px;
+    }
     #pw-input.pg-state-error { border-color: #d30000; }
     #pw-input.pg-state-success { border-color: #01fffe; }
     .pg-error-text {
