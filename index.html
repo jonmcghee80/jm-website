@@ -42,23 +42,6 @@
       width: 140px; height: 140px; border-radius: 50%;
       object-fit: cover; flex-shrink: 0;
     }
-    .pg-name {
-      position: relative; width: 100%; height: 107px;
-      font-size: 47.41px; line-height: 60.614px; color: #010101;
-    }
-    .pg-name-first {
-      position: absolute; top: 0; left: 0; right: 23.73%;
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-weight: 300; letter-spacing: -1.8964px;
-      white-space: nowrap;
-    }
-    .pg-name-last {
-      position: absolute; top: 42.69%; left: 30.38%; right: 0; bottom: 0;
-      font-family: 'Source Serif 4', serif;
-      font-weight: 700; font-style: italic;
-      white-space: nowrap;
-    }
     .pg-form {
       display: flex; flex-direction: column; gap: 24px; width: 100%;
     }
@@ -314,27 +297,25 @@
       display: block;
     }
 
+    /* Max 3 columns; a column never drops below 420px */
     .work-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(max(420px, calc((100% - 80px) / 3)), 1fr));
       gap: 80px 40px;
-      align-items: flex-start;
+      align-items: start;
       width: 100%;
       position: relative;
     }
 
     .work-card {
-      flex: 1 0 0;
-      min-width: 420px;
       display: flex;
       flex-direction: column;
       gap: 24px;
-      height: 687px;
+      min-width: 0;
     }
 
     .work-card-media {
-      flex: 1 0 0;
-      min-height: 420px;
+      aspect-ratio: 1 / 1;
       position: relative;
       overflow: hidden;
       border-radius: 8px;
@@ -388,7 +369,6 @@
       line-height: 28px;
       text-box: trim-both cap alphabetic;
       color: var(--black);
-      white-space: nowrap;
     }
 
     .badge {
@@ -731,13 +711,7 @@
 
     @media (max-width: 900px) {
       .header-nav { display: none; }
-      .work-card { flex-basis: 100%; min-width: 0; height: auto; }
-      .work-card-media {
-        flex: none;
-        width: 100%;
-        min-height: 0;
-        aspect-ratio: 4 / 3;
-      }
+      .work-grid { grid-template-columns: 1fr; }
       .experience-item { gap: 40px; }
       .experience-body { padding-right: 0; }
       .about-text { min-width: 0; flex-basis: 100%; }
@@ -804,7 +778,7 @@
 
   <!-- HERO -->
   <section class="hero-section">
-    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer Specialising in fintech platforms, design systems, and art direction. Bringing two decades of crafting intuitive user experiences, and <strong>creating work that works.</strong></h1>
+    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer specialising in fintech platforms, design systems, and art direction. Bringing two decades of crafting intuitive user experiences, and <strong>creating work that works.</strong></h1>
   </section>
 
   <!-- WORK -->
@@ -1081,10 +1055,6 @@
   <div class="pg-content">
     <div class="pg-identity">
       <img src="assets/logo/jm-logo.png" alt="JM" class="pg-logo">
-      <div class="pg-name">
-        <span class="pg-name-first">Jonathan</span>
-        <span class="pg-name-last">McGhee</span>
-      </div>
     </div>
     <div class="pg-form">
       <p class="pg-subtitle">Enter the password to continue</p>
