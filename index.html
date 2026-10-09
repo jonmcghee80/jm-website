@@ -105,6 +105,10 @@
       overflow-x: hidden;
     }
 
+    /* Avoid orphaned last words */
+    h1, h2, h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+
     /* ── PAGE WRAPPER ── */
     .page {
       display: flex;
@@ -736,6 +740,7 @@
       .work-blob { left: 20%; width: 600px; height: 600px; top: -300px; }
       /* Allow card titles and meta to wrap */
       .work-card-title { white-space: normal; }
+      .work-grid { row-gap: 48px; }
       .work-card-meta { flex-direction: column; align-items: flex-start; gap: 16px; }
       .badge { height: 26px; padding: 0 10px; font-size: 13px; }
       /* Experience: collapsible rows */
@@ -794,7 +799,7 @@
 
   <!-- HERO -->
   <section class="hero-section">
-    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer specialising in fintech, design systems and brand. <strong>Creating work that works.</strong></h1>
+    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer specialising in fintech, design systems and brand. <strong>Creating work that&nbsp;works.</strong></h1>
   </section>
 
   <!-- WORK -->
@@ -1021,10 +1026,10 @@
     <div class="about-inner">
       <div class="about-text">
         <h2 class="section-label">About Jon</h2>
-        <p class="about-lead">A lead product designer specialising in fintech platforms, design systems and brand. User-centred in approach, with craft firmly at the core.</p>
+        <p class="about-lead">A lead product designer specialising in fintech platforms, design systems and brand. User-centred in approach, with craft firmly at the&nbsp;core.</p>
         <div class="about-body">
-          <p>Two decades of design, from ad campaigns for O2 and Coca-Cola to design systems and trading applications used across global markets. I solve hard problems for users and clients, and make sure the result looks great too.</p>
-          <p>Based in Richmond, West London, I can usually be found on a road bike somewhere hillier than planned, or sketching in a notebook.</p>
+          <p>Two decades of design, from ad campaigns for O2 and Coca-Cola to design systems and trading applications used across global markets. I solve hard problems for users and clients, and make sure the result looks great&nbsp;too.</p>
+          <p>Based in Richmond, West London, I can usually be found on a road bike somewhere hillier than planned, or sketching in a&nbsp;notebook.</p>
         </div>
       </div>
 
@@ -1047,7 +1052,7 @@
     <div class="contact-inner">
       <div class="contact-content">
         <h2 class="section-label">Contact</h2>
-        <p class="contact-tagline">Always happy to hear about new design opportunities, or just to talk shop.</p>
+        <p class="contact-tagline">Always happy to hear about new design opportunities, or just to talk&nbsp;shop.</p>
         <div class="contact-list">
           <a href="https://www.linkedin.com/in/jonmcghee" class="contact-item" target="_blank" rel="noopener">
             <img src="assets/images/LinkedIn.svg" class="contact-icon sm" alt="" aria-hidden="true" width="19" height="20">
