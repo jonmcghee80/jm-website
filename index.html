@@ -18,6 +18,7 @@
       --grey-dark: #666666;
       --grey-mid:  #b2b2b2;
       --grey-bg:   #fafafa;
+      --grey:      #939393;
       --blue:      #3a7ca7;
       --cyan:      #01fffe;
       --max-w:     1280px;
@@ -137,7 +138,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: var(--max-w);
       width: 100%;
       padding: 40px var(--pad) 0;
       position: relative;
@@ -156,6 +156,12 @@
       border-radius: 50%;
       object-fit: cover;
       display: block;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 40px;
+      align-items: center;
     }
 
     .header-nav {
@@ -181,6 +187,7 @@
       font-size: 20px;
       font-weight: 400;
       line-height: 28px;
+      text-box: trim-both cap alphabetic;
       white-space: nowrap;
       transition: color 0.25s ease-out;
       position: relative;
@@ -213,7 +220,6 @@
 
     .header-actions {
       display: flex;
-      flex: 1 0 0;
       align-items: center;
       justify-content: flex-end;
     }
@@ -261,237 +267,51 @@
 
     /* ── HERO ── */
     .hero-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 80px var(--pad) 0;
       width: 100%;
+      padding: 80px var(--pad);
       position: relative;
       z-index: 3;
-      overflow: visible;
     }
 
-    .hero-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      align-items: flex-start;
-      width: 100%;
-      max-width: var(--max-w);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* cyan blob */
-    .hero-blob {
-      position: absolute;
-      left: calc(37.5% + 26px);
-      transform: translateX(-50%);
-      top: 143px;
-      width: 400px;
-      height: 400px;
-      pointer-events: none;
-      z-index: 5;
-      mix-blend-mode: multiply;
-    }
-
-    .hero-blob img {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    /* hero stage — fixed-height relative block, children positioned absolutely */
-    .hero-stage {
-      position: relative;
-      width: 100%;
-      height: 574px;
-      flex-shrink: 0;
-    }
-
-    /* portrait */
-    .hero-portrait {
-      position: absolute;
-      left: 35.92%;
-      right: 25.24%;
-      top: 0;
-      aspect-ratio: 475 / 487;
-      background: var(--white);
-    }
-
-    .hero-portrait-bg {
-      position: absolute;
-      top: 17.86%;
-      left: 5.37%;
-      right: 10.42%;
-      bottom: 0.21%;
-      background: var(--grey-bg);
-    }
-
-    .hero-portrait-img {
-      position: absolute;
-      inset: 0;
-      mix-blend-mode: multiply;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .hero-portrait-img img {
-      position: absolute;
-      width: 105.47%;
-      height: 102.62%;
-      top: -2.62%;
-      left: -4.16%;
-      max-width: none;
-      object-fit: cover;
-    }
-
-    /* name block */
-    .hero-name {
-      position: absolute;
-      left: 0;
-      right: 60.54%;
-      top: calc(50% - 109.57px);
-      transform: translateY(-50%);
-      aspect-ratio: 406.469 / 179.714;
-      cursor: default;
-    }
-
-    .hero-name-jonathan {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 23.73%;
-      bottom: 42.69%;
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-weight: 300;
-      font-size: clamp(56px, 7.76vw, 99.42px);
-      line-height: 1.279;
-      letter-spacing: -0.04em;
-      color: var(--black);
-      white-space: nowrap;
-    }
-
-    .hero-name-mcghee {
-      position: absolute;
-      top: 42.69%;
-      left: 30.38%;
-      right: 0;
-      bottom: 0;
-      font-family: 'Source Serif 4', serif;
-      font-style: italic;
-      font-weight: 700;
-      font-size: clamp(56px, 7.76vw, 99.42px);
-      line-height: 1.279;
-      color: var(--black);
-      white-space: nowrap;
-    }
-
-    /* name scribble overlay */
-    .hero-name-scribble {
-      position: absolute;
-      top: 15.46%;
-      left: 28.78%;
-      right: 20.29%;
-      bottom: 58.66%;
-      pointer-events: none;
-      overflow: visible;
-    }
-
-    .hero-name-scribble img {
-      position: absolute;
-      inset: -4.3% -0.1% -4.3% 0;
-      width: calc(100% + 0.1%);
-      height: calc(100% + 8.6%);
-      max-width: none;
-      opacity: 0;
-      transition: opacity 0.25s ease-out;
-    }
-
-    @media (hover: hover) {
-      .hero-name:hover .hero-name-scribble img { opacity: 1; }
-    }
-
-    /* job title */
-    .hero-role {
-      position: absolute;
-      top: 80.08%;
-      right: 6.12%;
-      bottom: 2.83%;
-      left: 74.47%;
-    }
-
-    .hero-role-text {
-      position: absolute;
-      top: 18.48%;
-      left: 0;
-      right: 0;
-      bottom: -0.8%;
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-weight: 400;
-      font-size: clamp(22px, 2.98vw, 38.09px);
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      line-height: 1.05;
-      color: var(--grey-dark);
-      white-space: nowrap;
-      transition: color 0.22s ease-out;
-      cursor: default;
-    }
-
-    /* role sparkle */
-    .hero-role-spark {
-      position: absolute;
-      top: 0;
-      left: 62.94%;
-      right: 17.55%;
-      bottom: 67.15%;
-      pointer-events: none;
-      overflow: visible;
-    }
-
-    .hero-role-spark img {
-      position: absolute;
-      inset: -4.43% -2.95%;
-      width: calc(100% + 5.9%);
-      height: calc(100% + 8.86%);
-      max-width: none;
-      opacity: 0;
-      transition: opacity 0.2s ease-out;
-    }
-
-    @media (hover: hover) {
-      .hero-role:hover .hero-role-text { color: var(--black); }
-      .hero-role:hover .hero-role-spark img { opacity: 1; }
-    }
-
-    /* hero intro */
     .hero-intro {
-      max-width: 605px;
+      max-width: 630px;
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-variation-settings: 'opsz' 24, 'wdth' 100;
-      font-size: 24px;
-      font-weight: 400;
-      line-height: 32px;
-      letter-spacing: -0.03em;
-      color: var(--grey-mid);
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 37px;
+      letter-spacing: -0.9px;
+      text-box: trim-both cap alphabetic;
+      color: var(--grey);
     }
 
     .hero-intro strong {
       color: var(--black);
-      font-weight: 400;
+      font-weight: 300;
     }
 
     /* ── WORK ── */
     .work-section {
-      display: flex;
-      justify-content: center;
       width: 100%;
-      padding: 80px var(--pad) 80px;
+      padding: 0 var(--pad) 80px;
       position: relative;
       z-index: 2;
+    }
+
+    .work-blob {
+      position: absolute;
+      left: calc(50% + 155px);
+      top: -468px;
+      width: 936px;
+      height: 936px;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .work-blob img {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .work-grid {
@@ -500,33 +320,24 @@
       gap: 80px 40px;
       align-items: flex-start;
       width: 100%;
-      max-width: var(--max-w);
+      position: relative;
     }
 
     .work-card {
+      flex: 1 0 0;
+      min-width: 420px;
       display: flex;
       flex-direction: column;
       gap: 24px;
       height: 687px;
     }
 
-    .work-card.full {
-      width: 100%;
-      flex-shrink: 0;
-    }
-
-    .work-card.half {
-      flex: 1 1 580px;
-      min-width: 420px;
-      max-width: 620px;
-    }
-
     .work-card-media {
       flex: 1 0 0;
       min-height: 420px;
-      min-width: 420px;
       position: relative;
       overflow: hidden;
+      border-radius: 8px;
       background: var(--grey-bg);
     }
 
@@ -596,94 +407,140 @@
       white-space: nowrap;
     }
 
-    /* ── EXPERIENCE ── */
-    .experience-section {
-      width: 100%;
-      background: linear-gradient(#fafafa, #ffffff);
-      padding: 80px var(--pad);
-      display: flex;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .experience-inner {
-      width: 100%;
-      max-width: var(--max-w);
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .experience-content {
-      flex: 1 0 0;
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
+    /* ── SHARED ── */
     .section-label {
       font-family: 'Bricolage Grotesque', sans-serif;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-size: 32px;
       font-weight: 400;
       color: var(--blue);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.64px;
       line-height: 60px;
+      text-box: trim-both cap alphabetic;
     }
 
-    .experience-item-title {
+    /* ── EXPERIENCE ── */
+    .experience-section {
+      width: 100%;
+      background: var(--white);
+      padding: 80px var(--pad);
+      position: relative;
+      z-index: 1;
+    }
+
+    .experience-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .experience-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .experience-item {
+      display: flex;
+      gap: 80px;
+      align-items: flex-start;
+      border-top: 1px solid var(--grey-mid);
+      padding-top: 16px;
+    }
+
+    .experience-side {
+      width: 100px;
+      flex-shrink: 0;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .experience-logo {
+      width: 80px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .experience-logo.wide { width: 100%; }
+
+    .experience-logo img { display: block; width: 100%; height: auto; }
+
+    /* Cargill: leaf + wordmark layers */
+    .logo-cargill {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 179 / 83;
+    }
+
+    .logo-cargill img { position: absolute; }
+    .logo-cargill .leaf { top: 28.47%; left: 94.3%; width: 4.52%; height: 9.88%; }
+    .logo-cargill .text { top: 2.32%; left: 1.09%; width: 92.3%; height: 95.68%; }
+
+    /* LSEG: masked artwork */
+    .logo-lseg {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 517 / 135;
+      overflow: hidden;
+    }
+
+    .logo-lseg-inner {
+      position: absolute;
+      top: 0; right: 0.13%; bottom: 0.51%; left: 0;
+      -webkit-mask: url("assets/logo/experience/lseg-mask.svg") no-repeat 0 0 / 100% 100%;
+              mask: url("assets/logo/experience/lseg-mask.svg") no-repeat 0 0 / 100% 100%;
+    }
+
+    .logo-lseg-inner img { width: 100%; height: 100%; }
+
+    .experience-years {
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 32px;
+      text-box: trim-both cap alphabetic;
+      color: var(--grey-mid);
+      white-space: nowrap;
+    }
+
+    .experience-body {
+      flex: 1 0 0;
+      min-width: 0;
+      max-width: 780px;
+      padding-right: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .experience-title {
       font-family: 'Bricolage Grotesque', sans-serif;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 400;
+      line-height: 26px;
+      text-box: trim-both cap alphabetic;
       color: var(--black);
-      line-height: 32px;
     }
 
-    /* ── LOGO CAROUSEL ── */
-    .logo-bar {
-      background: var(--white);
-      padding: 52px var(--pad);
-      overflow: hidden;
-      width: 100%;
-      flex-shrink: 0;
-    }
-
-    .logo-track {
-      display: flex;
-      width: max-content;
-      animation: marquee 30s linear infinite;
-    }
-
-    .logo-track:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .logo-track { animation: none; }
-    }
-
-    .logo-set {
-      display: flex;
-      align-items: center;
-      gap: 80px;
-      padding: 0 40px;
-      flex-shrink: 0;
-    }
-
-    .logo-item {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-
-    .logo-item img {
-      display: block;
+    .experience-desc {
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      text-box: trim-both cap alphabetic;
+      color: var(--grey);
     }
 
     /* ── ABOUT ── */
@@ -693,57 +550,60 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      position: relative;
     }
 
     .about-inner {
       display: flex;
-      gap: 100px;
+      flex-wrap: wrap;
+      row-gap: 40px;
       align-items: flex-start;
+      justify-content: space-between;
       max-width: var(--max-w);
       width: 100%;
     }
 
     .about-text {
       flex: 1 0 0;
+      min-width: 390px;
       max-width: 600px;
       display: flex;
       flex-direction: column;
       gap: 32px;
     }
 
-    .about-body {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .about-body p {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-size: 24px;
-      font-weight: 400;
-      line-height: 32px;
-      color: var(--black);
-      margin-bottom: 20px;
-    }
-
-    .about-body p.small {
+    .about-lead {
       font-family: 'Source Serif 4', serif;
       font-size: 20px;
       font-weight: 400;
-      line-height: 32px;
+      line-height: 28px;
+      text-box: trim-both cap alphabetic;
+      color: var(--black);
     }
 
-    .about-body p:last-child { margin-bottom: 0; }
+    .about-body {
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 25px;
+      text-box: trim-both cap alphabetic;
+      color: var(--grey-dark);
+    }
 
-    /* about portrait */
-    .about-photo-wrap {
-      flex: 1 0 0;
-      max-width: 800px;
-      aspect-ratio: 475 / 487;
+    .about-body p + p { margin-top: 25px; }
+
+    /* about portrait + blur */
+    .about-visual {
+      display: flex;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .about-photo {
       position: relative;
-      cursor: default;
+      width: 400px;
+      height: 410.105px;
+      margin-right: -180px;
+      flex-shrink: 0;
     }
 
     .about-photo-bg {
@@ -772,38 +632,11 @@
       max-width: none;
     }
 
-    /* face doodle overlay on about portrait */
-    .about-doodle {
-      position: absolute;
-      top: 10.48%;
-      left: -4%;
-      right: 6%;
-      bottom: 15.14%;
-      pointer-events: none;
-      overflow: visible;
-    }
-
-    .about-doodle img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.25s ease-out;
-    }
-
-    @media (hover: hover) {
-      .about-photo-wrap:hover .about-doodle img { opacity: 1; }
-    }
-
-    /* about blob */
     .about-blob {
-      position: absolute;
-      left: calc(50% + 494px);
-      transform: translateX(-50%);
-      top: 59.52px;
-      width: 400px;
-      height: 400px;
+      position: relative;
+      width: 260px;
+      height: 260px;
+      flex-shrink: 0;
       pointer-events: none;
       mix-blend-mode: multiply;
     }
@@ -817,27 +650,24 @@
     /* ── CONTACT ── */
     .contact-section {
       background: var(--white);
-      padding: 52px 24px 80px;
+      padding: 52px var(--pad) 0;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      flex-shrink: 0;
     }
 
     .contact-inner {
       display: flex;
-      gap: 100px;
-      align-items: center;
-      justify-content: center;
-      max-width: var(--max-w);
-      width: 100%;
+      flex-wrap: wrap;
+      row-gap: 60px;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-bottom: 80px;
     }
 
     .contact-content {
-      flex: 1 0 0;
       display: flex;
       flex-direction: column;
       gap: 32px;
+      min-width: 0;
     }
 
     .contact-tagline {
@@ -845,14 +675,15 @@
       font-size: 20px;
       font-weight: 400;
       line-height: 32px;
+      text-box: trim-both cap alphabetic;
       color: var(--black);
-      max-width: 691px;
     }
 
     .contact-list {
       display: flex;
+      flex-wrap: wrap;
       gap: 60px;
-      align-items: center;
+      align-items: flex-start;
       padding-top: 16px;
     }
 
@@ -863,6 +694,7 @@
       font-family: 'Source Serif 4', serif;
       font-size: 20px;
       font-weight: 400;
+      line-height: 1.731;
       color: var(--black);
       text-decoration: none;
       transition: opacity 0.2s;
@@ -875,6 +707,7 @@
       width: 24px;
       height: 24px;
       flex-shrink: 0;
+      display: block;
     }
 
     .contact-icon.sm {
@@ -897,86 +730,38 @@
     }
 
     @media (max-width: 900px) {
-      .work-card.half {
-        min-width: 100%;
-        width: 100%;
-      }
-      .about-inner {
-        flex-direction: column;
-        gap: 48px;
-      }
-      .about-photo-wrap {
-        max-width: 100%;
-        width: 100%;
-      }
-      .contact-inner {
-        flex-direction: column;
-        gap: 48px;
-        align-items: flex-start;
-      }
-      .contact-list { flex-direction: column; align-items: flex-start; gap: 24px; }
       .header-nav { display: none; }
-    }
-
-    /* Tablet hero — Variant2 (≤900px) */
-    @media (max-width: 900px) {
-      .hero-stage { height: 462px; }
-      .hero-name {
-        left: -2.16%;
-        right: 53.45%;
-        top: calc(50% - 154.14px);
-      }
-      .hero-name-jonathan,
-      .hero-name-mcghee { font-size: 63.37px; }
-      .hero-portrait { left: 30.41%; right: 16.64%; top: 0; }
-      .hero-role { top: 82.25%; right: 9.98%; bottom: 0.66%; left: 59.76%; }
-      .hero-role-text { font-size: 30.651px; }
-    }
-
-    /* Mobile hero — Variant3 (≤480px) */
-    @media (max-width: 480px) {
-      .hero-stage { height: 595px; }
-      .hero-name {
-        left: 0;
-        right: 3.88%;
-        top: calc(50% - 226.32px);
-      }
-      .hero-name-jonathan,
-      .hero-name-mcghee { font-size: clamp(40px, 17vw, 63.37px); }
-      .hero-portrait { left: 0.9%; right: 0; top: 130px; }
-      .hero-role { top: 82.52%; right: 34.03%; bottom: 4.21%; left: 6.27%; }
-      /* Move blob off the face — push it to upper-right */
-      .hero-blob {
-        left: auto;
-        right: -60px;
-        top: 160px;
-        width: 260px;
-        height: 260px;
-      }
-    }
-
-    @media (max-width: 900px) {
-      /* Work cards: drop fixed height once cards go single-column */
-      .work-card { height: auto; }
+      .work-card { flex-basis: 100%; min-width: 0; height: auto; }
       .work-card-media {
         flex: none;
         width: 100%;
-        min-width: 0;
         min-height: 0;
         aspect-ratio: 4 / 3;
       }
+      .experience-item { gap: 40px; }
+      .experience-body { padding-right: 0; }
+      .about-text { min-width: 0; flex-basis: 100%; }
     }
 
     @media (max-width: 640px) {
       :root { --pad: 24px; }
-      .logo-bar { padding: 40px 0; }
       /* Header: centre logo, hide CV button */
       .header { justify-content: center; }
       .header-logo { flex: none; }
-      .header-actions { display: none; }
+      .header-right { display: none; }
+      .hero-intro { font-size: 24px; line-height: 30px; letter-spacing: -0.72px; }
+      .work-blob { left: 20%; width: 600px; height: 600px; top: -300px; }
       /* Allow card titles and meta to wrap */
       .work-card-title { white-space: normal; }
       .work-card-meta { flex-wrap: wrap; gap: 12px; }
+      .experience-item { flex-direction: column; gap: 16px; }
+      .experience-side { width: 100%; flex-direction: row; align-items: center; }
+      .experience-logo.wide { width: 100px; }
+      .about-visual { width: 100%; }
+      .about-photo { width: 83.33%; height: auto; aspect-ratio: 400 / 410.105; margin-right: -37.5%; }
+      .about-blob { width: 54.17%; height: auto; aspect-ratio: 1; }
+      .contact-tagline { white-space: normal; }
+      .contact-list { flex-direction: column; gap: 16px; }
     }
   </style>
 </head>
@@ -992,83 +777,46 @@
       </a>
     </div>
 
-    <ul class="header-nav">
-      <li>
-        <a href="#work">Work</a>
-        <div class="nav-underline-img">
-          <img src="assets/images/nav-underline.svg" alt="" aria-hidden="true" width="40" height="8">
-        </div>
-      </li>
-      <li>
-        <a href="#about">About</a>
-        <div class="nav-underline-img">
-          <img src="assets/images/nav-underline.svg" alt="" aria-hidden="true" width="40" height="8">
-        </div>
-      </li>
-      <li>
-        <a href="#contact">Contact</a>
-        <div class="nav-underline-img">
-          <img src="assets/images/nav-underline.svg" alt="" aria-hidden="true" width="50" height="8">
-        </div>
-      </li>
-    </ul>
+    <div class="header-right">
+      <ul class="header-nav">
+        <li>
+          <a href="#about">About</a>
+          <div class="nav-underline-img">
+            <img src="assets/images/nav-underline.svg" alt="" aria-hidden="true" width="40" height="8">
+          </div>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+          <div class="nav-underline-img">
+            <img src="assets/images/nav-underline.svg" alt="" aria-hidden="true" width="50" height="8">
+          </div>
+        </li>
+      </ul>
 
-    <div class="header-actions">
-      <div class="cv-wrap">
-        <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
-        <a href="JM-CV.pdf" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
+      <div class="header-actions">
+        <div class="cv-wrap">
+          <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
+          <a href="JM-CV.pdf" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
+        </div>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero-section">
-
-    <!-- cyan blob -->
-    <div class="hero-blob" aria-hidden="true">
-      <img src="assets/images/circleBlurry.svg" alt="">
-    </div>
-
-    <div class="hero-inner">
-      <div class="hero-stage">
-
-        <!-- portrait -->
-        <div class="hero-portrait" aria-hidden="true">
-          <div class="hero-portrait-bg"></div>
-          <div class="hero-portrait-img">
-            <img src="assets/images/portrait.png" alt="">
-          </div>
-        </div>
-
-        <!-- job title -->
-        <div class="hero-role">
-          <div class="hero-role-text">Product<br>Design Lead</div>
-          <div class="hero-role-spark" aria-hidden="true">
-            <img src="assets/images/role-spark.svg" alt="">
-          </div>
-        </div>
-
-        <!-- name -->
-        <div class="hero-name" id="hero-name">
-          <span class="hero-name-jonathan">Jonathan</span>
-          <span class="hero-name-mcghee">McGhee</span>
-          <div class="hero-name-scribble" aria-hidden="true">
-            <img src="assets/images/jon-scribble.svg" alt="">
-          </div>
-        </div>
-
-      </div>
-
-      <p class="hero-intro">Specialising in fintech platforms, design systems, and art direction. Bringing two decades of crafting intuitive user experiences, and <strong>creating work that works.</strong></p>
-    </div>
+    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer Specialising in fintech platforms, design systems, and art direction. Bringing two decades of crafting intuitive user experiences, and <strong>creating work that works.</strong></h1>
   </section>
 
   <!-- WORK -->
   <section id="work" class="work-section" aria-label="Work">
+    <div class="work-blob" aria-hidden="true">
+      <img src="assets/images/circle-fade.svg" alt="">
+    </div>
+
     <div class="work-grid">
 
-      <!-- Full: Cargill Reporting -->
-      <div class="work-card full">
+      <!-- Cargill Reporting -->
+      <div class="work-card">
         <div class="work-card-media">
           <img src="assets/images/cargill-reporting.jpg" alt="Alpha Centauri – Reporting & Analytics" loading="lazy">
         </div>
@@ -1081,8 +829,8 @@
         </div>
       </div>
 
-      <!-- Half: Refuelr -->
-      <div class="work-card half">
+      <!-- Refuelr -->
+      <div class="work-card">
         <div class="work-card-media">
           <img src="assets/images/refuelr.jpg" alt="Refuelr – Fuel finder app" loading="lazy">
         </div>
@@ -1095,8 +843,8 @@
         </div>
       </div>
 
-      <!-- Half: Alpha Design System -->
-      <div class="work-card half">
+      <!-- Alpha Design System -->
+      <div class="work-card">
         <div class="work-card-media">
           <video autoplay muted loop playsinline>
             <source src="assets/images/cargill-design-system.mov" type="video/mp4">
@@ -1111,8 +859,8 @@
         </div>
       </div>
 
-      <!-- Half: Cashflow -->
-      <div class="work-card half">
+      <!-- Cashflow -->
+      <div class="work-card">
         <div class="work-card-media">
           <img src="assets/images/cashflow.jpg" alt="Cashflow – Payments on the go" loading="lazy">
         </div>
@@ -1125,8 +873,8 @@
         </div>
       </div>
 
-      <!-- Half: Wealth Advisor -->
-      <div class="work-card half">
+      <!-- Wealth Advisor -->
+      <div class="work-card">
         <div class="work-card-media">
           <img src="assets/images/wealth-advisor.jpg" alt="Wealth Advisor Dashboard" loading="lazy">
         </div>
@@ -1139,8 +887,8 @@
         </div>
       </div>
 
-      <!-- Full: Fintech Lab -->
-      <div class="work-card full">
+      <!-- Fintech Lab -->
+      <div class="work-card">
         <div class="work-card-media dark">
           <video autoplay muted loop playsinline>
             <source src="assets/images/fintech-lab.mov" type="video/mp4">
@@ -1155,8 +903,8 @@
         </div>
       </div>
 
-      <!-- Half: Halo -->
-      <div class="work-card half">
+      <!-- Halo -->
+      <div class="work-card">
         <div class="work-card-media">
           <img src="assets/images/halo.jpg" alt="Halo Design System Portal" loading="lazy">
         </div>
@@ -1169,8 +917,8 @@
         </div>
       </div>
 
-      <!-- Half: KogoPay -->
-      <div class="work-card half">
+      <!-- KogoPay -->
+      <div class="work-card">
         <div class="work-card-media">
           <img src="assets/images/kogopay.jpg" alt="KogoPay Website & App" loading="lazy">
         </div>
@@ -1186,61 +934,116 @@
     </div>
   </section>
 
-  <!-- LOGO CAROUSEL -->
-  <div class="logo-bar" aria-label="Client logos">
-    <div class="logo-track">
-      <div class="logo-set">
-        <span class="logo-item"><img src="assets/images/Cargill Logo.svg"  alt="Cargill"       width="86"  height="40"></span>
-        <span class="logo-item"><img src="assets/images/BP 3.svg"          alt="BP"            width="68"  height="40"></span>
-        <span class="logo-item"><img src="assets/images/Refinitiv Logo.svg" alt="Refinitiv"    width="146" height="30"></span>
-        <span class="logo-item"><img src="assets/images/LSEG Logo.svg"     alt="LSEG"          width="134" height="35"></span>
-        <span class="logo-item"><img src="assets/images/HCLTech.svg"       alt="HCLTech"       width="139" height="25"></span>
-        <span class="logo-item"><img src="assets/images/DB Logo.svg"       alt="Deutsche Bank" width="168" height="30"></span>
-        <span class="logo-item"><img src="assets/images/VCCP.svg"          alt="VCCP"          width="42"  height="40"></span>
-        <span class="logo-item"><img src="assets/images/&.svg"             alt="&amp;"         width="35"  height="35"></span>
-        <span class="logo-item"><img src="assets/images/T&T.svg"           alt="T&amp;T"       width="40"  height="40"></span>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="experience-section">
+    <div class="experience-inner">
+      <div class="experience-head">
+        <h2 class="section-label">Experience</h2>
+        <div class="cv-wrap">
+          <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
+          <a href="JM-CV.pdf" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
+        </div>
       </div>
-      <!-- duplicate for seamless loop -->
-      <div class="logo-set" aria-hidden="true">
-        <span class="logo-item"><img src="assets/images/Cargill Logo.svg"  alt="" width="86"  height="40"></span>
-        <span class="logo-item"><img src="assets/images/BP 3.svg"          alt="" width="68"  height="40"></span>
-        <span class="logo-item"><img src="assets/images/Refinitiv Logo.svg" alt="" width="146" height="30"></span>
-        <span class="logo-item"><img src="assets/images/LSEG Logo.svg"     alt="" width="134" height="35"></span>
-        <span class="logo-item"><img src="assets/images/HCLTech.svg"       alt="" width="139" height="25"></span>
-        <span class="logo-item"><img src="assets/images/DB Logo.svg"       alt="" width="168" height="30"></span>
-        <span class="logo-item"><img src="assets/images/VCCP.svg"          alt="" width="42"  height="40"></span>
-        <span class="logo-item"><img src="assets/images/&.svg"             alt="" width="35"  height="35"></span>
-        <span class="logo-item"><img src="assets/images/T&T.svg"           alt="" width="40"  height="40"></span>
-      </div>
+
+      <ul class="experience-list">
+        <li class="experience-item">
+          <div class="experience-side">
+            <div class="experience-logo">
+              <div class="logo-cargill" role="img" aria-label="Cargill">
+                <img class="text" src="assets/logo/experience/cargill-text.svg" alt="">
+                <img class="leaf" src="assets/logo/experience/cargill-leaf.svg" alt="">
+              </div>
+            </div>
+            <p class="experience-years">2022–2026</p>
+          </div>
+          <div class="experience-body">
+            <h3 class="experience-title">UI/UX, SaaS Web Apps, AI Tools, Design Systems, Brand Design, Strategy.</h3>
+            <p class="experience-desc">Design lead for enterprise trading applications across Cargill’s global Ag &amp; Trading business. Partnered with product owners and engineering to ship scalable tools, and built a design system that unified legacy and new platforms.</p>
+          </div>
+        </li>
+
+        <li class="experience-item">
+          <div class="experience-side">
+            <div class="experience-logo">
+              <img src="assets/logo/experience/bp.svg" alt="bp">
+            </div>
+            <p class="experience-years">2021–2022</p>
+          </div>
+          <div class="experience-body">
+            <h3 class="experience-title">UI/UX, Analytics Dashboards, Data Visualisation, Design Guidelines, Stakeholder Management.</h3>
+            <p class="experience-desc">Lead designer of an internal analytics hub and the data-visualisation guidelines governing its dashboards. Owned UI, UX and requirements, directing external developers and offshore teams through to delivery.</p>
+          </div>
+        </li>
+
+        <li class="experience-item">
+          <div class="experience-side">
+            <div class="experience-logo">
+              <div class="logo-lseg" role="img" aria-label="LSEG">
+                <div class="logo-lseg-inner">
+                  <img src="assets/logo/experience/lseg-content.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <p class="experience-years">2020–2021</p>
+          </div>
+          <div class="experience-body">
+            <h3 class="experience-title">UI/UX, Financial Data Platforms, Component Libraries, Prototyping, Workshops.</h3>
+            <p class="experience-desc">Senior product designer for Refinitiv Workspace, LSEG’s flagship data and analytics platform for capital-markets professionals. Built component libraries with usage guidelines, governed delivery standards, ran workshops and presented prototypes to key stakeholders.</p>
+          </div>
+        </li>
+
+        <li class="experience-item">
+          <div class="experience-side">
+            <div class="experience-logo wide">
+              <img src="assets/logo/experience/tt-long.svg" alt="Turner &amp; Townsend">
+            </div>
+            <p class="experience-years">2019–2020</p>
+          </div>
+          <div class="experience-body">
+            <h3 class="experience-title">UI/UX, Responsive Web Apps, Data Services, Workflow Design.</h3>
+            <p class="experience-desc">Senior product designer that created a bespoke, responsive data-service application for cost managers from concept to delivery. Worked closely with product owners and engineering to simplify complex workflows into a user-centred product.</p>
+          </div>
+        </li>
+
+        <li class="experience-item">
+          <div class="experience-side">
+            <div class="experience-logo">
+              <img src="assets/logo/experience/hcltech.svg" alt="HCLTech">
+            </div>
+            <p class="experience-years">2016–2019</p>
+          </div>
+          <div class="experience-body">
+            <h3 class="experience-title">UI/UX, Mobile &amp; Web, Investment Banking, Brand Design, Prototyping.</h3>
+            <p class="experience-desc">Creative lead that delivered mobile, web and branding solutions, primarily for a leading global investment bank. Ran agile workshops and client engagement, presented high-fidelity prototypes, and served as brand ambassador after a full company rebrand.</p>
+          </div>
+        </li>
+      </ul>
     </div>
-  </div>
+  </section>
 
   <!-- ABOUT -->
   <section id="about" class="about-section">
     <div class="about-inner">
       <div class="about-text">
-        <p class="section-label">About Jon</p>
+        <h2 class="section-label">About Jon</h2>
+        <p class="about-lead">A lead product designer specialising in fintech platforms, design systems and brand. User-centred in approach, with craft firmly at the core.</p>
         <div class="about-body">
-          <p>A lead product designer that has specialised in fintech platforms, design systems and brand cognisance. Always with a user-centred approach, but with craft firmly at the core.</p>
-          <p class="small">With over two decades designing stuff – from ad campaigns for O2 and Coca-Cola to building design systems and applications for global trading platforms. Solving problems for users and clients, but always making it look awesome.</p>
-          <p class="small">Based in Richmond, West London, I can usually be found on a road bike somewhere (often hillier than planned) or drawing in my notebook.</p>
+          <p>Two decades of design, from ad campaigns for O2 and Coca-Cola to design systems and trading applications used across global markets. I solve hard problems for users and clients, and make sure the result looks great too.</p>
+          <p>Based in Richmond, West London, I can usually be found on a road bike somewhere hillier than planned, or sketching in a notebook.</p>
         </div>
       </div>
 
-      <div class="about-photo-wrap" id="portrait-wrap">
-        <div class="about-photo-bg"></div>
-        <div class="about-photo-img">
-          <img src="assets/images/portrait-about.png" alt="Jonathan McGhee">
+      <div class="about-visual">
+        <div class="about-photo">
+          <div class="about-photo-bg"></div>
+          <div class="about-photo-img">
+            <img src="assets/images/portrait-me.png" alt="Jonathan McGhee">
+          </div>
         </div>
-        <div class="about-doodle" aria-hidden="true">
-          <img src="assets/images/face-doodle.svg" alt="">
+        <div class="about-blob" aria-hidden="true">
+          <img src="assets/images/circleBlurry.svg" alt="">
         </div>
       </div>
-    </div>
-
-    <!-- about blob -->
-    <div class="about-blob" aria-hidden="true">
-      <img src="assets/images/circleBlurry.svg" alt="">
     </div>
   </section>
 
@@ -1248,19 +1051,19 @@
   <section id="contact" class="contact-section">
     <div class="contact-inner">
       <div class="contact-content">
-        <p class="section-label">Contact</p>
-        <p class="contact-tagline">Don't be shy! Please reach out and get in touch. Always keen to hear about new design opportunities or just for chat. The usual suspects below...</p>
+        <h2 class="section-label">Contact</h2>
+        <p class="contact-tagline">Always happy to hear about new design opportunities, or just to talk shop.</p>
         <div class="contact-list">
           <a href="https://www.linkedin.com/in/jonmcghee" class="contact-item" target="_blank" rel="noopener">
-            <img src="assets/images/LinkedIn.svg" class="contact-icon sm" alt="" aria-hidden="true">
+            <img src="assets/images/LinkedIn.svg" class="contact-icon sm" alt="" aria-hidden="true" width="19" height="20">
             /jonmcghee
           </a>
           <a href="tel:+447879825500" class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.07 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+            <img src="assets/images/phone.svg" class="contact-icon" alt="" aria-hidden="true" width="24" height="24">
             +44 (0) 7879825500
           </a>
           <a href="mailto:jonmcghee@gmail.com" class="contact-item">
-            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <img src="assets/images/mail.svg" class="contact-icon" alt="" aria-hidden="true" width="24" height="24">
             jonmcghee@gmail.com
           </a>
         </div>
