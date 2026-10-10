@@ -308,7 +308,7 @@
       white-space: nowrap;
     }
 
-    @media (hover: hover) {
+    @media (hover: hover) and (min-width: 641px) {
       .cv-wrap:hover .cv-spark { opacity: 1; }
       .cv-wrap:hover .cv-btn { background: var(--grey-dark); }
     }
@@ -460,7 +460,7 @@
     .work-card.is-coming-soon .work-card-cta-label { display: block; }
     .work-card.is-coming-soon .work-card-cta-arrow { display: none; }
 
-    @media (hover: hover) {
+    @media (hover: hover) and (min-width: 641px) {
       .work-card-media img,
       .work-card-media video {
         transition: transform var(--hover-duration) var(--ease-out),
@@ -478,14 +478,37 @@
 
     .work-card-meta {
       display: flex;
-      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px 24px;
       align-items: flex-end;
       flex-shrink: 0;
       width: 100%;
     }
 
+    /* Shown instead of the hover pill on touch devices and phones (Figma 867:6820) */
+    .work-card-badge {
+      display: none;
+      flex-shrink: 0;
+      height: 24px;
+      padding: 0 11px;
+      align-items: center;
+      border: 0.75px solid var(--grey-dark);
+      border-radius: 40px;
+      font-family: 'Source Serif 4', serif;
+      font-size: 11.3px;
+      line-height: 20px;
+      color: var(--grey-dark);
+      white-space: nowrap;
+    }
+
+    @media (hover: none), (max-width: 640px) {
+      .work-card.is-coming-soon .work-card-badge { display: inline-flex; }
+      .work-card-cta { display: none; }
+    }
+
     .work-card-info {
-      flex: 1 0 0;
+      flex: 1 0 300px;   /* badge wraps underneath when the card is narrow */
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -548,6 +571,8 @@
       justify-content: space-between;
       gap: 24px;
     }
+
+    .experience-cv-block { display: none; }
 
     .experience-list {
       display: flex;
@@ -961,7 +986,13 @@
       /* Experience: logo + years on one line, skills wrap underneath */
       .experience-toggle { flex-wrap: wrap; gap: 12px 16px; }
       .experience-lead { width: auto; flex: 1 0 auto; }
+      /* skills only show once a row is open */
       .experience-skills { display: none; }
+      .experience-toggle[aria-expanded="true"] .experience-skills {
+        display: block; order: 3; flex-basis: 100%; white-space: normal; text-align: left;
+      }
+      .experience-head .cv-wrap { display: none; }
+      .experience-cv-block { display: flex; width: 100%; height: 40px; }
       .experience-desc { padding-left: 16px; }
       .about-visual { width: 100%; }
       .about-visual img { width: 100%; max-width: 410px; height: auto; aspect-ratio: 1; }
@@ -1039,6 +1070,7 @@
             <p class="work-card-client">Cargill</p>
             <h2 class="work-card-title">Alpha Centauri – Reporting &amp; Analytics App</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1056,6 +1088,7 @@
             <p class="work-card-client">SquaredMc</p>
             <h2 class="work-card-title">Refuelr – Fuel Finder App</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1075,6 +1108,7 @@
             <p class="work-card-client">Cargill</p>
             <h2 class="work-card-title">Alpha Design System</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1092,6 +1126,7 @@
             <p class="work-card-client">HCLTech &amp; DB</p>
             <h2 class="work-card-title">Cashflow – App for Payments on the&nbsp;Go</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1109,6 +1144,7 @@
             <p class="work-card-client">Refinitiv / LSEG</p>
             <h2 class="work-card-title">Wealth Advisor Dashboard App</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1128,6 +1164,7 @@
             <p class="work-card-client">HCL Tech</p>
             <h2 class="work-card-title">Fintech LAB Branding</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1145,6 +1182,7 @@
             <p class="work-card-client">Refinitiv / LSEG</p>
             <h2 class="work-card-title">Halo Design System Portal – Guidelines</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1162,6 +1200,7 @@
             <p class="work-card-client">KogoPay</p>
             <h2 class="work-card-title">Website &amp; App – Customer/Business</h2>
           </div>
+          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </div>
 
@@ -1302,6 +1341,8 @@
         </li>
 
       </ul>
+
+      <a href="JM-CV.pdf" class="cv-btn experience-cv-block" target="_blank" rel="noopener">Download CV</a>
     </div>
   </section>
 
