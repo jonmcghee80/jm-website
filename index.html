@@ -313,6 +313,67 @@
       .cv-wrap:hover .cv-btn { background: var(--grey-dark); }
     }
 
+    /* Menu (small screens) */
+    .menu {
+      display: none;
+      position: relative;
+    }
+
+    .menu-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 50px;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s ease-out;
+    }
+
+    .menu-button[aria-expanded="true"] { background: var(--grey-bg); }
+    .menu-button img { display: block; width: 20px; height: 20px; }
+
+    .menu-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(1, 1, 1, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transform-origin: top right;
+      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out), visibility 0s linear 0.25s;
+    }
+
+    .menu.is-open .menu-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out), visibility 0s;
+    }
+
+    .menu-link {
+      padding: 10px 8px;
+      font-family: 'Source Serif 4', serif;
+      font-size: 20px;
+      line-height: 28px;
+      color: var(--grey-dark);
+      text-decoration: none;
+    }
+
+    .menu-link:active { color: var(--black); }
+
+    .menu-cv { width: 100%; height: 40px; margin-top: 8px; }
+
     /* ── HERO ── */
     .hero-section {
       width: 100%;
@@ -966,6 +1027,8 @@
 
     @media (max-width: 900px) {
       .header-nav { display: none; }
+      .header-right { display: none; }
+      .menu { display: block; }
       .work-grid { grid-template-columns: 1fr; }
       .about-text { min-width: 0; flex-basis: 100%; }
       /* the portrait has its own glow; the extra circle fights it */
@@ -976,7 +1039,6 @@
       :root { --pad: 24px; }
       /* Header: logo only, equal top and side spacing */
       .header { padding-top: var(--pad); }
-      .header-right { display: none; }
       .hero-section { padding-top: 80px; padding-bottom: 48px; }
       .hero-intro { font-size: 24px; line-height: 30px; letter-spacing: -0.72px; }
       .work-blob.one { left: -300px; top: 200px; width: 600px; height: 600px; }
@@ -996,8 +1058,13 @@
       .experience-desc { padding-left: 16px; }
       .about-visual { width: 100%; }
       .about-visual img { width: 100%; max-width: 410px; height: auto; aspect-ratio: 1; }
-      .contact-tagline { white-space: normal; }
-      .contact-list { flex-direction: column; gap: 16px; }
+      /* Footer: tighter, logo on the right */
+      .contact-section { padding-top: 32px; }
+      .contact-inner { padding-bottom: 40px; row-gap: 24px; }
+      .contact-content { flex: 1 0 300px; }
+      .contact-tagline { white-space: normal; line-height: 26px; }
+      .contact-list { flex-direction: column; gap: 12px; margin-top: 8px; }
+      .contact-logo { flex: 1 0 300px; justify-content: flex-end; }
     }
   </style>
 </head>
@@ -1037,6 +1104,18 @@
           <a href="JM-CV.pdf" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
         </div>
       </div>
+    </div>
+
+    <!-- Small screens: menu button (Figma 867:6820) -->
+    <div class="menu">
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
+        <img src="assets/images/menu.svg" alt="" width="20" height="20">
+      </button>
+      <nav class="menu-panel" id="site-menu" aria-label="Site">
+        <a href="#about" class="menu-link">About</a>
+        <a href="#contact" class="menu-link">Contact</a>
+        <a href="JM-CV.pdf" class="cv-btn menu-cv" target="_blank" rel="noopener">Download CV</a>
+      </nav>
     </div>
   </header>
 
@@ -1497,6 +1576,31 @@
       });
     });
     root.classList.add('has-accordion');
+
+    // ── Menu (small screens) ──
+    var menu = document.querySelector('.menu');
+    var menuButton = menu.querySelector('.menu-button');
+
+    function setMenu(open) {
+      menu.classList.toggle('is-open', open);
+      menuButton.setAttribute('aria-expanded', open);
+    }
+
+    menuButton.addEventListener('click', function() {
+      setMenu(!menu.classList.contains('is-open'));
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { setMenu(false); });
+    });
+    document.addEventListener('click', function(e) {
+      if (!menu.contains(e.target)) setMenu(false);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        setMenu(false);
+        menuButton.focus();
+      }
+    });
 
     // ── 4. Footer curtain reveal ──
     var footer = document.querySelector('.contact-section');
