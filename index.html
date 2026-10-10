@@ -932,14 +932,19 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       :root { --pad: 40px; }
+      /* Experience: skills line sits centred, with equal gaps to logo and dates */
+      .experience-toggle { gap: 40px; }
+      .experience-lead { width: auto; }
+      .experience-toggle[aria-expanded="false"] .experience-skills { text-align: center; }
+      .experience-desc { padding-left: 152px; }   /* 16 + 96 lead + 40 gap */
     }
 
     @media (max-width: 900px) {
       .header-nav { display: none; }
       .work-grid { grid-template-columns: 1fr; }
-      .experience-toggle { gap: 40px; }
-      .experience-desc { padding-left: 240px; }
       .about-text { min-width: 0; flex-basis: 100%; }
+      /* the portrait has its own glow; the extra circle fights it */
+      .about-blob { display: none; }
     }
 
     @media (max-width: 640px) {
@@ -956,11 +961,10 @@
       /* Experience: logo + years on one line, skills wrap underneath */
       .experience-toggle { flex-wrap: wrap; gap: 12px 16px; }
       .experience-lead { width: auto; flex: 1 0 auto; }
-      .experience-skills { order: 3; flex-basis: 100%; white-space: normal; font-size: 18px; line-height: 24px; }
+      .experience-skills { display: none; }
       .experience-desc { padding-left: 16px; }
       .about-visual { width: 100%; }
       .about-visual img { width: 100%; max-width: 410px; height: auto; aspect-ratio: 1; }
-      .about-blob { left: -200px; width: 600px; height: 600px; }
       .contact-tagline { white-space: normal; }
       .contact-list { flex-direction: column; gap: 16px; }
     }
