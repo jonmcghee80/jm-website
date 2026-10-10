@@ -344,6 +344,7 @@
       width: 100%;
       padding: 0 var(--pad) 80px;
       position: relative;
+      overflow: clip;   /* keep the blurred circles inside the work section */
     }
 
     /* Blurred circles, positioned from the centre of the 1440px Figma frame */
@@ -364,10 +365,10 @@
     .work-blob.one { left: calc(50% - 1110px); top: 299px;  width: 936px;  height: 936px; }
     .work-blob.two { left: calc(50% - 23px);   top: 1092px; width: 2062px; height: 2062px; }
 
-    /* Max 3 columns; a column never drops below 420px */
+    /* Max 2 columns; a column never drops below 420px */
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(max(420px, calc((100% - 80px) / 3)), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(max(420px, calc((100% - 40px) / 2)), 1fr));
       gap: 80px 40px;
       align-items: start;
       width: 100%;
