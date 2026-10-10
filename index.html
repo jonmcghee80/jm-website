@@ -21,7 +21,7 @@
       --grey:      #939393;
       --blue:      #3a7ca7;
       --cyan:      #01fffe;
-      --max-w:     1280px;
+      --max-w:     1440px;
       --pad:       80px;
     }
 
@@ -101,19 +101,61 @@
     }
     #pw-button.active { background: #010101; cursor: pointer; }
 
+    /* ── MOTION TOKENS ──
+       Every duration, easing and distance used by the page motion lives here.
+       JS-only values (Lenis lerp, reveal threshold, anchor offset) are in the
+       MOTION object at the top of the motion script near the end of the file. */
+    :root {
+      --ease-out:           cubic-bezier(0.22, 1, 0.36, 1);
+
+      /* 1. Page-load entrance (nav → hero → first row of cards) */
+      --enter-duration:     0.7s;
+      --enter-distance:     20px;
+      --enter-stagger:      0.1s;
+
+      /* 3. Scroll-reveal project cards */
+      --reveal-duration:    0.7s;
+      --reveal-distance:    24px;
+      --reveal-opacity:     0.25;
+      --reveal-stagger:     0.1s;
+
+      /* 5. Project card hover */
+      --hover-scale:        1.05;
+      --hover-duration:     0.5s;
+      --hover-dim:          0.3;   /* image opacity behind "Case study coming soon" */
+      --cta-duration:       0.3s;
+      --cta-scale-from:     0.9;
+
+      /* 6. Experience accordion */
+      --acc-duration:       0.4s;
+      --acc-content-delay:  0.12s;
+      --acc-content-shift:  8px;
+    }
+
     html { scroll-behavior: smooth; }
+
+    /* Lenis (smooth scroll) — required base styles */
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-stopped { overflow: clip; }
+    .lenis.lenis-smooth iframe { pointer-events: none; }
 
     body {
       font-family: 'Bricolage Grotesque', sans-serif;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: var(--black);
       background: var(--white);
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     /* Avoid orphaned last words */
     h1, h2, h3 { text-wrap: balance; }
     p { text-wrap: pretty; }
+
+    :focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+    }
 
     /* ── PAGE WRAPPER ── */
     .page {
@@ -123,7 +165,19 @@
       width: 100%;
       position: relative;
       isolation: isolate;
-      overflow-x: hidden;
+      overflow-x: clip;
+    }
+
+    /* Everything above the footer: sits over the footer so it can slide off it */
+    .site-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+      overflow: clip;   /* keeps the blurred circles from bleeding onto the footer */
     }
 
     /* ── HEADER ── */
@@ -237,7 +291,7 @@
     }
 
     .cv-btn {
-      background: var(--grey-dark);
+      background: var(--black);
       color: var(--white);
       text-decoration: none;
       padding: 0 16px;
@@ -256,20 +310,20 @@
 
     @media (hover: hover) {
       .cv-wrap:hover .cv-spark { opacity: 1; }
-      .cv-wrap:hover .cv-btn { background: var(--black); }
+      .cv-wrap:hover .cv-btn { background: var(--grey-dark); }
     }
 
     /* ── HERO ── */
     .hero-section {
       width: 100%;
       max-width: calc(var(--max-w) + 2 * var(--pad));
-      padding: 80px var(--pad);
+      padding: 120px var(--pad) 60px;
       position: relative;
       z-index: 3;
     }
 
     .hero-intro {
-      max-width: 630px;
+      max-width: 620px;
       font-family: 'Bricolage Grotesque', sans-serif;
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-size: 30px;
@@ -293,12 +347,9 @@
       z-index: 2;
     }
 
+    /* Blurred circles, positioned from the centre of the 1440px Figma frame */
     .work-blob {
       position: absolute;
-      left: calc(50% + 155px);
-      top: -468px;
-      width: 936px;
-      height: 936px;
       pointer-events: none;
       mix-blend-mode: multiply;
     }
@@ -308,6 +359,9 @@
       height: 100%;
       display: block;
     }
+
+    .work-blob.one { left: calc(50% - 1110px); top: 299px;  width: 936px;  height: 936px; }
+    .work-blob.two { left: calc(50% - 23px);   top: 1092px; width: 2062px; height: 2062px; }
 
     /* Max 3 columns; a column never drops below 420px */
     .work-grid {
@@ -349,6 +403,76 @@
       display: block;
     }
 
+    /* Hover call-to-action. Cards with .is-coming-soon show the "Case study
+       coming soon" pill; remove the class (and wrap the card in a link) to
+       show the circular arrow button instead. */
+    .work-card-cta {
+      position: absolute;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black);
+      color: var(--white);
+      opacity: 0;
+      transform: scale(var(--cta-scale-from));
+      transition: opacity var(--cta-duration) var(--ease-out),
+                  transform var(--cta-duration) var(--ease-out);
+      pointer-events: none;
+    }
+
+    .work-card-cta-label {
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px;
+      line-height: 28px;
+      white-space: nowrap;
+      display: none;
+    }
+
+    .work-card-cta-arrow { width: 16px; height: 16px; display: block; }
+
+    /* arrow mode: small circle, bottom left */
+    .work-card-cta {
+      left: 24px;
+      bottom: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      transform-origin: bottom left;
+    }
+
+    /* coming-soon mode: centred pill (Figma 863:6372) */
+    .work-card.is-coming-soon .work-card-cta {
+      left: 50%;
+      top: 50%;
+      bottom: auto;
+      width: auto;
+      height: 34px;
+      padding: 0 16px;
+      border-radius: 40px;
+      transform-origin: center;
+      translate: -50% -50%;
+    }
+
+    .work-card.is-coming-soon .work-card-cta-label { display: block; }
+    .work-card.is-coming-soon .work-card-cta-arrow { display: none; }
+
+    @media (hover: hover) {
+      .work-card-media img,
+      .work-card-media video {
+        transition: transform var(--hover-duration) var(--ease-out),
+                    opacity var(--hover-duration) var(--ease-out);
+      }
+
+      .work-card:hover .work-card-media img,
+      .work-card:hover .work-card-media video { transform: scale(var(--hover-scale)); }
+
+      .work-card.is-coming-soon:hover .work-card-media img,
+      .work-card.is-coming-soon:hover .work-card-media video { opacity: var(--hover-dim); }
+
+      .work-card:hover .work-card-cta { opacity: 1; transform: scale(1); }
+    }
+
     .work-card-meta {
       display: flex;
       gap: 24px;
@@ -385,22 +509,6 @@
       color: var(--black);
     }
 
-    .badge {
-      flex-shrink: 0;
-      height: 34px;
-      border: 1px solid var(--grey-mid);
-      border-radius: 40px;
-      padding: 0 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Source Serif 4', serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--grey-mid);
-      white-space: nowrap;
-    }
-
     /* ── SHARED ── */
     .section-label {
       font-family: 'Bricolage Grotesque', sans-serif;
@@ -416,7 +524,7 @@
     /* ── EXPERIENCE ── */
     .experience-section {
       width: 100%;
-      background: var(--white);
+      background: var(--grey-bg);
       padding: 80px var(--pad);
       position: relative;
       z-index: 1;
@@ -440,51 +548,73 @@
     .experience-list {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 4px;
       list-style: none;
     }
 
     .experience-item {
+      background: var(--white);
+      border-radius: 16px;
+    }
+
+    .experience-heading { font-weight: inherit; }
+
+    .experience-toggle {
       display: flex;
+      align-items: center;
       gap: 80px;
-      align-items: flex-start;
-      border-top: 1px solid var(--grey-mid);
-      padding-top: 16px;
+      width: 100%;
+      padding: 16px;
+      background: none;
+      border: 0;
+      border-radius: 16px;
+      font: inherit;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
     }
 
-    .experience-side {
-      width: 100px;
-      flex-shrink: 0;
-      align-self: stretch;
+    .experience-lead {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
       gap: 16px;
+      width: 184px;
+      flex-shrink: 0;
     }
 
-    .experience-chevron {
-      display: none;
+    /* +/− icon: the plus turns a quarter and fades into the minus */
+    .experience-icon {
+      position: relative;
       width: 16px;
       height: 16px;
       flex-shrink: 0;
-      color: var(--grey-mid);
-      transition: transform 0.2s ease-out;
     }
 
-    .experience-item.open .experience-chevron { transform: rotate(90deg); }
+    .experience-icon img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      transition: transform var(--acc-duration) var(--ease-out),
+                  opacity var(--acc-duration) var(--ease-out);
+    }
+
+    .experience-icon .icon-minus { opacity: 0; }
+    .experience-toggle[aria-expanded="true"] .icon-plus  { opacity: 0; transform: rotate(90deg); }
+    .experience-toggle[aria-expanded="true"] .icon-minus { opacity: 1; }
 
     .experience-logo {
-      width: 80px;
-      height: 40px;
+      display: flex;
+      align-items: center;
+      width: 64px;
+      height: 32px;
       flex-shrink: 0;
     }
-
-    .experience-logo.wide { width: 100%; }
 
     .experience-logo img { display: block; width: 100%; height: auto; }
 
     /* Cargill: leaf + wordmark layers */
     .logo-cargill {
+      display: block;
       position: relative;
       width: 100%;
       aspect-ratio: 179 / 83;
@@ -496,6 +626,7 @@
 
     /* LSEG: masked artwork */
     .logo-lseg {
+      display: block;
       position: relative;
       width: 100%;
       aspect-ratio: 517 / 135;
@@ -511,52 +642,95 @@
 
     .logo-lseg-inner img { width: 100%; height: 100%; }
 
+    .experience-skills {
+      flex: 1 0 0;
+      min-width: 0;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 26px;
+      color: var(--blue);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-wrap-style: pretty;   /* not text-wrap: that would override nowrap */
+    }
+
+    .experience-toggle[aria-expanded="true"] .experience-skills { white-space: normal; }
+
     .experience-years {
       font-family: 'Source Serif 4', serif;
       font-size: 16px;
       font-weight: 400;
       line-height: 32px;
       text-box: trim-both cap alphabetic;
-      color: var(--grey-mid);
+      color: var(--grey-dark);
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .experience-body {
-      flex: 1 0 0;
-      min-width: 0;
-      max-width: 780px;
-      padding-right: 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    /* Panel: animates height via grid rows (0fr ↔ 1fr). Only collapses once
+       the accordion script has run, so the descriptions show without JS. */
+    .experience-panel {
+      display: grid;
+      grid-template-rows: 1fr;
     }
 
-    .experience-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 26px;
-      text-box: trim-both cap alphabetic;
-      color: var(--black);
+    .experience-panel-inner {
+      min-height: 0;
+      overflow: hidden;
     }
 
     .experience-desc {
+      max-width: calc(543px + 280px);
+      padding: 0 16px 16px 280px;   /* 16 card padding + 184 lead + 80 gap */
+      margin-top: -4px;              /* 12px gap below the row, as in Figma */
       font-family: 'Source Serif 4', serif;
       font-size: 16px;
       font-weight: 400;
       line-height: 24px;
-      text-box: trim-both cap alphabetic;
       color: var(--grey);
+    }
+
+    .has-accordion .experience-panel {
+      transition: grid-template-rows var(--acc-duration) var(--ease-out),
+                  visibility 0s linear var(--acc-duration);
+    }
+
+    .has-accordion .experience-item:not(.is-open) .experience-panel {
+      grid-template-rows: 0fr;
+      visibility: hidden;
+    }
+
+    .has-accordion .experience-item.is-open .experience-panel {
+      transition: grid-template-rows var(--acc-duration) var(--ease-out),
+                  visibility 0s linear 0s;
+    }
+
+    .has-accordion .experience-desc {
+      transition: opacity calc(var(--acc-duration) * 0.5) var(--ease-out),
+                  transform calc(var(--acc-duration) * 0.5) var(--ease-out);
+    }
+
+    .has-accordion .experience-item:not(.is-open) .experience-desc {
+      opacity: 0;
+      transform: translateY(calc(var(--acc-content-shift) * -1));
+    }
+
+    .has-accordion .experience-item.is-open .experience-desc {
+      transition: opacity var(--acc-duration) var(--ease-out) var(--acc-content-delay),
+                  transform var(--acc-duration) var(--ease-out) var(--acc-content-delay);
     }
 
     /* ── ABOUT ── */
     .about-section {
-      background: var(--grey-bg);
+      background: var(--white);
       padding: 80px var(--pad);
       width: 100%;
       display: flex;
       justify-content: center;
+      position: relative;
     }
 
     .about-inner {
@@ -567,6 +741,7 @@
       justify-content: space-between;
       max-width: var(--max-w);
       width: 100%;
+      position: relative;
     }
 
     .about-text {
@@ -598,52 +773,24 @@
 
     .about-body p + p { margin-top: 25px; }
 
-    /* about portrait + blur */
     .about-visual {
-      display: flex;
-      align-items: flex-start;
+      width: 480px;
       flex-shrink: 0;
     }
 
-    .about-photo {
-      position: relative;
-      width: 400px;
+    .about-visual img {
+      display: block;
+      width: 410.105px;
       height: 410.105px;
-      margin-right: -180px;
-      flex-shrink: 0;
-    }
-
-    .about-photo-bg {
-      position: absolute;
-      top: 17.86%;
-      left: 5.37%;
-      right: 10.42%;
-      bottom: 0.21%;
-      background: var(--white);
-    }
-
-    .about-photo-img {
-      position: absolute;
-      inset: 0;
-      mix-blend-mode: multiply;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .about-photo-img img {
-      position: absolute;
-      width: 105.47%;
-      height: 102.62%;
-      top: -2.62%;
-      left: -4.16%;
-      max-width: none;
+      object-fit: cover;
     }
 
     .about-blob {
-      position: relative;
-      width: 260px;
-      height: 260px;
-      flex-shrink: 0;
+      position: absolute;
+      left: calc(50% - 840px);
+      top: 406px;
+      width: 800px;
+      height: 800px;
       pointer-events: none;
       mix-blend-mode: multiply;
     }
@@ -654,12 +801,19 @@
       display: block;
     }
 
-    /* ── CONTACT ── */
+    /* ── CONTACT (footer) ── */
     .contact-section {
-      background: var(--white);
+      background: var(--black);
       padding: 52px var(--pad) 0;
       width: 100%;
+      position: relative;
+      z-index: 0;
     }
+
+    /* 4. Curtain reveal: the footer sits still while the page slides off it.
+       Set up by the motion script, which drops it back to normal scrolling
+       when the footer is taller than the viewport. */
+    .has-curtain .contact-section { position: sticky; bottom: 0; }
 
     .contact-inner {
       max-width: var(--max-w);
@@ -667,7 +821,7 @@
       display: flex;
       flex-wrap: wrap;
       row-gap: 60px;
-      align-items: flex-start;
+      align-items: stretch;
       justify-content: space-between;
       padding-bottom: 80px;
     }
@@ -683,9 +837,9 @@
       font-family: 'Source Serif 4', serif;
       font-size: 16px;
       font-weight: 400;
-      line-height: 24px;
+      line-height: 32px;
       text-box: trim-both cap alphabetic;
-      color: var(--black);
+      color: var(--white);
     }
 
     .contact-list {
@@ -693,7 +847,6 @@
       flex-wrap: wrap;
       gap: 60px;
       align-items: flex-start;
-      padding-top: 16px;
     }
 
     .contact-item {
@@ -704,7 +857,7 @@
       font-size: 16px;
       font-weight: 400;
       line-height: 1.731;
-      color: var(--black);
+      color: var(--white);
       text-decoration: none;
       transition: opacity 0.2s;
       white-space: nowrap;
@@ -724,13 +877,50 @@
       height: 20px;
     }
 
+    .contact-logo {
+      display: flex;
+      align-items: center;
+    }
+
     .contact-logo img {
-      width: 150px;
-      height: 150px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
       flex-shrink: 0;
+    }
+
+    /* ── MOTION: entrance + scroll reveal ──
+       Hidden starting states only apply once the motion script has added
+       .motion to <html> — without JS (or with reduced motion) nothing is hidden. */
+    /* transitions live on .is-in so the hidden state applies instantly */
+    .motion [data-enter].is-in {
+      transition: opacity var(--enter-duration) var(--ease-out) calc(var(--i, 0) * var(--enter-stagger)),
+                  transform var(--enter-duration) var(--ease-out) calc(var(--i, 0) * var(--enter-stagger));
+    }
+
+    .motion [data-enter]:not(.is-in) {
+      opacity: 0;
+      transform: translateY(var(--enter-distance));
+    }
+
+    .motion [data-reveal].is-in {
+      transition: opacity var(--reveal-duration) var(--ease-out) calc(var(--i, 0) * var(--reveal-stagger)),
+                  transform var(--reveal-duration) var(--ease-out) calc(var(--i, 0) * var(--reveal-stagger));
+    }
+
+    .motion [data-reveal]:not(.is-in) {
+      opacity: var(--reveal-opacity);
+      transform: translateY(var(--reveal-distance));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+      }
     }
 
     /* ── RESPONSIVE ── */
@@ -741,8 +931,8 @@
     @media (max-width: 900px) {
       .header-nav { display: none; }
       .work-grid { grid-template-columns: 1fr; }
-      .experience-item { gap: 40px; }
-      .experience-body { padding-right: 0; }
+      .experience-toggle { gap: 40px; }
+      .experience-desc { padding-left: 240px; }
       .about-text { min-width: 0; flex-basis: 100%; }
     }
 
@@ -751,25 +941,20 @@
       /* Header: logo only, equal top and side spacing */
       .header { padding-top: var(--pad); }
       .header-right { display: none; }
+      .hero-section { padding-top: 80px; padding-bottom: 48px; }
       .hero-intro { font-size: 24px; line-height: 30px; letter-spacing: -0.72px; }
-      .work-blob { left: 20%; width: 600px; height: 600px; top: -300px; }
-      /* Allow card titles and meta to wrap */
+      .work-blob.one { left: -300px; top: 200px; width: 600px; height: 600px; }
+      .work-blob.two { left: 20%; width: 1200px; height: 1200px; }
       .work-card-title { white-space: normal; }
       .work-grid { row-gap: 48px; }
-      .work-card-meta { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .badge { height: 26px; padding: 0 10px; font-size: 13px; }
-      /* Experience: collapsible rows */
-      .experience-list { gap: 24px; }
-      .experience-item { flex-direction: column; gap: 24px; }
-      .experience-side { width: 100%; flex-direction: row; align-items: center; gap: 8px; cursor: pointer; }
-      .experience-side .experience-years { margin-left: auto; }
-      .experience-chevron { display: block; }
-      .experience-logo { display: flex; align-items: center; }
-      .experience-item:not(.open) .experience-body { display: none; }
-      .experience-logo.wide { width: 100px; }
+      /* Experience: logo + years on one line, skills wrap underneath */
+      .experience-toggle { flex-wrap: wrap; gap: 12px 16px; }
+      .experience-lead { width: auto; flex: 1 0 auto; }
+      .experience-skills { order: 3; flex-basis: 100%; white-space: normal; font-size: 18px; line-height: 24px; }
+      .experience-desc { padding-left: 16px; }
       .about-visual { width: 100%; }
-      .about-photo { width: 83.33%; height: auto; aspect-ratio: 400 / 410.105; margin-right: -37.5%; }
-      .about-blob { width: 54.17%; height: auto; aspect-ratio: 1; }
+      .about-visual img { width: 100%; max-width: 410px; height: auto; aspect-ratio: 1; }
+      .about-blob { left: -200px; width: 600px; height: 600px; }
       .contact-tagline { white-space: normal; }
       .contact-list { flex-direction: column; gap: 16px; }
     }
@@ -778,6 +963,8 @@
 <body>
 
 <div class="page">
+
+<div class="site-main">
 
   <!-- HEADER -->
   <header class="header">
@@ -814,130 +1001,157 @@
 
   <!-- HERO -->
   <section class="hero-section">
-    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a hands-on lead product designer specialising in fintech, design systems and brand. <strong>Creating work that&nbsp;works.</strong></h1>
+    <h1 class="hero-intro"><strong>Jonathan McGhee</strong> is a lead product designer specialising in fintech, design systems and brand. <strong>Creating work that&nbsp;works.</strong></h1>
   </section>
 
   <!-- WORK -->
   <section id="work" class="work-section" aria-label="Work">
-    <div class="work-blob" aria-hidden="true">
+    <div class="work-blob one" aria-hidden="true">
+      <img src="assets/images/circle-fade.svg" alt="">
+    </div>
+    <div class="work-blob two" aria-hidden="true">
       <img src="assets/images/circle-fade.svg" alt="">
     </div>
 
     <div class="work-grid">
 
-      <!-- Cargill Reporting -->
-      <div class="work-card">
+      <!-- Alpha Centauri -->
+      <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/cargill-reporting.jpg" alt="Alpha Centauri – Reporting & Analytics" loading="lazy">
+          <img src="assets/images/cargill-reporting.jpg" alt="Alpha Centauri – Reporting &amp; Analytics App" loading="lazy">
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">Cargill</p>
-            <h2 class="work-card-title">Alpha Centauri – Reporting &amp; Analytics</h2>
+            <h2 class="work-card-title">Alpha Centauri – Reporting &amp; Analytics App</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
       <!-- Refuelr -->
-      <div class="work-card">
+      <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/refuelr.jpg" alt="Refuelr – Fuel finder app" loading="lazy">
+          <img src="assets/images/refuelr.jpg" alt="Refuelr – Fuel Finder App" loading="lazy">
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">SquaredMc</p>
-            <h2 class="work-card-title">Refuelr – Fuel finder app</h2>
+            <h2 class="work-card-title">Refuelr – Fuel Finder App</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
       <!-- Alpha Design System -->
-      <div class="work-card">
+      <div class="work-card is-coming-soon">
         <div class="work-card-media">
           <video autoplay muted loop playsinline>
             <source src="assets/images/cargill-design-system.mov" type="video/mp4">
           </video>
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">Cargill</p>
             <h2 class="work-card-title">Alpha Design System</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
       <!-- Cashflow -->
-      <div class="work-card">
+      <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/cashflow.jpg" alt="Cashflow – Payments on the go" loading="lazy">
+          <img src="assets/images/cashflow.jpg" alt="Cashflow – App for Payments on the Go" loading="lazy">
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">HCLTech &amp; DB</p>
-            <h2 class="work-card-title">Cashflow – Payments on the go</h2>
+            <h2 class="work-card-title">Cashflow – App for Payments on the&nbsp;Go</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
       <!-- Wealth Advisor -->
-      <div class="work-card">
+      <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/wealth-advisor.jpg" alt="Wealth Advisor Dashboard" loading="lazy">
+          <img src="assets/images/wealth-advisor.jpg" alt="Wealth Advisor Dashboard App" loading="lazy">
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">Refinitiv / LSEG</p>
-            <h2 class="work-card-title">Wealth Advisor Dashboard</h2>
+            <h2 class="work-card-title">Wealth Advisor Dashboard App</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
       <!-- Fintech Lab -->
-      <div class="work-card">
+      <div class="work-card is-coming-soon">
         <div class="work-card-media dark">
           <video autoplay muted loop playsinline>
             <source src="assets/images/fintech-lab.mov" type="video/mp4">
           </video>
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">HCL Tech</p>
             <h2 class="work-card-title">Fintech LAB Branding</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
       <!-- Halo -->
-      <div class="work-card">
+      <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/halo.jpg" alt="Halo Design System Portal" loading="lazy">
+          <img src="assets/images/halo.jpg" alt="Halo Design System Portal – Guidelines" loading="lazy">
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">Refinitiv / LSEG</p>
-            <h2 class="work-card-title">Halo Design System Portal</h2>
+            <h2 class="work-card-title">Halo Design System Portal – Guidelines</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
       <!-- KogoPay -->
-      <div class="work-card">
+      <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/kogopay.jpg" alt="KogoPay Website & App" loading="lazy">
+          <img src="assets/images/kogopay.jpg" alt="KogoPay Website &amp; App – Customer/Business" loading="lazy">
+          <span class="work-card-cta" aria-hidden="true">
+            <span class="work-card-cta-label">Case study coming soon</span>
+            <img class="work-card-cta-arrow" src="assets/images/arrow-right.svg" alt="" width="16" height="16">
+          </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
             <p class="work-card-client">KogoPay</p>
-            <h2 class="work-card-title">KogoPay Website &amp; App</h2>
+            <h2 class="work-card-title">Website &amp; App – Customer/Business</h2>
           </div>
-          <span class="badge">Coming Soon</span>
         </div>
       </div>
 
@@ -956,82 +1170,127 @@
       </div>
 
       <ul class="experience-list">
+
         <li class="experience-item">
-          <div class="experience-side">
-            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            <div class="experience-logo">
-              <div class="logo-cargill" role="img" aria-label="Cargill">
-                <img class="text" src="assets/logo/experience/cargill-text.svg" alt="">
-                <img class="leaf" src="assets/logo/experience/cargill-leaf.svg" alt="">
-              </div>
+          <h3 class="experience-heading">
+            <button class="experience-toggle" type="button" id="exp-cargill-btn" aria-expanded="true" aria-controls="exp-cargill">
+              <span class="experience-lead">
+                <span class="experience-icon" aria-hidden="true">
+                  <img class="icon-plus" src="assets/images/plus.svg" alt="" width="16" height="16">
+                  <img class="icon-minus" src="assets/images/minus.svg" alt="" width="16" height="16">
+                </span>
+                <span class="experience-logo">
+                  <span class="logo-cargill" role="img" aria-label="Cargill">
+                      <img class="text" src="assets/logo/experience/cargill-text.svg" alt="">
+                      <img class="leaf" src="assets/logo/experience/cargill-leaf.svg" alt="">
+                    </span>
+                </span>
+              </span>
+              <span class="experience-skills">UI/UX, SaaS Web Apps, AI Tools, Design Systems, Brand Design, Strategy.</span>
+              <span class="experience-years">2022–2026</span>
+            </button>
+          </h3>
+          <div class="experience-panel" id="exp-cargill" role="region" aria-labelledby="exp-cargill-btn">
+            <div class="experience-panel-inner">
+              <p class="experience-desc">Design lead for enterprise trading applications across Cargill’s global Ag &amp; Trading business. Partnered with product owners and engineering to ship scalable tools, and built a design system that unified legacy and new platforms.</p>
             </div>
-            <p class="experience-years">2022–2026</p>
-          </div>
-          <div class="experience-body">
-            <h3 class="experience-title">UI/UX, SaaS Web Apps, AI Tools, Design Systems, Brand Design, Strategy.</h3>
-            <p class="experience-desc">Design lead for enterprise trading applications across Cargill’s global Ag &amp; Trading business. Partnered with product owners and engineering to ship scalable tools, and built a design system that unified legacy and new platforms.</p>
           </div>
         </li>
 
         <li class="experience-item">
-          <div class="experience-side">
-            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            <div class="experience-logo">
-              <img src="assets/logo/experience/bp.svg" alt="bp">
+          <h3 class="experience-heading">
+            <button class="experience-toggle" type="button" id="exp-bp-btn" aria-expanded="true" aria-controls="exp-bp">
+              <span class="experience-lead">
+                <span class="experience-icon" aria-hidden="true">
+                  <img class="icon-plus" src="assets/images/plus.svg" alt="" width="16" height="16">
+                  <img class="icon-minus" src="assets/images/minus.svg" alt="" width="16" height="16">
+                </span>
+                <span class="experience-logo">
+                  <img src="assets/logo/experience/bp.svg" alt="bp">
+                </span>
+              </span>
+              <span class="experience-skills">UI/UX, Analytics Dashboards, Data Visualisation, Design Guidelines, Stakeholder Management.</span>
+              <span class="experience-years">2021–2022</span>
+            </button>
+          </h3>
+          <div class="experience-panel" id="exp-bp" role="region" aria-labelledby="exp-bp-btn">
+            <div class="experience-panel-inner">
+              <p class="experience-desc">Lead designer of an internal analytics hub and the data-visualisation guidelines governing its dashboards. Owned UI, UX and requirements, directing external developers and offshore teams through to delivery.</p>
             </div>
-            <p class="experience-years">2021–2022</p>
-          </div>
-          <div class="experience-body">
-            <h3 class="experience-title">UI/UX, Analytics Dashboards, Data Visualisation, Design Guidelines, Stakeholder Management.</h3>
-            <p class="experience-desc">Lead designer of an internal analytics hub and the data-visualisation guidelines governing its dashboards. Owned UI, UX and requirements, directing external developers and offshore teams through to delivery.</p>
           </div>
         </li>
 
         <li class="experience-item">
-          <div class="experience-side">
-            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            <div class="experience-logo">
-              <div class="logo-lseg" role="img" aria-label="LSEG">
-                <div class="logo-lseg-inner">
-                  <img src="assets/logo/experience/lseg-content.svg" alt="">
-                </div>
-              </div>
+          <h3 class="experience-heading">
+            <button class="experience-toggle" type="button" id="exp-lseg-btn" aria-expanded="true" aria-controls="exp-lseg">
+              <span class="experience-lead">
+                <span class="experience-icon" aria-hidden="true">
+                  <img class="icon-plus" src="assets/images/plus.svg" alt="" width="16" height="16">
+                  <img class="icon-minus" src="assets/images/minus.svg" alt="" width="16" height="16">
+                </span>
+                <span class="experience-logo">
+                  <span class="logo-lseg" role="img" aria-label="LSEG">
+                      <span class="logo-lseg-inner"><img src="assets/logo/experience/lseg-content.svg" alt=""></span>
+                    </span>
+                </span>
+              </span>
+              <span class="experience-skills">UI/UX, Financial Data Platforms, Component Libraries, Prototyping, Workshops.</span>
+              <span class="experience-years">2020–2021</span>
+            </button>
+          </h3>
+          <div class="experience-panel" id="exp-lseg" role="region" aria-labelledby="exp-lseg-btn">
+            <div class="experience-panel-inner">
+              <p class="experience-desc">Senior product designer for Refinitiv Workspace, LSEG’s flagship data and analytics platform for capital-markets professionals. Built component libraries with usage guidelines, governed delivery standards, ran workshops and presented prototypes to key stakeholders.</p>
             </div>
-            <p class="experience-years">2020–2021</p>
-          </div>
-          <div class="experience-body">
-            <h3 class="experience-title">UI/UX, Financial Data Platforms, Component Libraries, Prototyping, Workshops.</h3>
-            <p class="experience-desc">Senior product designer for Refinitiv Workspace, LSEG’s flagship data and analytics platform for capital-markets professionals. Built component libraries with usage guidelines, governed delivery standards, ran workshops and presented prototypes to key stakeholders.</p>
           </div>
         </li>
 
         <li class="experience-item">
-          <div class="experience-side">
-            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            <div class="experience-logo wide">
-              <img src="assets/logo/experience/tt-long.svg" alt="Turner &amp; Townsend">
+          <h3 class="experience-heading">
+            <button class="experience-toggle" type="button" id="exp-tt-btn" aria-expanded="true" aria-controls="exp-tt">
+              <span class="experience-lead">
+                <span class="experience-icon" aria-hidden="true">
+                  <img class="icon-plus" src="assets/images/plus.svg" alt="" width="16" height="16">
+                  <img class="icon-minus" src="assets/images/minus.svg" alt="" width="16" height="16">
+                </span>
+                <span class="experience-logo">
+                  <img src="assets/logo/experience/tt-long.svg" alt="Turner &amp; Townsend">
+                </span>
+              </span>
+              <span class="experience-skills">UI/UX, Responsive Web Apps, Data Services, Workflow Design.</span>
+              <span class="experience-years">2019–2020</span>
+            </button>
+          </h3>
+          <div class="experience-panel" id="exp-tt" role="region" aria-labelledby="exp-tt-btn">
+            <div class="experience-panel-inner">
+              <p class="experience-desc">Senior product designer that created a bespoke, responsive data-service application for cost managers from concept to delivery. Worked closely with product owners and engineering to simplify complex workflows into a user-centred product.</p>
             </div>
-            <p class="experience-years">2019–2020</p>
-          </div>
-          <div class="experience-body">
-            <h3 class="experience-title">UI/UX, Responsive Web Apps, Data Services, Workflow Design.</h3>
-            <p class="experience-desc">Senior product designer that created a bespoke, responsive data-service application for cost managers from concept to delivery. Worked closely with product owners and engineering to simplify complex workflows into a user-centred product.</p>
           </div>
         </li>
 
         <li class="experience-item">
-          <div class="experience-side">
-            <svg class="experience-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            <div class="experience-logo">
-              <img src="assets/logo/experience/hcltech.svg" alt="HCLTech">
+          <h3 class="experience-heading">
+            <button class="experience-toggle" type="button" id="exp-hcl-btn" aria-expanded="true" aria-controls="exp-hcl">
+              <span class="experience-lead">
+                <span class="experience-icon" aria-hidden="true">
+                  <img class="icon-plus" src="assets/images/plus.svg" alt="" width="16" height="16">
+                  <img class="icon-minus" src="assets/images/minus.svg" alt="" width="16" height="16">
+                </span>
+                <span class="experience-logo">
+                  <img src="assets/logo/experience/hcltech.svg" alt="HCLTech">
+                </span>
+              </span>
+              <span class="experience-skills">UI/UX, Mobile &amp; Web, Investment Banking, Brand Design, Prototyping.</span>
+              <span class="experience-years">2016–2019</span>
+            </button>
+          </h3>
+          <div class="experience-panel" id="exp-hcl" role="region" aria-labelledby="exp-hcl-btn">
+            <div class="experience-panel-inner">
+              <p class="experience-desc">Creative lead that delivered mobile, web and branding solutions, primarily for a leading global investment bank. Ran agile workshops and client engagement, presented high-fidelity prototypes, and served as brand ambassador after a full company rebrand.</p>
             </div>
-            <p class="experience-years">2016–2019</p>
-          </div>
-          <div class="experience-body">
-            <h3 class="experience-title">UI/UX, Mobile &amp; Web, Investment Banking, Brand Design, Prototyping.</h3>
-            <p class="experience-desc">Creative lead that delivered mobile, web and branding solutions, primarily for a leading global investment bank. Ran agile workshops and client engagement, presented high-fidelity prototypes, and served as brand ambassador after a full company rebrand.</p>
           </div>
         </li>
+
       </ul>
     </div>
   </section>
@@ -1049,21 +1308,19 @@
       </div>
 
       <div class="about-visual">
-        <div class="about-photo">
-          <div class="about-photo-bg"></div>
-          <div class="about-photo-img">
-            <img src="assets/images/portrait-me.png" alt="Jonathan McGhee">
-          </div>
-        </div>
-        <div class="about-blob" aria-hidden="true">
-          <img src="assets/images/circleBlurry.svg" alt="">
-        </div>
+        <img src="assets/images/jon-about.png" alt="Jonathan McGhee" width="410" height="410" loading="lazy">
       </div>
+    </div>
+
+    <div class="about-blob" aria-hidden="true">
+      <img src="assets/images/circleBlurry.svg" alt="">
     </div>
   </section>
 
+</div><!-- /.site-main -->
+
   <!-- CONTACT -->
-  <section id="contact" class="contact-section">
+  <footer id="contact" class="contact-section">
     <div class="contact-inner">
       <div class="contact-content">
         <h2 class="section-label">Contact</h2>
@@ -1084,10 +1341,10 @@
         </div>
       </div>
       <div class="contact-logo">
-        <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="150" height="150">
+        <img src="assets/logo/jm-logo-cyan.png" alt="Jonathan McGhee" width="120" height="120">
       </div>
     </div>
-  </section>
+  </footer>
 
 </div><!-- /.page -->
 
@@ -1138,6 +1395,7 @@
         document.documentElement.classList.remove('gate-open');
         window.scrollTo({ top: 0, behavior: 'instant' });
         document.getElementById('password-gate').style.display = 'none';
+        document.dispatchEvent(new CustomEvent('gate:unlocked'));
       }, 700);
     } else {
       pwInput.classList.add('pg-state-error');
@@ -1150,40 +1408,134 @@
   }
 </script>
 
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
 <script>
-  // Experience rows collapse into an accordion on small screens
-  (function() {
-    var mq = window.matchMedia('(max-width: 640px)');
-    var items = document.querySelectorAll('.experience-item');
+  // ── MOTION ──
+  // CSS-side values (durations, easing, distances) are the --enter-*, --reveal-*,
+  // --hover-*, --cta-* and --acc-* custom properties under "MOTION TOKENS" in <style>.
+  var MOTION = {
+    lenisLerp: 0.1,        // 2. smooth scroll: lower = floatier, 1 = off
+    revealThreshold: 0.15, // 3. share of a card that must be on screen before it reveals
+    anchorOffset: 0        // 2. px kept above a section when jumping to it (header isn't fixed)
+  };
 
-    function sync() {
-      items.forEach(function(item) {
-        var side = item.querySelector('.experience-side');
-        if (mq.matches) {
-          side.setAttribute('role', 'button');
-          side.setAttribute('tabindex', '0');
-          side.setAttribute('aria-expanded', item.classList.contains('open'));
-        } else {
-          side.removeAttribute('role');
-          side.removeAttribute('tabindex');
-          side.removeAttribute('aria-expanded');
-        }
-      });
+  (function() {
+    var root = document.documentElement;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var gate = document.getElementById('password-gate');
+    var lenis = null;
+
+    function gateIsOpen() {
+      return root.classList.contains('gate-open');
     }
 
-    items.forEach(function(item) {
-      var side = item.querySelector('.experience-side');
-      side.addEventListener('click', function() {
-        if (!mq.matches) return;
-        side.setAttribute('aria-expanded', item.classList.toggle('open'));
+    // ── 6. Experience accordion (runs with or without reduced motion) ──
+    var expItems = Array.prototype.slice.call(document.querySelectorAll('.experience-item'));
+
+    function setOpen(item, open) {
+      item.classList.toggle('is-open', open);
+      item.querySelector('.experience-toggle').setAttribute('aria-expanded', open);
+    }
+
+    expItems.forEach(function(item) {
+      setOpen(item, false);
+      item.querySelector('.experience-toggle').addEventListener('click', function() {
+        var willOpen = !item.classList.contains('is-open');
+        expItems.forEach(function(other) { setOpen(other, false); });
+        if (willOpen) setOpen(item, true);
       });
-      side.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); side.click(); }
+    });
+    root.classList.add('has-accordion');
+
+    // ── 4. Footer curtain reveal ──
+    var footer = document.querySelector('.contact-section');
+
+    function updateCurtain() {
+      // fall back to normal scrolling when the footer can't fit on screen
+      root.classList.toggle('has-curtain', footer.offsetHeight <= window.innerHeight);
+    }
+    updateCurtain();
+    window.addEventListener('resize', updateCurtain);
+
+    // ── 2. Smooth scroll (Lenis) + anchor links ──
+    if (!reduceMotion && window.Lenis) {
+      lenis = new Lenis({ lerp: MOTION.lenisLerp, smoothWheel: true, syncTouch: false });
+      requestAnimationFrame(function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      });
+      if (gateIsOpen()) lenis.stop();
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var id = link.getAttribute('href');
+        var target = id === '#' ? null : document.querySelector(id);
+        e.preventDefault();
+
+        // The sticky footer never reaches the top, so "Contact" means the end of the page
+        var toEnd = target === footer;
+        if (lenis) {
+          lenis.scrollTo(toEnd ? 'bottom' : (target || 0), { offset: toEnd ? 0 : -MOTION.anchorOffset });
+        } else {
+          var top = toEnd ? root.scrollHeight
+                  : target ? target.getBoundingClientRect().top + window.scrollY - MOTION.anchorOffset
+                  : 0;
+          window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+        if (target) history.replaceState(null, '', id);
       });
     });
 
-    mq.addEventListener('change', sync);
-    sync();
+    if (reduceMotion) return; // no entrance or reveal: content is already visible
+
+    // ── 1. Page-load entrance + 3. scroll reveal ──
+    var header = document.querySelector('.header');
+    var hero = document.querySelector('.hero-section');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.work-card'));
+    var firstRowTop = cards.length ? cards[0].offsetTop : 0;
+    var firstRow = cards.filter(function(c) { return c.offsetTop === firstRowTop; });
+    var laterCards = cards.filter(function(c) { return firstRow.indexOf(c) === -1; });
+
+    [header, hero].concat(firstRow).forEach(function(el, i) {
+      el.setAttribute('data-enter', '');
+      el.style.setProperty('--i', i);
+    });
+    laterCards.forEach(function(card) { card.setAttribute('data-reveal', ''); });
+    root.classList.add('motion');
+
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var card = entry.target;
+        // stagger by column: left card first, then the next one along
+        var row = cards.filter(function(c) { return c.offsetTop === card.offsetTop; });
+        card.style.setProperty('--i', row.indexOf(card));
+        card.classList.add('is-in');
+        revealObserver.unobserve(card);
+      });
+    }, { threshold: MOTION.revealThreshold });
+
+    function playEntrance() {
+      document.querySelectorAll('[data-enter]').forEach(function(el) { el.classList.add('is-in'); });
+      laterCards.forEach(function(card) { revealObserver.observe(card); });
+    }
+
+    function onUnlock() {
+      if (lenis) {
+        lenis.resize();   // page height changed when the gate's scroll lock came off
+        lenis.start();
+        lenis.scrollTo(0, { immediate: true });
+      }
+      // the hidden state was applied at load (behind the gate), so this transitions straight in
+      playEntrance();
+    }
+
+    if (gate && gateIsOpen()) {
+      document.addEventListener('gate:unlocked', onUnlock, { once: true });
+    } else {
+      onUnlock();
+    }
   })();
 </script>
 
