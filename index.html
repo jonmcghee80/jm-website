@@ -344,12 +344,13 @@
       width: 100%;
       padding: 0 var(--pad) 80px;
       position: relative;
-      z-index: 2;
     }
 
     /* Blurred circles, positioned from the centre of the 1440px Figma frame */
+    /* Layering inside .site-main: section backgrounds → blurred circles (z 1) → content (z 2) */
     .work-blob {
       position: absolute;
+      z-index: 1;
       pointer-events: none;
       mix-blend-mode: multiply;
     }
@@ -373,6 +374,7 @@
       max-width: var(--max-w);
       margin: 0 auto;
       position: relative;
+      z-index: 2;
     }
 
     .work-card {
@@ -527,10 +529,11 @@
       background: var(--grey-bg);
       padding: 80px var(--pad);
       position: relative;
-      z-index: 1;
     }
 
     .experience-inner {
+      position: relative;
+      z-index: 2;
       max-width: var(--max-w);
       margin: 0 auto;
       display: flex;
@@ -742,6 +745,7 @@
       max-width: var(--max-w);
       width: 100%;
       position: relative;
+      z-index: 2;
     }
 
     .about-text {
@@ -787,6 +791,7 @@
 
     .about-blob {
       position: absolute;
+      z-index: 1;
       left: calc(50% - 840px);
       top: 406px;
       width: 800px;
