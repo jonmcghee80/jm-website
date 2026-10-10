@@ -332,47 +332,99 @@
       transition: background 0.2s ease-out;
     }
 
-    .menu-button[aria-expanded="true"] { background: var(--grey-bg); }
     .menu-button img { display: block; width: 20px; height: 20px; }
 
-    .menu-panel {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      width: 220px;
+    /* Full-screen menu overlay */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      padding: 16px;
+      padding: 40px var(--pad) 32px;
       background: var(--white);
-      border-radius: 16px;
-      box-shadow: 0 12px 32px rgba(1, 1, 1, 0.12);
       opacity: 0;
       visibility: hidden;
-      transform: translateY(-8px);
-      transform-origin: top right;
-      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out), visibility 0s linear 0.25s;
+      transition: opacity 0.3s var(--ease-out), visibility 0s linear 0.3s;
     }
 
-    .menu.is-open .menu-panel {
+    .menu-overlay.is-open {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
-      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out), visibility 0s;
+      transition: opacity 0.3s var(--ease-out), visibility 0s;
     }
 
-    .menu-link {
-      padding: 10px 8px;
-      font-family: 'Source Serif 4', serif;
-      font-size: 20px;
+    html.menu-open, html.menu-open body { overflow: hidden; }
+
+    .menu-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-top img {
+      display: block;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .menu-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 50px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .menu-links {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .menu-links a {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 37px;
+      letter-spacing: -0.9px;
+      color: var(--black);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(var(--enter-distance));
+      transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+    }
+
+    .menu-overlay.is-open .menu-links a {
+      opacity: 1;
+      transform: none;
+      transition: opacity var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger)),
+                  transform var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger));
+    }
+
+    .menu-social {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .menu-social a {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-size: 18px;
       line-height: 28px;
-      color: var(--grey-dark);
+      color: var(--grey);
       text-decoration: none;
     }
-
-    .menu-link:active { color: var(--black); }
-
-    .menu-cv { width: 100%; height: 40px; margin-top: 8px; }
 
     /* ── HERO ── */
     .hero-section {
@@ -1025,6 +1077,10 @@
       .experience-desc { padding-left: 152px; }   /* 16 + 96 lead + 40 gap */
     }
 
+    @media (min-width: 901px) {
+      .menu-overlay { display: none; }
+    }
+
     @media (max-width: 900px) {
       .header-nav { display: none; }
       .header-right { display: none; }
@@ -1039,6 +1095,7 @@
       :root { --pad: 24px; }
       /* Header: logo only, equal top and side spacing */
       .header { padding-top: var(--pad); }
+      .menu-overlay { padding-top: var(--pad); }
       .hero-section { padding-top: 80px; padding-bottom: 48px; }
       .hero-intro { font-size: 24px; line-height: 30px; letter-spacing: -0.72px; }
       .work-blob.one { left: -300px; top: 200px; width: 600px; height: 600px; }
@@ -1108,14 +1165,9 @@
 
     <!-- Small screens: menu button (Figma 867:6820) -->
     <div class="menu">
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
         <img src="assets/images/menu.svg" alt="" width="20" height="20">
       </button>
-      <nav class="menu-panel" id="site-menu" aria-label="Site">
-        <a href="#about" class="menu-link">About</a>
-        <a href="#contact" class="menu-link">Contact</a>
-        <a href="JM-CV.pdf" class="cv-btn menu-cv" target="_blank" rel="noopener">Download CV</a>
-      </nav>
     </div>
   </header>
 
@@ -1449,6 +1501,25 @@
 
 </div><!-- /.site-main -->
 
+  <!-- MENU (small screens) -->
+  <div class="menu-overlay" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="menu-top">
+      <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="60" height="60">
+      <button class="menu-close" type="button" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="#010101" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <nav class="menu-links" aria-label="Site">
+      <a href="#experience" style="--i: 0">Experience</a>
+      <a href="#about" style="--i: 1">About</a>
+      <a href="#contact" style="--i: 2">Contact</a>
+    </nav>
+    <div class="menu-social">
+      <a href="https://www.linkedin.com/in/jonmcghee" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:jonmcghee@gmail.com">Email</a>
+    </div>
+  </div>
+
   <!-- CONTACT -->
   <footer id="contact" class="contact-section">
     <div class="contact-inner">
@@ -1578,28 +1649,26 @@
     root.classList.add('has-accordion');
 
     // ── Menu (small screens) ──
-    var menu = document.querySelector('.menu');
-    var menuButton = menu.querySelector('.menu-button');
+    var menuButton = document.querySelector('.menu-button');
+    var menuOverlay = document.getElementById('site-menu');
+    var menuClose = menuOverlay.querySelector('.menu-close');
 
     function setMenu(open) {
-      menu.classList.toggle('is-open', open);
+      if (open === menuOverlay.classList.contains('is-open')) return;
+      menuOverlay.classList.toggle('is-open', open);
+      root.classList.toggle('menu-open', open);
       menuButton.setAttribute('aria-expanded', open);
+      if (lenis) open ? lenis.stop() : lenis.start();
+      (open ? menuClose : menuButton).focus({ preventScroll: true });
     }
 
-    menuButton.addEventListener('click', function() {
-      setMenu(!menu.classList.contains('is-open'));
-    });
-    menu.querySelectorAll('a').forEach(function(a) {
+    menuButton.addEventListener('click', function() { setMenu(true); });
+    menuClose.addEventListener('click', function() { setMenu(false); });
+    menuOverlay.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', function() { setMenu(false); });
     });
-    document.addEventListener('click', function(e) {
-      if (!menu.contains(e.target)) setMenu(false);
-    });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
-        setMenu(false);
-        menuButton.focus();
-      }
+      if (e.key === 'Escape') setMenu(false);
     });
 
     // ── 4. Footer curtain reveal ──
