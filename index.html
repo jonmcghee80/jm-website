@@ -1179,7 +1179,7 @@
       <div class="header-actions">
         <div class="cv-wrap">
           <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
-          <a href="JM-CV.pdf" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
+          <a href="JM-CV.pdf" data-umami-event="Download CV" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
         </div>
       </div>
     </div>
@@ -1366,7 +1366,7 @@
         <h2 class="section-label">Experience</h2>
         <div class="cv-wrap">
           <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
-          <a href="JM-CV.pdf" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
+          <a href="JM-CV.pdf" data-umami-event="Download CV" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
         </div>
       </div>
 
@@ -1494,7 +1494,7 @@
 
       </ul>
 
-      <a href="JM-CV.pdf" class="cv-btn experience-cv-block" target="_blank" rel="noopener">Download CV</a>
+      <a href="JM-CV.pdf" data-umami-event="Download CV" class="cv-btn experience-cv-block" target="_blank" rel="noopener">Download CV</a>
     </div>
   </section>
 
@@ -1531,13 +1531,13 @@
       </button>
     </div>
     <nav class="menu-links" aria-label="Site">
-      <a href="JM-CV.pdf" target="_blank" rel="noopener" style="--i: 0">Download CV</a>
+      <a href="JM-CV.pdf" data-umami-event="Download CV" target="_blank" rel="noopener" style="--i: 0">Download CV</a>
       <a href="#about" style="--i: 1">About</a>
       <a href="#contact" style="--i: 2">Contact</a>
     </nav>
     <div class="menu-social">
-      <a href="https://www.linkedin.com/in/jonmcghee" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:jonmcghee@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/jonmcghee" data-umami-event="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:jonmcghee@gmail.com" data-umami-event="Email">Email</a>
     </div>
   </div>
 
@@ -1548,15 +1548,15 @@
         <h2 class="section-label">Contact</h2>
         <p class="contact-tagline">Always happy to hear about new design opportunities, or just to talk&nbsp;shop.</p>
         <div class="contact-list">
-          <a href="https://www.linkedin.com/in/jonmcghee" class="contact-item" target="_blank" rel="noopener">
+          <a href="https://www.linkedin.com/in/jonmcghee" data-umami-event="LinkedIn" class="contact-item" target="_blank" rel="noopener">
             <img src="assets/images/LinkedIn.svg" class="contact-icon sm" alt="" aria-hidden="true" width="19" height="20">
             /jonmcghee
           </a>
-          <a href="tel:+447879825500" class="contact-item">
+          <a href="tel:+447879825500" data-umami-event="Phone" class="contact-item">
             <img src="assets/images/phone.svg" class="contact-icon" alt="" aria-hidden="true" width="24" height="24">
             +44 (0) 7879825500
           </a>
-          <a href="mailto:jonmcghee@gmail.com" class="contact-item">
+          <a href="mailto:jonmcghee@gmail.com" data-umami-event="Email" class="contact-item">
             <img src="assets/images/mail.svg" class="contact-icon" alt="" aria-hidden="true" width="24" height="24">
             jonmcghee@gmail.com
           </a>
@@ -1653,7 +1653,7 @@
 
     // Analytics: count visitors who get past the password screen
     document.addEventListener('gate:unlocked', function() {
-      if (window.umami) window.umami.track('unlocked');
+      if (window.umami) window.umami.track('Password unlock');
     }, { once: true });
 
     // ── 6. Experience accordion (runs with or without reduced motion) ──
