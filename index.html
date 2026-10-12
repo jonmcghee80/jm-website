@@ -1651,6 +1651,11 @@
       return root.classList.contains('gate-open');
     }
 
+    // Analytics: count visitors who get past the password screen
+    document.addEventListener('gate:unlocked', function() {
+      if (window.umami) window.umami.track('unlocked');
+    }, { once: true });
+
     // ── 6. Experience accordion (runs with or without reduced motion) ──
     var expItems = Array.prototype.slice.call(document.querySelectorAll('.experience-item'));
 
