@@ -382,6 +382,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 }
 
 .cs-feature-text img { width: 40px; height: 40px; flex-shrink: 0; }
+/* trim the text to cap height so the 40px icon spans the first two lines (as in Figma) */
+.cs-feature-text span { text-box: trim-both cap alphabetic; }
 
 /* After Launch */
 .cs-after { display: flex; flex-direction: column; gap: 80px; }
