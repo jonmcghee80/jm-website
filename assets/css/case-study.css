@@ -338,6 +338,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   gap: 80px;
 }
 
+.cs-figure.cs-flow-board { gap: 32px; }
 .cs-flow-board img { width: 100%; height: auto; }
 
 .cs-prototype { aspect-ratio: 1220 / 179.9; }
