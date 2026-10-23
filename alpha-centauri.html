@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Centauri – Case Study · Jonathan McGhee</title>
+  <meta name="description" content="Alpha Centauri: a reporting and analytics platform for Cargill’s traders and analysts. Case study by Jonathan McGhee.">
+
+  <!-- Behind the same password as the homepage: send visitors there first -->
+  <script>
+    try {
+      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=alpha-centauri.html');
+    } catch (e) {}
+  </script>
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/share/icon-512.png">
+  <link rel="apple-touch-icon" href="/assets/share/apple-touch-icon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jonathanmcghee.com/alpha-centauri">
+  <meta property="og:title" content="Alpha Centauri – Case Study · Jonathan McGhee">
+  <meta property="og:description" content="A reporting and analytics tool for Traders.">
+  <meta property="og:image" content="https://jonathanmcghee.com/assets/share/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="16caee6c-640b-4775-ad27-8b3b3f5e730b"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/case-study.css">
+</head>
+<body>
+
+  <div class="cs-wrap">
+    <!-- HEADER -->
+    <header class="cs-header">
+      <a href="./" class="logo"><img src="assets/logo/jm-logo.png" alt="Jonathan McGhee – home" width="60" height="60"></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+        <img src="assets/images/menu.svg" alt="" width="20" height="20">
+      </button>
+    </header>
+
+    <!-- INTRO -->
+    <section class="cs-intro">
+      <dl class="cs-meta" data-reveal>
+        <div><dt>Industry</dt><dd>Commodities Trading</dd></div>
+        <div><dt>Client</dt><dd>Cargill</dd></div>
+        <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+      </dl>
+
+      <div class="cs-heading">
+        <h1 class="cs-h1" data-reveal style="--i: 1"><span>Alpha Centauri – </span>A reporting and analytics tool for&nbsp;Traders</h1>
+        <ul class="cs-badges" data-reveal style="--i: 2">
+          <li>Data Platform</li>
+          <li>UI/UX</li>
+          <li>Fintech</li>
+        </ul>
+        <div class="cs-hero" data-reveal style="--i: 3">
+          <img src="assets/case-studies/centauri/hero-screen.png" alt="Alpha Centauri’s Grain Premium report: a dark data table of positions by month" width="1024" height="512">
+        </div>
+      </div>
+    </section>
+
+    <!-- MY CONTRIBUTION -->
+    <section class="cs-tldr">
+      <h2 class="cs-title" data-reveal>My Contribution (TL;DR)</h2>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-card" data-reveal style="--i: 0">
+          <h3>Owned</h3>
+          <ul class="cs-bullets">
+            <li>Research through to delivery</li>
+            <li>Mapping trader, hedge desk, market risk, and merchant workflows</li>
+            <li>Designed the new platform end to end</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 1">
+          <h3>Led</h3>
+          <ul class="cs-bullets">
+            <li>Reviews with stakeholders and users</li>
+            <li>The design from wireframe through prototype to build</li>
+            <li>Design system governance &amp; contribution</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 2">
+          <h3>Impact</h3>
+          <ul class="cs-bullets">
+            <li>Saved roughly $1,000 per user per year</li>
+            <li><strong>2000+</strong> page views in first 6 months</li>
+            <li>Replaced fragmented third-party tools with one platform</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="cs-section">
+      <div class="cs-split">
+        <div class="cs-stack" data-reveal>
+          <h2 class="cs-title">The Problem</h2>
+          <div class="cs-copy">
+            <p>Traders and Analysts across Cargill’s Canada and Mexico operations were working across multiple third-party tools with no standardisation between them. Reports didn’t match from one system to the next. Errors crept in. Costs were high for what the tools actually delivered, and trust in the data was&nbsp;low.</p>
+            <p>This wasn’t a case of one bad tool. It was several tools, each solving part of the problem, none of them talking to each&nbsp;other.</p>
+            <p>The platform needed to give traders and analysts real-time data access, without losing the speed or flexibility they already had. Not a stripped-down replacement. Something that could stand in for everything the old tools did, and do it&nbsp;better.</p>
+          </div>
+        </div>
+        <div class="cs-problem-img" data-reveal style="--i: 1">
+          <img src="assets/case-studies/centauri/problem.png" alt="Diagram: SAP HANA feeds KNIME, Tableau and Power BI, which all feed Excel before reaching traders, analysts and the risk desk. Problems: reports don’t match, errors creep in, high cost and low trust, repetitive manual tasks." width="1244" height="1240" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- THE CHALLENGES -->
+  <section class="cs-band grey cs-section">
+    <div class="cs-wrap cs-challenges">
+      <div class="cs-stack" data-reveal>
+        <h2 class="cs-title">The Challenges</h2>
+        <div class="cs-cols">
+          <div class="cs-copy">
+            <p>I ran research to understand who was actually using these tools day to day: traders, the hedge desk, market risk, merchants. Each group had a different relationship with the same data, so I mapped their existing workflows in detail before designing anything&nbsp;new.</p>
+            <p>That mapping mattered more than it might sound. The real risk wasn’t building the wrong features. It was building a platform that didn’t carry over what people already relied on. If it didn’t, they’d fall back to the old tools and nothing would have&nbsp;changed.</p>
+          </div>
+          <div class="cs-copy">
+            <p>So the brief wasn’t just <strong>“build one platform.”</strong> It&nbsp;was:</p>
+            <span class="cs-pullquote">build one platform familiar enough to adopt, while still being simpler than what it&nbsp;replaced.</span>
+            <p>From there: reviewed the mapped flows with stakeholders and users, designed new flows, wireframed, then&nbsp;prototyped.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cs-flows">
+        <div class="cs-flow-board" data-reveal>
+          <img src="assets/case-studies/centauri/user-flows.png" alt="User flow map of the mapped trader and analyst workflows" width="4096" height="2777" loading="lazy">
+        </div>
+        <div class="cs-prototype" data-reveal>
+          <img src="assets/case-studies/centauri/prototype-flow.png" alt="Prototype screen flow from wireframes to build" width="4096" height="604" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PRODUCT -->
+  <section class="cs-section tall">
+    <div class="cs-wrap cs-stack">
+      <h2 class="cs-title" data-reveal>The Product</h2>
+      <div class="cs-features">
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img src="assets/case-studies/centauri/feature-live-data.jpg" alt="Live data indicator with last-refresh time above the report columns" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/centauri/icon-clock.svg" alt="" width="40" height="40">Real-time data access, streaming live and snapshot data so users always see current information</p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img src="assets/case-studies/centauri/feature-filters.jpg" alt="Filters panel with searchable report filters" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/centauri/icon-cog.svg" alt="" width="40" height="40">Interactive, customisable reporting with filtering, sorting, and views tailored to individual users and teams</p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img class="crop-datasets" src="assets/case-studies/centauri/feature-datasets.jpg" alt="Full Grain Premium report on screen" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/centauri/icon-database-check.svg" alt="" width="40" height="40">Support for large, complex financial datasets without a hit to performance</p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img class="crop-adjustments" src="assets/case-studies/centauri/feature-adjustments.jpg" alt="Adjustment summary dialog with reason code and comments" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/centauri/icon-pencil-sparkles.svg" alt="" width="40" height="40">Direct edits and bulk uploads – Allowing users to correct and completing data governance at scale</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFTER LAUNCH -->
+  <section class="cs-band grey cs-section">
+    <div class="cs-wrap cs-after">
+      <div class="cs-stack">
+        <h2 class="cs-title" data-reveal>After Launch</h2>
+        <div class="cs-split">
+          <div class="cs-copy" data-reveal>
+            <p>Shipping Centauri wasn’t the finish line. Once it was live, I ran a second round of research to see how people actually used it, not how we’d assumed they&nbsp;would.</p>
+            <p>I combined behavioural data from Datadog (session replays, heatmaps, export and error tracking) with focus groups, one-to-one interviews and day-in-the-life&nbsp;sessions.</p>
+            <p>The headline finding was uncomfortable but useful. People trusted the data, but they were still finishing their analysis in Excel. The heatmaps made it plain: clicks clustered on Snapshots and&nbsp;Export.</p>
+            <p>I ranked every finding by severity, and three changes shipped as a direct result: bulk adjustments, clear refresh status, and a rework of Saved&nbsp;Views.</p>
+          </div>
+          <figure class="cs-figure" data-reveal style="--i: 1">
+            <div class="cs-media"><img src="assets/case-studies/centauri/heatmap.png" alt="Datadog click heatmap over the Centauri report, with hot spots on Snapshots and Export" loading="lazy"></div>
+            <figcaption class="cs-caption">Datadog heatmap, one month of usage</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="cs-synopsis" data-reveal>
+        <img src="assets/case-studies/centauri/session-synopsis.png" alt="User session synopsis for a senior analyst: key usage, what’s good and bad, concerns, ideas, automation and actions" width="1441" height="680" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- SAVED VIEWS -->
+  <section class="cs-section tall cs-saved">
+    <div class="cs-wrap cs-split">
+      <div class="cs-media" data-reveal><img src="assets/case-studies/centauri/saved-views.jpg" alt="Saved views panel with pinned and locked views and a hover preview" loading="lazy"></div>
+      <div class="cs-stack" data-reveal style="--i: 1">
+        <h2 class="cs-title">Saved Views</h2>
+        <div class="cs-copy">
+          <p>Saved Views was one of the clearest problems the research surfaced. Analysts were building views for their teams, but there was no way to protect them. Anyone could change a shared view by accident, so people fell back on old habits: duplicating spreadsheets and protecting tabs to keep a trusted version&nbsp;safe.</p>
+          <p>The list itself had become a problem too. Every analyst’s personal views sat alongside the shared ones, with no way to filter them, so finding the right view meant scrolling and&nbsp;guessing.</p>
+          <p>I reworked Saved Views around both issues. A senior analyst can now lock a master view, so everyone else can use it without being able to change it. The views people rely on most can be pinned to the top, and search, sorting and a quick hover preview make the right one easy to&nbsp;find.</p>
+          <p>The result: one trusted version of each view, maintained by the people responsible for it, instead of copies scattered across&nbsp;spreadsheets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE RESULT -->
+  <section class="cs-result">
+    <div class="cs-wrap">
+      <div class="cs-split">
+        <div class="cs-stack" data-reveal>
+          <h2 class="cs-title">The Result</h2>
+          <div class="cs-copy">
+            <p>Centauri went live for Canada and Mexico in six months, and passed 20,000 page and report views. It partially replaced the third-party tools, saving roughly $1,000 per user per year, and gave traders and analysts one place to work from instead of&nbsp;several.</p>
+            <p>The post-launch work mattered just as much. Bulk adjustments, refresh status and Saved Views all shipped from the research, and analysts’ informal feedback after launch was&nbsp;positive.</p>
+          </div>
+        </div>
+        <div class="cs-numbers">
+          <div class="cs-number" data-reveal style="--i: 0"><strong>6 months</strong><span>Product delivered for Canada &amp;&nbsp;Mexico.</span></div>
+          <div class="cs-number" data-reveal style="--i: 1"><strong>20,000+</strong><span>Page and report views since going&nbsp;live.</span></div>
+          <div class="cs-number" data-reveal style="--i: 2"><strong>$1000’s saved</strong><span>Business cost saved was approx. $1000 per user,&nbsp;p/a</span></div>
+          <div class="cs-number" data-reveal style="--i: 3"><strong>Reduced reliance</strong><span>On third-party software with user-centric&nbsp;solution</span></div>
+        </div>
+      </div>
+      <div class="cs-media cs-result-img" data-reveal>
+        <img src="assets/case-studies/centauri/result-laptop.jpg" alt="Alpha Centauri running on a laptop" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT -->
+  <nav class="cs-wrap cs-pager" aria-label="Case studies">
+    <a href="./#work">&lt; Back to work</a>
+  </nav>
+
+  <!-- MENU -->
+  <div class="menu-overlay" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="menu-top">
+      <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="60" height="60">
+      <button class="menu-close" type="button" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="#010101" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <nav class="menu-links" aria-label="Site">
+      <a href="JM-CV.pdf" data-umami-event="Download CV" target="_blank" rel="noopener" style="--i: 0">Download CV</a>
+      <a href="./#about" style="--i: 1">About</a>
+      <a href="./#contact" style="--i: 2">Contact</a>
+    </nav>
+    <div class="menu-social">
+      <a href="https://www.linkedin.com/in/jonmcghee" data-umami-event="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:jonmcghee@gmail.com" data-umami-event="Email">Email</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="assets/js/case-study.js"></script>
+</body>
+</html>

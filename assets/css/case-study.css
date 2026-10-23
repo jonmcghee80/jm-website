@@ -1,0 +1,502 @@
+/* Case study pages — shared styles (tokens match index.html) */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:     #010101;
+  --white:     #ffffff;
+  --grey-dark: #666666;
+  --grey-mid:  #b2b2b2;
+  --grey-bg:   #fafafa;
+  --grey:      #939393;
+  --blue:      #3a7ca7;
+  --max-w:     1440px;
+  --pad:       40px;
+  --shadow:    0 8px 20px rgba(58, 124, 167, 0.1);
+
+  /* Motion (same values as the homepage) */
+  --ease-out:        cubic-bezier(0.22, 1, 0.36, 1);
+  --enter-duration:  0.7s;
+  --enter-distance:  20px;
+  --enter-stagger:   0.1s;
+  --reveal-duration: 0.7s;
+  --reveal-distance: 24px;
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+/* Lenis (smooth scroll) base styles */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+
+body {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-variation-settings: 'opsz' 14, 'wdth' 100;
+  color: var(--black);
+  background: var(--white);
+  overflow-x: clip;
+}
+
+h1, h2, h3 { text-wrap: balance; font-weight: inherit; }
+p, li { text-wrap: pretty; }
+img, video { display: block; max-width: 100%; }
+
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+/* ── Layout helpers ── */
+.cs-wrap {
+  width: 100%;
+  max-width: calc(var(--max-w) + 2 * var(--pad));
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+.cs-band { width: 100%; }
+.cs-band.grey { background: var(--grey-bg); }
+
+/* ── Type ── */
+.cs-title {
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -0.64px;
+  color: var(--blue);
+  text-box: trim-both cap alphabetic;
+}
+
+.cs-copy {
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--black);
+}
+
+.cs-copy p + p { margin-top: 28px; }
+.cs-copy strong { font-weight: 700; }
+
+.cs-caption {
+  font-size: 16px;
+  line-height: 28px;
+  color: var(--black);
+}
+
+/* ── Header ── */
+.cs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+
+.cs-header .logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.menu-button,
+.menu-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-button img { width: 20px; height: 20px; }
+
+/* Full-screen menu (same as the homepage) */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: 40px var(--pad) 32px;
+  background: var(--white);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease-out), visibility 0s linear 0.3s;
+}
+
+.menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s var(--ease-out), visibility 0s;
+}
+
+html.menu-open, html.menu-open body { overflow: hidden; }
+
+.menu-top { display: flex; align-items: center; justify-content: space-between; }
+.menu-top img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+
+.menu-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.menu-links a {
+  font-size: 30px;
+  line-height: 37px;
+  letter-spacing: -0.9px;
+  color: var(--black);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(var(--enter-distance));
+  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.menu-overlay.is-open .menu-links a {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger)),
+              transform var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger));
+}
+
+.menu-social { display: flex; justify-content: space-around; }
+.menu-social a { font-size: 18px; line-height: 28px; color: var(--grey); text-decoration: none; }
+
+/* ── Intro ── */
+.cs-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding-top: 40px;
+}
+
+.cs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 80px;
+  max-width: 800px;
+}
+
+.cs-meta div { display: flex; flex-direction: column; gap: 12px; }
+
+.cs-meta dt {
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--blue);
+  text-box: trim-both cap alphabetic;
+}
+
+.cs-meta dd {
+  font-size: 20px;
+  line-height: 28px;
+  text-box: trim-both cap alphabetic;
+}
+
+.cs-heading { display: flex; flex-direction: column; gap: 40px; }
+
+.cs-h1 {
+  max-width: 800px;
+  font-weight: 300;
+  font-size: 52px;
+  line-height: 58px;
+  color: var(--blue);
+  text-box: trim-both cap alphabetic;
+}
+
+.cs-h1 span { color: var(--black); }
+
+.cs-badges { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+
+.cs-badges li {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 16px;
+  background: var(--white);
+  border: 1px solid var(--grey-dark);
+  border-radius: 40px;
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  color: var(--grey-dark);
+  white-space: nowrap;
+}
+
+/* Hero: product screen on the soft cyan backdrop */
+.cs-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1440 / 700;
+  border-radius: 8px;
+  background: url("../case-studies/centauri/hero-bg.png") center / cover no-repeat;
+  overflow: hidden;
+}
+
+.cs-hero img {
+  width: 84.72%;            /* 1220 of 1440 */
+  height: auto;
+  aspect-ratio: 1220 / 609;
+  object-fit: cover;
+  object-position: top left;
+  border-radius: 8px;
+}
+
+/* ── TL;DR ── */
+.cs-tldr {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 80px 0 60px;
+}
+
+.cs-tldr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.cs-tldr-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 24px 32px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.cs-tldr-card h3 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--blue);
+  text-box: trim-both cap alphabetic;
+}
+
+.cs-bullets { list-style: none; font-size: 20px; line-height: 28px; }
+.cs-bullets li { position: relative; padding-left: 14px; }
+.cs-bullets li + li { margin-top: 4px; }
+.cs-bullets li::before { content: "•"; position: absolute; left: 0; }
+.cs-bullets strong { font-weight: 700; }
+
+/* ── Generic two-column section ── */
+.cs-section { padding: 60px 0; }
+.cs-section.tall { padding: 80px 0; }
+
+.cs-split {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.cs-split > * { flex: 1 1 0; max-width: 660px; min-width: 0; }
+
+.cs-stack { display: flex; flex-direction: column; gap: 32px; }
+
+.cs-media {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cs-media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* The Problem */
+.cs-problem-img { align-self: center; }
+.cs-problem-img img { width: auto; max-width: 100%; height: auto; max-height: 472px; margin: 0 auto; }
+
+/* The Challenges */
+.cs-challenges { display: flex; flex-direction: column; gap: 80px; }
+
+.cs-cols {
+  display: flex;
+  gap: 120px;
+}
+
+.cs-cols > * { flex: 1 1 0; min-width: 0; }
+
+.cs-pullquote {
+  display: block;
+  margin: 28px 0;
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 42px;
+  color: var(--blue);
+}
+
+.cs-flows {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* Figma crop: show the top 82.5% of the user-flow board */
+.cs-flow-board { position: relative; aspect-ratio: 1080 / 604; overflow: hidden; }
+.cs-flow-board img { position: absolute; top: 0; left: 0; width: 100%; height: 121.23%; max-width: none; }
+
+.cs-prototype { aspect-ratio: 1220 / 179.9; }
+.cs-prototype img { width: 100%; height: 100%; object-fit: cover; }
+
+/* The Product */
+.cs-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+}
+
+.cs-feature { display: flex; flex-direction: column; gap: 24px; }
+
+.cs-feature-img {
+  position: relative;
+  aspect-ratio: 690 / 472;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cs-feature-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Figma crops for two of the feature images */
+.cs-feature-img img.crop-datasets    { inset: auto; left: -13.88%; top: -21.5%; width: 132.99%; height: 143%; max-width: none; }
+.cs-feature-img img.crop-adjustments { inset: auto; left: -8.71%;  top: -9.07%; width: 120.9%;  height: 130%; max-width: none; }
+
+.cs-feature-text {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.cs-feature-text img { width: 40px; height: 40px; flex-shrink: 0; }
+
+/* After Launch */
+.cs-after { display: flex; flex-direction: column; gap: 80px; }
+
+.cs-figure { display: flex; flex-direction: column; gap: 24px; }
+.cs-figure .cs-media { aspect-ratio: 664 / 322; }
+
+.cs-synopsis img { width: 100%; height: auto; }
+
+/* Saved Views */
+.cs-saved .cs-media { align-self: stretch; min-height: 320px; max-height: 700px; }
+
+/* The Result */
+.cs-result {
+  position: relative;
+  padding: 80px 0;
+}
+
+.cs-result::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../case-studies/centauri/hero-bg.png") center / cover no-repeat;
+  opacity: 0.5;
+}
+
+.cs-result > .cs-wrap { position: relative; display: flex; flex-direction: column; gap: 80px; }
+
+.cs-numbers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-content: start;
+}
+
+.cs-number {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 164px;
+  padding: 40px 32px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(58, 124, 167, 0.05);
+}
+
+.cs-number strong {
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -0.64px;
+  color: var(--blue);
+  text-box: trim-both cap alphabetic;
+}
+
+.cs-number span {
+  font-size: 20px;
+  line-height: 28px;
+  text-box: trim-both cap alphabetic;
+}
+
+.cs-result-img { aspect-ratio: 1440 / 700; }
+
+/* Prev / next */
+.cs-pager {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0;
+  font-family: 'Source Serif 4', serif;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.cs-pager a { color: var(--grey-dark); text-decoration: none; transition: color 0.2s; }
+.cs-pager a:hover { color: var(--black); }
+
+/* ── Motion: reveal on scroll (only once the script has added .motion) ── */
+.motion [data-reveal]:not(.is-in) {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+}
+
+.motion [data-reveal].is-in {
+  transition: opacity var(--reveal-duration) var(--ease-out) calc(var(--i, 0) * var(--enter-stagger)),
+              transform var(--reveal-duration) var(--ease-out) calc(var(--i, 0) * var(--enter-stagger));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; transition-delay: 0s !important; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .cs-split, .cs-cols { flex-direction: column; gap: 40px; }
+  .cs-split > * { max-width: none; }
+  .cs-features { grid-template-columns: 1fr; }
+  .cs-tldr-grid { grid-template-columns: 1fr; }
+  .cs-saved .cs-split { flex-direction: column-reverse; }
+}
+
+@media (max-width: 640px) {
+  :root { --pad: 24px; }
+  .cs-header { padding-top: var(--pad); }
+  .menu-overlay { padding-top: var(--pad); }
+  .cs-intro { gap: 40px; }
+  .cs-meta { gap: 16px 40px; }
+  .cs-h1 { font-size: 32px; line-height: 36px; letter-spacing: -0.64px; }
+  .cs-hero { aspect-ratio: 4 / 3; }
+  .cs-hero img { width: 92%; }
+  .cs-copy, .cs-bullets, .cs-feature-text, .cs-number span { font-size: 18px; line-height: 26px; }
+  .cs-pullquote { font-size: 28px; line-height: 34px; }
+  .cs-challenges, .cs-flows, .cs-after { gap: 40px; }
+  .cs-numbers { grid-template-columns: 1fr; }
+  .cs-number { min-height: 0; padding: 28px 24px; }
+  .cs-result-img { aspect-ratio: 4 / 3; }
+  .cs-feature-text { gap: 16px; }
+  .cs-feature-text img { width: 32px; height: 32px; }
+}
