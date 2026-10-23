@@ -237,7 +237,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   overflow: hidden;
 }
 
-.cs-hero img,
+.cs-hero-still { display: none; }
+
 .cs-hero video {
   width: 84.72%;            /* 1220 of 1440 */
   height: auto;
@@ -448,7 +449,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .cs-pager {
   display: flex;
   justify-content: space-between;
-  padding: 40px 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
   font-family: 'Source Serif 4', serif;
   font-size: 20px;
   line-height: 28px;
@@ -486,11 +488,16 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   :root { --pad: 24px; }
   .cs-header { padding-top: var(--pad); }
   .menu-overlay { padding-top: var(--pad); }
-  .cs-intro { gap: 40px; }
-  .cs-meta { gap: 16px 40px; }
+  /* Intro (Figma 944:5000): label beside value, small tags, square still */
+  .cs-meta { flex-direction: column; gap: 16px; }
+  .cs-meta div { flex-direction: row; align-items: center; gap: 16px; }
+  .cs-meta dt { min-width: 80px; }
+  .cs-heading { gap: 24px; }
   .cs-h1 { font-size: 32px; line-height: 36px; letter-spacing: -0.64px; }
-  .cs-hero { aspect-ratio: 4 / 3; }
-  .cs-hero img, .cs-hero video { width: 92%; }
+  .cs-badges li { height: 24px; padding: 0 8px; font-size: 14px; }
+  .cs-hero { aspect-ratio: 1; background: none; }
+  .cs-hero video { display: none; }
+  .cs-hero-still { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
   .cs-copy, .cs-bullets, .cs-feature-text, .cs-number span { font-size: 18px; line-height: 26px; }
   .cs-pullquote { font-size: 28px; line-height: 34px; }
   .cs-challenges, .cs-flows, .cs-after { gap: 40px; }
