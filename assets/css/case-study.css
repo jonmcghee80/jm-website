@@ -378,7 +378,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 .cs-bubble img { width: 26.5px; height: 26px; transform: scaleX(-1); }
 
-.cs-shrug { font-size: 107px; line-height: 150px; }
+.cs-shrug { width: 110px; height: auto; flex-shrink: 0; }
 
 /* Image beside copy at a fixed Figma ratio */
 .cs-ratio { position: relative; overflow: hidden; border-radius: 8px; }
@@ -541,15 +541,39 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .cs-pager {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  font-family: 'Source Serif 4', serif;
-  font-size: 20px;
-  line-height: 28px;
 }
 
-.cs-pager a { color: var(--grey-dark); text-decoration: none; transition: color 0.2s; }
-.cs-pager a:hover { color: var(--black); }
+.cs-pager a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--grey-dark);
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 28px;
+  transition: color 0.2s;
+}
+
+.cs-pager a > span { display: flex; flex-direction: column; gap: 8px; }
+.cs-pager .name, .cs-pager small { text-box: trim-both cap alphabetic; }
+
+.cs-pager small {
+  font-family: 'Source Serif 4', serif;
+  font-size: 14px;
+  color: var(--blue);
+}
+
+.cs-pager img { width: 32px; height: 32px; transition: transform 0.25s var(--ease-out); }
+.cs-pager .prev img { transform: rotate(180deg); }
+
+@media (hover: hover) {
+  .cs-pager a:hover { color: var(--black); }
+  .cs-pager .prev:hover img { transform: rotate(180deg) translateX(4px); }
+  .cs-pager .next:hover img { transform: translateX(4px); }
+}
 
 /* ── Motion: reveal on scroll (only once the script has added .motion) ── */
 .motion [data-reveal]:not(.is-in) {
@@ -595,7 +619,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-hero-still { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
   .cs-bubble { flex: 0 1 auto; }
   .cs-bubble p { font-size: 24px; line-height: 28px; padding: 20px; }
-  .cs-shrug { font-size: 72px; line-height: 100px; }
+  .cs-shrug { width: 76px; }
   .cs-chart { padding: 24px; }
   .cs-bar { white-space: normal; }
   .cs-copy, .cs-bullets, .cs-feature-text, .cs-number span { font-size: 18px; line-height: 26px; }
