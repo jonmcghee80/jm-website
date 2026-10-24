@@ -226,6 +226,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   white-space: nowrap;
 }
 
+/* Title and tags grouped 24px apart (hero sits 40px below the group) */
+.cs-title-group { display: flex; flex-direction: column; gap: 24px; }
+
 /* Hero: product screen on the soft cyan backdrop */
 .cs-hero {
   display: flex;
@@ -238,6 +241,10 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 }
 
 .cs-hero-still { display: none; }
+
+/* Hero variant: one full-bleed image */
+.cs-hero.is-image { background: none; }
+.cs-hero.is-image > img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
 
 .cs-hero video {
   width: 84.72%;            /* 1220 of 1440 */
@@ -280,7 +287,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   text-box: trim-both cap alphabetic;
 }
 
-.cs-bullets { list-style: none; font-size: 20px; line-height: 28px; }
+.cs-bullets { list-style: none; font-size: 20px; line-height: 28px; text-box: trim-both cap alphabetic; }
 .cs-bullets li { position: relative; padding-left: 14px; }
 .cs-bullets li + li { margin-top: 4px; }
 .cs-bullets li::before { content: "•"; position: absolute; left: 0; }
@@ -330,6 +337,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   color: var(--blue);
 }
 
+.cs-pullquote.is-sm { font-size: 32px; line-height: 36px; letter-spacing: -0.64px; margin: 0; }
+
 .cs-flows {
   width: 100%;
   max-width: 1220px;
@@ -344,6 +353,19 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 .cs-prototype { aspect-ratio: 1220 / 179.9; }
 .cs-prototype img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Image beside copy at a fixed Figma ratio */
+.cs-ratio { position: relative; overflow: hidden; border-radius: 8px; }
+.cs-ratio img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.cs-listing { width: 100%; max-width: 1220px; margin: 0 auto; aspect-ratio: 1980 / 1700; border-radius: 16px; overflow: hidden; }
+.cs-listing img { width: 100%; height: 100%; object-fit: cover; }
+
+.cs-copy-media { display: flex; justify-content: space-between; gap: 60px; align-items: flex-start; }
+.cs-copy-media > .cs-copy { flex: 1 1 700px; max-width: 700px; }
+.cs-copy-media > .cs-copy p.gap { margin-top: 32px; }
+.cs-copy-media > figure { flex: 0 1 640px; }
+.cs-copy-media > figure img { width: 100%; height: auto; }
 
 /* The Product */
 .cs-features {
@@ -396,6 +418,28 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 /* Saved Views */
 .cs-saved .cs-media { align-self: stretch; min-height: 320px; max-height: 700px; }
 
+/* Small bar chart card */
+.cs-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px;
+  background: var(--white);
+  border-radius: 8px;
+  line-height: 1.3;
+  align-self: flex-start;
+}
+
+.cs-chart h3 { font-weight: 500; font-size: 20px; color: var(--black); }
+.cs-chart .sub { margin-top: 4px; font-size: 13px; color: #61666e; }
+.cs-chart-groups { display: flex; flex-direction: column; gap: 32px; }
+.cs-chart-group { display: flex; flex-direction: column; gap: 6px; }
+.cs-chart-group h4 { font-weight: 600; font-size: 14px; }
+.cs-bar { display: flex; align-items: center; gap: 10px; font-size: 13px; white-space: nowrap; }
+.cs-bar i { display: block; height: 18px; border-radius: 3px; flex-shrink: 0; width: var(--w); background: #3ee36b; }
+.cs-bar.cost i { background: #00320d; }
+.cs-chart .note { font-size: 11px; color: #61666e; }
+
 /* The Result */
 .cs-result {
   position: relative;
@@ -409,6 +453,26 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   background: url("../case-studies/centauri/hero-bg.png") center / cover no-repeat;
   opacity: 0.5;
 }
+
+.cs-result.is-plain::before { display: none; }
+
+.cs-button {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  height: 32px;
+  margin-top: 8px;
+  padding: 0 16px;
+  border-radius: 40px;
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background 0.22s ease-out;
+}
+
+@media (hover: hover) { .cs-button:hover { background: var(--grey-dark); } }
 
 .cs-result > .cs-wrap { position: relative; display: flex; flex-direction: column; gap: 80px; }
 
@@ -484,6 +548,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-features { grid-template-columns: 1fr; }
   .cs-tldr-grid { grid-template-columns: 1fr; }
   .cs-saved .cs-split { flex-direction: column-reverse; }
+  .cs-copy-media { flex-direction: column; gap: 40px; }
+  .cs-copy-media > .cs-copy, .cs-copy-media > figure { flex: none; max-width: none; width: 100%; }
+  .cs-chart { align-self: stretch; }
 }
 
 @media (max-width: 640px) {
@@ -500,6 +567,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-hero { aspect-ratio: 1; background: none; }
   .cs-hero video { display: none; }
   .cs-hero-still { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+  .cs-pullquote.is-sm { font-size: 26px; line-height: 32px; }
+  .cs-chart { padding: 24px; }
+  .cs-bar { white-space: normal; }
   .cs-copy, .cs-bullets, .cs-feature-text, .cs-number span { font-size: 18px; line-height: 26px; }
   .cs-pullquote { font-size: 28px; line-height: 34px; }
   .cs-challenges, .cs-flows, .cs-after { gap: 40px; }

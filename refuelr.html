@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refuelr – Case Study · Jonathan McGhee</title>
+  <meta name="description" content="Refuelr: an iOS app that finds the cheapest fuel near you. Designed and built end to end by Jonathan McGhee.">
+
+  <!-- Behind the same password as the homepage: send visitors there first -->
+  <script>
+    try {
+      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=refuelr.html');
+    } catch (e) {}
+  </script>
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/share/icon-512.png">
+  <link rel="apple-touch-icon" href="/assets/share/apple-touch-icon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jonathanmcghee.com/refuelr">
+  <meta property="og:title" content="Refuelr – Case Study · Jonathan McGhee">
+  <meta property="og:description" content="Cheapest fuel finder: one clear answer for any UK postcode.">
+  <meta property="og:image" content="https://jonathanmcghee.com/assets/share/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="16caee6c-640b-4775-ad27-8b3b3f5e730b"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/case-study.css">
+</head>
+<body>
+
+  <div class="cs-wrap">
+    <!-- HEADER -->
+    <header class="cs-header">
+      <a href="./" class="logo"><img src="assets/logo/jm-logo.png" alt="Jonathan McGhee – home" width="60" height="60"></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+        <img src="assets/images/menu.svg" alt="" width="20" height="20">
+      </button>
+    </header>
+
+    <!-- INTRO -->
+    <section class="cs-intro">
+      <dl class="cs-meta" data-reveal>
+        <div><dt>Industry</dt><dd>Consumer Mobile</dd></div>
+        <div><dt>Client</dt><dd>SquaredMc</dd></div>
+        <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+      </dl>
+
+      <div class="cs-heading">
+        <div class="cs-title-group">
+          <h1 class="cs-h1" data-reveal style="--i: 1; max-width: none"><span>Refuelr – </span>Cheapest fuel&nbsp;finder</h1>
+          <ul class="cs-badges" data-reveal style="--i: 2">
+            <li>iOS App</li>
+            <li>UI/UX</li>
+            <li>Open Data</li>
+            <li>AI Tooling</li>
+          </ul>
+        </div>
+        <div class="cs-hero is-image" data-reveal style="--i: 3">
+          <img src="assets/case-studies/refuelr/hero.jpg" alt="Three iPhones showing Refuelr: the map with the cheapest station, the splash screen, and the onboarding screen" width="2880" height="1384">
+        </div>
+      </div>
+    </section>
+
+    <!-- MY CONTRIBUTION -->
+    <section class="cs-tldr">
+      <h2 class="cs-title" data-reveal>My Contribution</h2>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-card" data-reveal style="--i: 0">
+          <h3>Owned</h3>
+          <ul class="cs-bullets">
+            <li>Product, brand and build, end to end</li>
+            <li>Scope: what shipped and what didn’t</li>
+            <li>AI tools and delivery workflow</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 1">
+          <h3>Led</h3>
+          <ul class="cs-bullets">
+            <li>Every design decision, idea to App Store</li>
+            <li>Testing with TestFlight users</li>
+            <li>Data quality rules, for accurate prices</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 2">
+          <h3>Impact</h3>
+          <ul class="cs-bullets">
+            <li>One clear result for any UK postcode</li>
+            <li>8,166 stations covered from open data</li>
+            <li>Real logos for 30 brands</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PROBLEM -->
+    <section class="cs-section">
+      <div class="cs-split">
+        <div class="cs-stack" data-reveal>
+          <h2 class="cs-title">The Problem</h2>
+          <div class="cs-copy">
+            <p>Fuel prices are public now. The government publishes them as open data, and they show up on Google. Seeing a price isn’t the hard part. Knowing which station is worth the drive&nbsp;is.</p>
+            <p>The cheapest station might be a long way off, and the nearest might cost noticeably more. What’s best depends on where you are, how far you’ll go, and what you&nbsp;drive.</p>
+            <p>Refuelr answers one question for the user:</p>
+            <p class="cs-pullquote is-sm">Where’s the cheapest fuel that’s near&nbsp;me?</p>
+          </div>
+        </div>
+        <div class="cs-ratio" data-reveal style="--i: 1; aspect-ratio: 660 / 472">
+          <img src="assets/case-studies/refuelr/problem.png" alt="Diagram: open price data, Google and price-per-litre lists already exist; which station is closest, whether the detour is worth it and what a fill-up costs are left to the driver; Refuelr shows the cheapest station nearby and what it saves." width="1320" height="944" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- THE CHALLENGES -->
+  <section class="cs-band grey cs-section">
+    <div class="cs-wrap cs-challenges">
+      <div class="cs-listing" data-reveal>
+        <img src="assets/case-studies/refuelr/app-store.jpg" alt="Refuelr’s App Store listing: ‘The cheapest fuel near you’, with four screenshots of the three-step setup" width="1980" height="1700" loading="lazy">
+      </div>
+      <div class="cs-stack">
+        <h2 class="cs-title" data-reveal>The Challenges</h2>
+        <div class="cs-copy-media">
+          <div class="cs-copy" data-reveal>
+            <p>The first version tried to do too much. Savings tracking and price alerts were both built, and I cut both from 1.0. They were useful, but they pulled attention away from the one question the app had to answer well, so they went to the&nbsp;backlog.</p>
+            <p>The bigger risk was trust. A price app that’s wrong once doesn’t get opened again. The open data had gaps, including missing diesel prices and occasional values no forecourt would charge, so I fixed the gaps and filtered out anything outside £1.30 to £3.50 a litre. I also removed an “Open” label, because the data couldn’t reliably back it&nbsp;up.</p>
+            <p class="gap">So the brief wasn’t just “show the prices,” it was to show one answer people can trust, and let them check the&nbsp;rest.</p>
+            <p>Some constraints came from outside. I built a number plate lookup using the DVLA API, then DVLA closed API registration. I replaced it with a simple car-size picker, which still gives a per-tank cost without asking for a&nbsp;registration.</p>
+            <p>I built Refuelr myself, with Claude Code as my main development agent for code changes, git and debugging. It went from an HTML prototype to a React app, then into a native iOS build with Capacitor and Ionic Appflow. Building it rather than drawing it meant I could test each decision on a real phone, with real prices, and cut what didn’t hold&nbsp;up.</p>
+          </div>
+          <figure data-reveal style="--i: 1">
+            <img src="assets/case-studies/refuelr/shipped-cut-replaced.png" alt="Refuelr 1.0: what was shipped, cut, and replaced. Shipped: cheapest station in a hero card, cheapest/nearest toggle, widening search radius, cost per tank, map opening on the cheapest station, real brand logos. Cut to the backlog: savings tracking, price alerts, best-value sort. Replaced: DVLA number plate lookup with a manual car-size picker. Trust rules: missing diesel prices fixed, prices outside £1.30 to £3.50 filtered out, Open label removed." width="1728" height="1744" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PRODUCT -->
+  <section class="cs-section tall">
+    <div class="cs-wrap cs-stack">
+      <h2 class="cs-title" data-reveal>The Product</h2>
+      <div class="cs-features">
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img src="assets/case-studies/refuelr/feature-hero-card.jpg" alt="Cheapest near you: Scrubs Lane Service Station at £1.679 in the hero card" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/refuelr/icon-circle-pound-sterling.svg" alt="" width="40" height="40"><span>The cheapest station sits in a hero card at the top, so the answer comes before the list</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img src="assets/case-studies/refuelr/feature-sort.jpg" alt="Station list and settings with fuel type, price display and search radius" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/refuelr/icon-arrow-up-narrow-wide.svg" alt="" width="40" height="40"><span>Sort by cheapest or nearest within a radius you set, widening automatically where stations are sparse</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img src="assets/case-studies/refuelr/feature-car-size.jpg" alt="Car size picker beside the cost-per-tank breakdown for a quarter, half and full tank" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/refuelr/icon-fuel.svg" alt="" width="40" height="40"><span>Your car size turns pence per litre into what a fill-up actually costs</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img src="assets/case-studies/refuelr/feature-map.jpg" alt="Map view opened on the cheapest station with a Route here button" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/refuelr/icon-map-pin.svg" alt="" width="40" height="40"><span>The map opens on the cheapest station, with real brand logos and coloured initials for the rest</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHEAPEST, NEAREST, OR BEST FOR ME? -->
+  <section class="cs-band grey cs-section tall">
+    <div class="cs-wrap cs-split">
+      <figure class="cs-chart" data-reveal aria-label="Bar chart: the same 5p saving is worth £1.97 net on a full tank but only £0.10 on a quarter tank">
+        <div>
+          <h3>Same 5p saving, different value</h3>
+          <p class="sub">Sainsbury’s vs JET: 5p a litre cheaper, 1.4 miles further each way</p>
+        </div>
+        <div class="cs-chart-groups">
+          <div class="cs-chart-group">
+            <h4>Full tank (50 litres)</h4>
+            <div class="cs-bar"><i style="--w: 62.9%"></i>Saving £2.50</div>
+            <div class="cs-bar cost"><i style="--w: 13.3%"></i>Extra driving −£0.53&nbsp;&nbsp;→&nbsp;&nbsp;net £1.97</div>
+          </div>
+          <div class="cs-chart-group">
+            <h4>Quarter tank (12.5 litres)</h4>
+            <div class="cs-bar"><i style="--w: 15.9%"></i>Saving £0.63</div>
+            <div class="cs-bar cost"><i style="--w: 13.3%"></i>Extra driving −£0.53&nbsp;&nbsp;→&nbsp;&nbsp;net £0.10</div>
+          </div>
+        </div>
+        <p class="note">Assumes 40mpg and £1.67 a litre. Illustrative, not app output.</p>
+      </figure>
+      <div class="cs-stack" data-reveal style="--i: 1">
+        <h2 class="cs-title">Cheapest, nearest, or best for me?</h2>
+        <div class="cs-copy">
+          <p>The obvious next step was a single “best for me” ranking that weighs the saving against the detour. In one search, a Sainsbury’s was 5p a litre cheaper than a JET but 1.4 miles further away. On a full tank that saves about £2.50. On a quarter tank, the extra driving roughly cancels it&nbsp;out.</p>
+          <p>I chose not to build it for 1.0. A blended score has to guess how far your car goes and how much you’re buying, and a wrong guess costs trust. So the cheapest station always sits in the hero card, and the toggle lets people choose. A “best value” sort is first on the backlog, shaped by what people actually&nbsp;use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE RESULT -->
+  <section class="cs-result is-plain">
+    <div class="cs-wrap">
+      <div class="cs-split">
+        <div class="cs-stack" data-reveal>
+          <h2 class="cs-title">The Result</h2>
+          <div class="cs-copy">
+            <p>Refuelr launched on the App Store in October 2026. It covers every station in the UK’s open price data, with a deliberately small scope and a clear backlog for what comes&nbsp;next.</p>
+            <p>The decisions that shaped it were mostly about what to leave out: two finished features, a number plate lookup, and a ranking that would have had to&nbsp;guess.</p>
+          </div>
+          <a class="cs-button" href="https://apps.apple.com/gb/app/refuelr/id6796394766" target="_blank" rel="noopener" data-umami-event="App Store: Refuelr" style="margin-top: 40px">Link to App Store</a>
+        </div>
+        <div class="cs-numbers">
+          <div class="cs-number" data-reveal style="--i: 0"><strong>8,166</strong><span>UK stations covered from government open&nbsp;data.</span></div>
+          <div class="cs-number" data-reveal style="--i: 1"><strong>30 brands</strong><span>Real logos, and coloured initials for the&nbsp;rest.</span></div>
+          <div class="cs-number" data-reveal style="--i: 2"><strong>25</strong><span>Downloads since launch on the App&nbsp;Store.</span></div>
+          <div class="cs-number" data-reveal style="--i: 3"><strong>Version 1.0</strong><span>Designed and built, from idea to App&nbsp;Store.</span></div>
+        </div>
+      </div>
+      <div class="cs-media cs-result-img" data-reveal>
+        <img src="assets/case-studies/refuelr/result.jpg" alt="A wall of Refuelr screens: splash, onboarding, car setup, cheapest-near-you list and settings" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT -->
+  <nav class="cs-wrap cs-pager" aria-label="Case studies">
+    <a href="alpha-centauri.html">&lt; Prev: Alpha Centauri</a>
+    <a href="./#work">Back to work &gt;</a>
+  </nav>
+
+  <!-- MENU -->
+  <div class="menu-overlay" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="menu-top">
+      <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="60" height="60">
+      <button class="menu-close" type="button" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="#010101" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <nav class="menu-links" aria-label="Site">
+      <a href="JM-CV.pdf" data-umami-event="Download CV" target="_blank" rel="noopener" style="--i: 0">Download CV</a>
+      <a href="./#about" style="--i: 1">About</a>
+      <a href="./#contact" style="--i: 2">Contact</a>
+    </nav>
+    <div class="menu-social">
+      <a href="https://www.linkedin.com/in/jonmcghee" data-umami-event="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:jonmcghee@gmail.com" data-umami-event="Email">Email</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="assets/js/case-study.js"></script>
+</body>
+</html>
