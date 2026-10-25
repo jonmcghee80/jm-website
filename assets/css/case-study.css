@@ -755,7 +755,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-result-img { aspect-ratio: 4 / 3; }
   .cs-feature-text { gap: 16px; }
   .cs-feature-text img { width: 32px; height: 32px; }
-  .cs-hero.is-alpha .cs-hero-still { width: 88%; height: auto; object-fit: contain; }
+  .cs-hero.is-alpha video { display: block; width: 88%; }
   .cs-silos { padding: 24px; }
   .cs-silos-apps { gap: 6px; }
   .cs-silos-issues { flex-wrap: wrap; }
