@@ -722,7 +722,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 @media (max-width: 1360px) {
   .cs-adopt { flex-wrap: wrap; gap: 40px; }
-  .cs-adopt > .cs-copy { flex-basis: 100%; }
+  .cs-adopt > .cs-copy { flex-basis: 100%; max-width: none; }
+  .cs-adopt > .cs-copy p { max-width: 700px; }
   .cs-adopt-zh { flex: 352 1 0; min-width: 0; }
   .cs-adopt-shot { flex: 579 1 0; min-width: 0; height: auto; }
 }
