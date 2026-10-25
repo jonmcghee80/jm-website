@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha Design System – Case Study · Jonathan McGhee</title>
+  <meta name="description" content="Alpha: the design system behind Cargill’s Trading &amp; Analytics apps. Case study by Jonathan McGhee.">
+
+  <!-- Behind the same password as the homepage: send visitors there first -->
+  <script>
+    try {
+      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=alpha-design-system.html');
+    } catch (e) {}
+  </script>
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/share/icon-512.png">
+  <link rel="apple-touch-icon" href="/assets/share/apple-touch-icon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jonathanmcghee.com/alpha-design-system">
+  <meta property="og:title" content="Alpha Design System – Case Study · Jonathan McGhee">
+  <meta property="og:description" content="One design system for 20+ Trading &amp; Analytics apps.">
+  <meta property="og:image" content="https://jonathanmcghee.com/assets/share/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="16caee6c-640b-4775-ad27-8b3b3f5e730b"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/case-study.css">
+</head>
+<body>
+
+  <div class="cs-wrap">
+    <!-- HEADER -->
+    <header class="cs-header">
+      <a href="./" class="logo"><img src="assets/logo/jm-logo.png" alt="Jonathan McGhee – home" width="60" height="60"></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+        <img src="assets/images/menu.svg" alt="" width="20" height="20">
+      </button>
+    </header>
+
+    <!-- INTRO -->
+    <section class="cs-intro">
+      <dl class="cs-meta" data-reveal>
+        <div><dt>Industry</dt><dd>Ag &amp; Trading</dd></div>
+        <div><dt>Client</dt><dd>Cargill</dd></div>
+        <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+      </dl>
+
+      <div class="cs-heading">
+        <div class="cs-title-group">
+          <h1 class="cs-h1" data-reveal style="--i: 1"><span>Alpha – </span>Design System</h1>
+          <ul class="cs-badges" data-reveal style="--i: 2">
+            <li>Figma UI Kit</li>
+            <li>Design Tokens</li>
+            <li>Documentation</li>
+            <li>Governance</li>
+          </ul>
+        </div>
+        <div class="cs-hero is-alpha" data-reveal style="--i: 3">
+          <video autoplay muted loop playsinline preload="auto" poster="assets/case-studies/alpha-ds/hero-poster.jpg" aria-label="The Alpha documentation site on ZeroHeight: browsing foundations, tokens and components">
+            <source src="assets/case-studies/alpha-ds/hero-720.mp4" type="video/mp4" media="(min-width: 641px) and (max-width: 900px)">
+            <source src="assets/case-studies/alpha-ds/hero.mp4" type="video/mp4" media="(min-width: 901px)">
+          </video>
+          <img class="cs-hero-still" src="assets/case-studies/alpha-ds/hero-poster.jpg" alt="The Alpha documentation site on ZeroHeight" width="1920" height="1096" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- MY CONTRIBUTION -->
+    <section class="cs-tldr">
+      <h2 class="cs-title" data-reveal>My Contribution</h2>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-card" data-reveal style="--i: 0">
+          <h3>Owned</h3>
+          <ul class="cs-bullets">
+            <li>Figma component library</li>
+            <li>Colour system and token naming</li>
+            <li>Documentation portal</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 1">
+          <h3>Led</h3>
+          <ul class="cs-bullets">
+            <li>Design in a four-person system squad</li>
+            <li>Alignment of design and engineering</li>
+            <li>Governance, releases and updates</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 2">
+          <h3>Impact</h3>
+          <ul class="cs-bullets">
+            <li>Adopted by all 20+ apps</li>
+            <li>40% less design-to-dev time</li>
+            <li>100+ components, 3,000+ variables</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <section class="cs-section cs-fade">
+    <div class="cs-wrap cs-split">
+      <div class="cs-stack" data-reveal>
+        <h2 class="cs-title">The Problem</h2>
+        <div class="cs-copy">
+          <p>Cargill’s Trading &amp; Analytics organisation runs 20+ business-critical apps, used daily by hundreds of people worldwide. Each was built in its own silo, over years, by different designers and&nbsp;developers.</p>
+          <p>In practice, that meant:</p>
+          <ul class="cs-bullets">
+            <li>Inconsistent UI in production</li>
+            <li>Multiple, competing Figma and UI libraries</li>
+            <li>Confusion between design and development about implementation</li>
+            <li>No shared design or accessibility standards</li>
+            <li>Slower delivery across every team</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Before and after diagram (Figma 1131:4432) -->
+      <div class="cs-silos" data-reveal style="--i: 1">
+        <div class="cs-silos-head">
+          <h3>20+ apps, built in silos</h3>
+          <p>Separate code bases, separate UI, and libraries nobody owned.</p>
+        </div>
+        <div class="cs-silos-before">
+          <p class="label">BEFORE</p>
+          <div class="cs-silos-apps" aria-hidden="true">
+            <div style="--r: 4px"><i></i><b style="--w: 48px; --br: 2px"></b><i class="s"></i></div>
+            <div class="dark" style="--r: 10px"><i></i><b style="--w: 56px; --br: 12px"></b><i class="s"></i></div>
+            <div style="--r: 4px"><i></i><b style="--w: 64px; --br: 0"></b><i class="s"></i></div>
+            <div class="dark" style="--r: 4px"><b style="--w: 48px; --br: 6px"></b><i></i><i class="s"></i></div>
+            <div style="--r: 10px"><i></i><i class="s"></i><b style="--w: 56px; --br: 16px"></b></div>
+            <div class="dark" style="--r: 4px"><i></i><b style="--w: 64px; --br: 4px; --bg: #6b75ce"></b><i class="s"></i></div>
+          </div>
+        </div>
+        <p class="note">Each app used similar colours, but its own components, hierarchy and UX. That led to inconsistency across products, for users and their workflows.</p>
+        <div class="cs-silos-after">
+          <ul class="cs-silos-issues">
+            <li>No dedicated owners</li>
+            <li>No versioning</li>
+            <li>Dark mode only</li>
+            <li>Unclear token names</li>
+          </ul>
+          <div class="cs-silos-arrows" aria-hidden="true"><span>↓</span><span>↓</span><span>↓</span><span>↓</span></div>
+          <div class="cs-silos-alpha">
+            <h3>Alpha: one system for every app</h3>
+            <p>Tokens, then components, then patterns. Versioned, documented and shared.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE / AFTER SCREENS -->
+  <section class="cs-section cs-compare">
+    <div class="cs-wrap cs-compare-grid">
+      <figure data-reveal style="--i: 0">
+        <figcaption>Vessel Performance: <strong>BEFORE</strong></figcaption>
+        <img src="assets/case-studies/alpha-ds/vessel-before.png" alt="Vessel Performance app before Alpha: hand-picked dark colours and one-off components" width="1440" height="694" loading="lazy">
+      </figure>
+      <figure data-reveal style="--i: 1">
+        <figcaption>Vessel Performance: <strong>AFTER</strong></figcaption>
+        <img src="assets/case-studies/alpha-ds/vessel-after.png" alt="Vessel Performance app rebuilt with Alpha tokens and components" width="1440" height="724" loading="lazy">
+      </figure>
+      <figure data-reveal style="--i: 0">
+        <figcaption>Card layout mockup: <strong>DARK THEME</strong></figcaption>
+        <img src="assets/case-studies/alpha-ds/card-dark.png" alt="Card layout mockup in the dark theme" width="1440" height="724" loading="lazy">
+      </figure>
+      <figure data-reveal style="--i: 1">
+        <figcaption>Card layout mockup: <strong>LIGHT THEME</strong></figcaption>
+        <img class="bordered" src="assets/case-studies/alpha-ds/card-light.png" alt="The same card layout mockup in the light theme" width="1440" height="724" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- THE CHALLENGES -->
+  <section class="cs-band grey cs-section">
+    <div class="cs-wrap cs-stack">
+      <h2 class="cs-title" data-reveal>The Challenges</h2>
+      <div class="cs-split top">
+        <div class="cs-copy" data-reveal>
+          <p>We didn’t start again. With 20+ apps in production, a clean-slate release would have broken them, so we rebuilt Alpha in place and versioned it, from the foundations up: tokens first, then components, then&nbsp;patterns.</p>
+          <p>I started by auditing every component and colour. The old palette had 56 colours, picked by hand and tuned for dark mode. Hover and selected states broke in the light theme, form errors only worked on dark backgrounds, and placeholder text was barely visible. I helped rebuild the palette in the LCH colour space, so colours at the same step look equally light and equally saturated, and contrast is predictable in both&nbsp;themes.</p>
+          <p class="gap">The core decision was tokens. Palettes feed six semantic tones (neutral, primary, positive, negative, warning, info), and every tone has the same set of tokens. Designers apply them in Figma with Tokens Studio, they sync through GitHub, and developers use them in React with code completion and type safety. A change made in design or in code reaches&nbsp;both.</p>
+        </div>
+        <div class="cs-media" data-reveal style="--i: 1">
+          <img src="assets/case-studies/alpha-ds/challenges.png" alt="Token pipeline: palettes feed semantic tones, synced between Figma Tokens Studio, GitHub and React" width="1320" height="885" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PRODUCT -->
+  <section class="cs-section tall">
+    <div class="cs-wrap cs-stack">
+      <h2 class="cs-title" data-reveal>The Product</h2>
+      <div class="cs-features">
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img src="assets/case-studies/alpha-ds/feat-lch.png" alt="LCH colour palettes stepping from 0 to 130" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/alpha-ds/icon-pound.svg" alt="" width="40" height="40"><span>Using the LCH colour model, each core colour steps from 0 (lightest) to 130 (darkest) for consistent gradation.</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img src="assets/case-studies/alpha-ds/feat-tokens.png" alt="Semantic tokens for each tone with contrast checks" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/alpha-ds/icon-eye.svg" alt="" width="40" height="40"><span>The same semantic tokens in every tone, checked for accessible contrast and WCAG standards.</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img src="assets/case-studies/alpha-ds/feat-components.jpg" alt="Components in the shared Figma UI library" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/alpha-ds/icon-component.svg" alt="" width="40" height="40"><span>100’s of Figma components in the shared UI Library, rebuilt with tokens and aligned with React.</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img src="assets/case-studies/alpha-ds/feat-themes.jpg" alt="Components shown in dark and light themes" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/alpha-ds/icon-sun.svg" alt="" width="40" height="40"><span>Every component built for dark and light themes. Controlled and managed by a centralised token system.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAMING AS INFRASTRUCTURE -->
+  <section class="cs-band grey cs-section tall">
+    <div class="cs-wrap cs-split top">
+      <div class="cs-stack" data-reveal>
+        <h2 class="cs-title">Naming as infrastructure</h2>
+        <div class="cs-copy">
+          <p>Token names were part of the original problem. They had no structure behind them, didn’t work with theming, and nobody could tell when or where to use&nbsp;them.</p>
+          <p>I set one naming pattern: tone, then role. primary.border, negative.accent, positive.foreground. Every tone has the same roles, so if you know one, you know them all. Each token points to a different palette step per theme, which is what makes switching between dark and light&nbsp;reliable.</p>
+        </div>
+      </div>
+      <div class="cs-media" data-reveal style="--i: 1">
+        <img src="assets/case-studies/alpha-ds/naming.png" alt="Token naming: tone then role, mapped to palette steps for dark and light themes" width="1320" height="885" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ADOPTION -->
+  <section class="cs-section">
+    <div class="cs-wrap cs-stack">
+      <h2 class="cs-title" data-reveal>Adoption</h2>
+      <div class="cs-adopt">
+        <div class="cs-copy" data-reveal>
+          <p>Then people needed to know how to use it. I designed the documentation portal on ZeroHeight, linked to Figma and Storybook, as the single source of truth for designers and offshore developers&nbsp;alike.</p>
+          <p>App teams could contribute too, through a contribution model, so the system could grow without splitting&nbsp;again.</p>
+        </div>
+        <div class="cs-adopt-zh" data-reveal style="--i: 1">
+          <img src="assets/case-studies/alpha-ds/adopt-zh.jpg" alt="The Alpha documentation portal on ZeroHeight" width="1400" height="665" loading="lazy">
+        </div>
+        <div class="cs-adopt-shot" data-reveal style="--i: 2">
+          <img src="assets/case-studies/alpha-ds/adopt-shot.png" alt="A component page in the Alpha documentation" width="1400" height="781" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE RESULT -->
+  <section class="cs-result is-plain cs-fade">
+    <div class="cs-wrap">
+      <div class="cs-split">
+        <div class="cs-stack" data-reveal>
+          <h2 class="cs-title">The Result</h2>
+          <div class="cs-copy">
+            <p>Alpha became the foundation for every Trading &amp; Analytics app. Design-to-development time and effort dropped by 40%, UI became consistent across global teams, and all 20+ apps adopted it, new and&nbsp;legacy.</p>
+            <p>Design and engineering now work from the same tokens, the same components and the same source of&nbsp;truth.</p>
+          </div>
+        </div>
+        <div class="cs-numbers">
+          <div class="cs-number" data-reveal style="--i: 0"><strong>20+</strong><span>Apps on one system, new and&nbsp;legacy.</span></div>
+          <div class="cs-number" data-reveal style="--i: 1"><strong>40%</strong><span>Less design-to-development time and&nbsp;effort.</span></div>
+          <div class="cs-number" data-reveal style="--i: 2"><strong>100+</strong><span>Figma components, aligned with&nbsp;React.</span></div>
+          <div class="cs-number" data-reveal style="--i: 3"><strong>3,000+</strong><span>Variables, defined as&nbsp;tokens.</span></div>
+        </div>
+      </div>
+      <div class="cs-media cs-result-img" data-reveal>
+        <img class="crop-alpha-cards" src="assets/case-studies/alpha-ds/cardlayout.jpg" alt="Alpha card layouts in dark and light themes side by side" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT -->
+  <nav class="cs-wrap cs-pager" aria-label="Case studies">
+    <a href="refuelr.html" class="prev"><img src="assets/images/lucide/circle-arrow-right-grey.svg" alt="" width="32" height="32"><span><small>Prev:</small><span class="name">Refuelr</span></span></a>
+    <a href="alpha-centauri.html" class="next"><span><small>Next:</small><span class="name">Centauri</span></span><img src="assets/images/lucide/circle-arrow-right-grey.svg" alt="" width="32" height="32"></a>
+  </nav>
+
+  <!-- MENU -->
+  <div class="menu-overlay" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="menu-top">
+      <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="60" height="60">
+      <button class="menu-close" type="button" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="#010101" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <nav class="menu-links" aria-label="Site">
+      <a href="JM-CV.pdf" data-umami-event="Download CV" target="_blank" rel="noopener" style="--i: 0">Download CV</a>
+      <a href="./#about" style="--i: 1">About</a>
+      <a href="./#contact" style="--i: 2">Contact</a>
+    </nav>
+    <div class="menu-social">
+      <a href="https://www.linkedin.com/in/jonmcghee" data-umami-event="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:jonmcghee@gmail.com" data-umami-event="Email">Email</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="assets/js/case-study.js"></script>
+</body>
+</html>
