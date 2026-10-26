@@ -41,6 +41,10 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') setMenu(false);
   });
+  // the desktop panel floats over the page: a click outside it closes it
+  document.addEventListener('click', function(e) {
+    if (menuOverlay.classList.contains('is-open') && !menuOverlay.contains(e.target) && !menuButton.contains(e.target)) setMenu(false);
+  });
 
   // ── Scroll reveals ──
   if (reduceMotion || !('IntersectionObserver' in window)) return;

@@ -409,7 +409,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 40px;
+      gap: 48px;
+      overflow-y: auto;
+    }
+
+    .menu-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
     }
 
     .menu-links a {
@@ -421,16 +429,26 @@
       letter-spacing: -0.9px;
       color: var(--black);
       text-decoration: none;
+    }
+
+    .menu-label {
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--blue);
+    }
+
+    .menu-links a, .menu-label {
       opacity: 0;
       transform: translateY(var(--enter-distance));
       transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
     }
 
-    .menu-overlay.is-open .menu-links a {
+    .menu-overlay.is-open :is(.menu-links a, .menu-label) {
       opacity: 1;
       transform: none;
-      transition: opacity var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger)),
-                  transform var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger));
+      transition: opacity var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger) / 2),
+                  transform var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger) / 2);
     }
 
     .menu-social {
@@ -1716,9 +1734,18 @@
       </button>
     </div>
     <nav class="menu-links" aria-label="Site">
-      <a href="JM-CV.pdf" data-umami-event="Download CV" target="_blank" rel="noopener" style="--i: 0">Download CV</a>
-      <a href="#about" style="--i: 1">About</a>
-      <a href="#contact" style="--i: 2">Contact</a>
+      <div class="menu-group">
+        <a href="#" style="--i: 0">Home</a>
+        <a href="#about" style="--i: 1">About</a>
+        <a href="#contact" style="--i: 2">Contact</a>
+        <a href="JM-CV.pdf" data-umami-event="Download CV" target="_blank" rel="noopener" style="--i: 3">Download CV</a>
+      </div>
+      <div class="menu-group">
+        <p class="menu-label" style="--i: 4">Case Studies</p>
+        <a href="alpha-centauri.html" style="--i: 5">Alpha Centauri</a>
+        <a href="refuelr.html" style="--i: 6">Refuelr</a>
+        <a href="alpha-design-system.html" style="--i: 7">Alpha Design System</a>
+      </div>
     </nav>
     <div class="menu-social">
       <a href="https://www.linkedin.com/in/jonmcghee" data-umami-event="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
