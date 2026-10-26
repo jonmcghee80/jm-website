@@ -231,60 +231,7 @@
       display: flex;
       gap: 40px;
       align-items: center;
-    }
-
-    .header-nav {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-      justify-content: center;
-      padding-top: 8px;
-      list-style: none;
-    }
-
-    .header-nav li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 11px;
-    }
-
-    .header-nav a {
-      text-decoration: none;
-      color: var(--grey-dark);
-      font-family: 'Source Serif 4', serif;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 28px;
-      text-box: trim-both cap alphabetic;
-      white-space: nowrap;
-      transition: color 0.25s ease-out;
-      position: relative;
-    }
-
-    .nav-underline-img {
-      height: 0;
-      overflow: visible;
-      width: 100%;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .nav-underline-img img {
-      position: absolute;
-      top: -4px;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 4px;
-      opacity: 0;
-      transition: opacity 0.25s ease-out;
-      display: block;
-    }
-
-    @media (hover: hover) {
-      .header-nav a:hover { color: var(--black); }
-      .header-nav li:hover .nav-underline-img img { opacity: 1; }
+      margin-right: 16px;
     }
 
     .header-actions {
@@ -334,9 +281,8 @@
       .cv-wrap:hover .cv-btn { background: var(--grey-dark); }
     }
 
-    /* Menu (small screens) */
+    /* Menu button: full-screen menu up to 900px, floating panel above */
     .menu {
-      display: none;
       position: relative;
     }
 
@@ -463,6 +409,48 @@
       line-height: 28px;
       color: var(--grey);
       text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    @media (hover: hover) {
+      .menu-links a:hover, .menu-social a:hover { color: var(--blue); }
+    }
+
+    /* Floating panel (Figma 1146:6658): full height on the right, its close button over the menu button */
+    @media (min-width: 901px) {
+      .menu-overlay {
+        /* --r: distance from the window edge to the menu button's right edge */
+        --r: calc(max(0px, (100vw - var(--max-w) - 2 * var(--pad)) / 2) + var(--pad));
+        inset: 0 0 0 auto;
+        width: calc(254px + var(--r));
+        padding: 58px 40px 40px;
+        overflow-y: auto;
+        box-shadow: -8px 8px 10px rgba(58, 124, 167, 0.1);
+        transform: translateY(-8px);
+        transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), visibility 0s linear 0.3s;
+      }
+
+      .menu-overlay.is-open {
+        transform: none;
+        transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), visibility 0s;
+      }
+
+      html.menu-open, html.menu-open body { overflow: visible; }
+
+      .menu-top { justify-content: flex-end; margin-right: calc(var(--r) - 26px); }
+      .menu-top img { display: none; }
+      .menu-close { width: 24px; height: 24px; }
+      .menu-close svg { width: 16px; height: 16px; }
+
+      .menu-links { flex: none; justify-content: flex-start; gap: 60px; margin-top: 32px; overflow: visible; }
+      .menu-group { gap: 28px; }
+
+      .menu-links a, .menu-label, .menu-social a { text-box: trim-both cap alphabetic; text-align: center; }
+      .menu-links a { font-size: 20px; line-height: 28px; letter-spacing: 0; }
+      .menu-links a, .menu-label { transform: translateY(8px); }
+
+      .menu-social { flex-direction: column; align-items: center; gap: 28px; margin-top: 60px; }
+      .menu-social a { font-size: 20px; color: var(--grey-dark); }
     }
 
     /* ── HERO ── */
@@ -1124,14 +1112,8 @@
       .experience-desc { padding-left: 152px; }   /* 16 + 96 lead + 40 gap */
     }
 
-    @media (min-width: 901px) {
-      .menu-overlay { display: none; }
-    }
-
     @media (max-width: 900px) {
-      .header-nav { display: none; }
       .header-right { display: none; }
-      .menu { display: block; }
       .work-grid { grid-template-columns: 1fr; }
       .about-text { min-width: 0; flex-basis: 100%; }
       /* the portrait has its own glow; the extra circle fights it */
@@ -1187,21 +1169,6 @@
     </div>
 
     <div class="header-right">
-      <ul class="header-nav">
-        <li>
-          <a href="#about">About</a>
-          <div class="nav-underline-img">
-            <img src="assets/images/nav-underline.svg" alt="" aria-hidden="true" width="40" height="8">
-          </div>
-        </li>
-        <li>
-          <a href="#contact">Contact</a>
-          <div class="nav-underline-img">
-            <img src="assets/images/nav-underline.svg" alt="" aria-hidden="true" width="50" height="8">
-          </div>
-        </li>
-      </ul>
-
       <div class="header-actions">
         <div class="cv-wrap">
           <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
@@ -1210,7 +1177,7 @@
       </div>
     </div>
 
-    <!-- Small screens: menu button (Figma 867:6820) -->
+    <!-- Menu button (Figma 867:6820) -->
     <div class="menu">
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
         <img src="assets/images/menu.svg" alt="" width="20" height="20">
@@ -1725,7 +1692,7 @@
 
 </div><!-- /.site-main -->
 
-  <!-- MENU (small screens) -->
+  <!-- MENU -->
   <div class="menu-overlay" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
     <div class="menu-top">
       <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="60" height="60">
@@ -1945,6 +1912,10 @@
     });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') setMenu(false);
+    });
+    // the desktop panel floats over the page: a click outside it closes it
+    document.addEventListener('click', function(e) {
+      if (menuOverlay.classList.contains('is-open') && !menuOverlay.contains(e.target) && !menuButton.contains(e.target)) setMenu(false);
     });
 
     // ── 4. Footer curtain reveal ──
