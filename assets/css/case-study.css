@@ -745,6 +745,97 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .cs-adopt img { width: 100%; height: 100%; object-fit: cover; }
 .cs-adopt-zh img { object-position: 49% 50%; }
 
+/* ── Refinitiv Wealth ── */
+/* Same numbers, different reader (Figma 1151:4566) */
+.cs-reader {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-self: flex-start;
+  padding: 32px;
+  background: var(--white);
+  border-radius: 8px;
+  color: #61666e;
+}
+
+.cs-reader-top { display: flex; flex-direction: column; gap: 20px; }
+.cs-reader-head h3 { font-weight: 500; font-size: 20px; color: var(--black); }
+.cs-reader-head p { margin-top: 4px; font-size: 14px; }
+
+.cs-reader-compare { display: flex; gap: 24px; }
+.cs-reader-compare > div { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.cs-reader .label { font-weight: 600; font-size: 11px; white-space: nowrap; }
+.cs-reader .label strong { font-weight: inherit; color: var(--black); }
+.cs-reader .note { font-size: 12px; }
+
+.cs-reader-dense {
+  height: 176px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #1c2938;
+  font-size: 9px;
+  color: #9ea8b8;
+  overflow: hidden;
+}
+
+.cs-reader-dense .row { display: grid; grid-template-columns: 1fr 34px 28px 34px; gap: 6px; padding: 5px 0; }
+.cs-reader-dense .row + .row { border-top: 1px solid #364050; }
+.cs-reader-dense .row span:not(:first-child) { text-align: right; }
+.cs-reader-dense .head { font-weight: 600; color: #61666e; }
+.cs-reader .up { color: #33b873; }
+.cs-reader .down { color: #db334d; }
+
+.cs-reader-360 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 176px;
+  padding: 20px;
+  border: 1px solid var(--grey-mid);
+  border-radius: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  container-type: inline-size;   /* figures scale with the panel */
+}
+
+.cs-reader-360 b { display: block; font-weight: 500; color: var(--black); }
+.cs-reader-360 small { display: block; margin-top: 2px; font-size: 11px; }
+.cs-reader-360 .total b { font-size: min(36px, 13.5cqi); line-height: 1.2; }
+.cs-reader-360 .total b span { color: #33b873; }
+.cs-reader-360 .stats { display: flex; gap: min(24px, 7cqi); }
+.cs-reader-360 .stats b { font-size: min(18px, 7cqi); }
+.cs-reader-360 .stats b.down { color: #db334d; }
+
+/* Challenges: copy and three images, two by two */
+.cs-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 660px));
+  justify-content: space-between;
+  gap: 40px 60px;
+  align-items: start;
+}
+
+.cs-sketch-wide { aspect-ratio: 660 / 375; }
+.cs-sketch-wide img { object-position: 50% 39%; }
+.cs-sketch { aspect-ratio: 660 / 477; }
+.cs-sketch img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+/* Product screens shown whole, with a thin frame */
+.cs-features.is-framed .cs-feature-img { aspect-ratio: 2880 / 2063; border: 1px solid var(--black); }
+
+/* A lighter UI, then offshore teams */
+.cs-lighter { display: flex; flex-direction: column; gap: 60px; }
+.cs-lighter > .cs-stack:first-child { max-width: 660px; }
+
+.cs-numbers.three { grid-template-columns: repeat(3, 1fr); }
+.cs-numbers.three .cs-number { padding: 32px 24px; }
+
+/* three cards need the full width below the copy until the screen is wide */
+@media (max-width: 1360px) {
+  .cs-split:has(> .cs-numbers.three) { flex-direction: column; gap: 40px; }
+  .cs-split > .cs-numbers.three { max-width: none; }
+}
+
 /* Result image: Figma crop of the card layouts */
 .cs-result-img img.crop-alpha-cards { object-position: 50% 21%; }
 
@@ -814,6 +905,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-chart { align-self: stretch; }
   .cs-silos { align-self: stretch; }
   .cs-compare-grid { gap: 40px; }
+  .cs-grid-2 { grid-template-columns: 1fr; }
+  .cs-reader { align-self: stretch; }
 }
 
 @media (max-width: 1360px) {
@@ -871,4 +964,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-silos-arrows { display: none; }
   .cs-compare-grid { grid-template-columns: 1fr; }
   .cs-adopt-zh, .cs-adopt-shot { flex: 1 1 100%; }
+  .cs-reader { padding: 24px; }
+  .cs-reader-compare { flex-direction: column; }
+  .cs-numbers.three { grid-template-columns: 1fr; }
 }

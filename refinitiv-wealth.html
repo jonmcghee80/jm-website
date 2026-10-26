@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refinitiv Wealth – Case Study · Jonathan McGhee</title>
+  <meta name="description" content="Refinitiv Wealth: moving Thomson Reuters One into Workspace for Wealth Advisors. Case study by Jonathan McGhee.">
+
+  <!-- Behind the same password as the homepage: send visitors there first -->
+  <script>
+    try {
+      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=refinitiv-wealth.html');
+    } catch (e) {}
+  </script>
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/share/icon-512.png">
+  <link rel="apple-touch-icon" href="/assets/share/apple-touch-icon.png">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jonathanmcghee.com/refinitiv-wealth">
+  <meta property="og:title" content="Refinitiv Wealth – Case Study · Jonathan McGhee">
+  <meta property="og:description" content="A lighter, client-facing UI for Wealth Advisors in Refinitiv Workspace.">
+  <meta property="og:image" content="https://jonathanmcghee.com/assets/share/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="16caee6c-640b-4775-ad27-8b3b3f5e730b"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/case-study.css">
+</head>
+<body>
+
+  <div class="cs-wrap">
+    <!-- HEADER -->
+    <header class="cs-header">
+      <a href="./" class="logo"><img src="assets/logo/jm-logo.png" alt="Jonathan McGhee – home" width="60" height="60"></a>
+      <div class="cs-header-right">
+        <div class="cv-wrap">
+          <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
+          <a href="JM-CV.pdf" data-umami-event="Download CV" class="cv-btn" target="_blank" rel="noopener">Download CV</a>
+        </div>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+          <img src="assets/images/menu.svg" alt="" width="20" height="20">
+        </button>
+      </div>
+    </header>
+
+    <!-- INTRO -->
+    <section class="cs-intro">
+      <dl class="cs-meta" data-reveal>
+        <div><dt>Industry</dt><dd>Wealth Management</dd></div>
+        <div><dt>Client</dt><dd>Refinitiv (LSEG)</dd></div>
+        <div><dt>Role</dt><dd>Senior Product Designer</dd></div>
+      </dl>
+
+      <div class="cs-heading">
+        <div class="cs-title-group">
+          <h1 class="cs-h1" data-reveal style="--i: 1"><span>Refinitiv – Wealth</span></h1>
+          <ul class="cs-badges" data-reveal style="--i: 2">
+            <li>UI Design</li>
+            <li>Dashboards</li>
+            <li>Prototyping</li>
+            <li>Responsive</li>
+          </ul>
+        </div>
+        <div class="cs-hero is-image" data-reveal style="--i: 3">
+          <img src="assets/case-studies/wealth/hero.jpg" alt="The Wealth Client 360 dashboard on a tablet" width="2880" height="1920">
+        </div>
+      </div>
+    </section>
+
+    <!-- MY CONTRIBUTION -->
+    <section class="cs-tldr">
+      <h2 class="cs-title" data-reveal>My Contribution</h2>
+      <div class="cs-tldr-grid">
+        <div class="cs-tldr-card" data-reveal style="--i: 0">
+          <h3>Owned</h3>
+          <ul class="cs-bullets">
+            <li>UI design, wireframes to hand-off</li>
+            <li>New expanded view and patterns</li>
+            <li>Prototypes for stakeholder review</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 1">
+          <h3>Led</h3>
+          <ul class="cs-bullets">
+            <li>UI for moving TR1 into Workspace</li>
+            <li>Reviews with offshore developers</li>
+            <li>Feedback rounds with PMs and POs</li>
+          </ul>
+        </div>
+        <div class="cs-tldr-card" data-reveal style="--i: 2">
+          <h3>Impact</h3>
+          <ul class="cs-bullets">
+            <li>First Halo Light UI implementation</li>
+            <li>TR1 integrated with Workspace</li>
+            <li>Responsive across touchpoints</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <section class="cs-section cs-fade">
+    <div class="cs-wrap cs-split">
+      <div class="cs-stack" data-reveal>
+        <h2 class="cs-title">The Problem</h2>
+        <div class="cs-copy">
+          <p>Thomson Reuters One (TR1) was the desktop tool Wealth Advisors used to manage clients, households and portfolios. It needed a technology and usability refresh, and a move into Refinitiv&nbsp;Workspace.</p>
+          <p>In practice, that meant:</p>
+          <ul class="cs-bullets">
+            <li>A desktop-only product, with no support for other screens</li>
+            <li>Client-facing users, not traders at a terminal</li>
+            <li>A design system built for dense, dark trading screens</li>
+            <li>Existing users and new customers to migrate</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Same numbers, different reader (Figma 1151:4566) -->
+      <div class="cs-reader" data-reveal style="--i: 1">
+        <div class="cs-reader-top">
+          <div class="cs-reader-head">
+            <h3>Same numbers, different reader</h3>
+            <p>A trader scans alone. An advisor shares the screen with a client.</p>
+          </div>
+          <ul class="cs-silos-issues">
+            <li>Desktop only</li>
+            <li>Outside Workspace</li>
+            <li>No light theme</li>
+            <li>Users to migrate</li>
+          </ul>
+        </div>
+        <div class="cs-reader-compare">
+          <div>
+            <p class="label">BUILT FOR: <strong>TRADING SCREENS</strong></p>
+            <div class="cs-reader-dense" aria-hidden="true">
+              <div class="row head"><span>AUM USD</span><span>CHG %</span><span>HH</span><span>ACCTS</span></div>
+              <div class="row"><span>188,234,567.89</span><span class="down">-0.89</span><span>200</span><span>9999</span></div>
+              <div class="row"><span>8,136,447.89</span><span class="up">1.77</span><span>5</span><span>87</span></div>
+              <div class="row"><span>1,234,567.89</span><span class="up">0.12</span><span>3</span><span>14</span></div>
+              <div class="row"><span>654,321.00</span><span class="down">-0.31</span><span>2</span><span>9</span></div>
+              <div class="row"><span>92,118,004.50</span><span class="up">0.44</span><span>41</span><span>312</span></div>
+              <div class="row"><span>3,450,909.12</span><span class="down">-1.02</span><span>4</span><span>22</span></div>
+            </div>
+          </div>
+          <div>
+            <p class="label">NEEDED: <strong>CLIENT 360</strong></p>
+            <div class="cs-reader-360" aria-hidden="true">
+              <div class="total"><b>188,234,567<span>.89</span></b><small>Total AUM (USD$)</small></div>
+              <div class="stats">
+                <div><b class="down">-0.89</b><small>Daily change %</small></div>
+                <div><b>200</b><small>Households</small></div>
+                <div><b>9999</b><small>Accounts</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="note">Workspace’s design system was built for the left: dense, dark and read by specialists. Advisors needed the right: fewer figures, more space, and a light theme that didn’t exist yet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE CHALLENGES -->
+  <section class="cs-band grey cs-section">
+    <div class="cs-wrap cs-stack">
+      <h2 class="cs-title" data-reveal>The Challenges</h2>
+      <div class="cs-grid-2">
+        <div class="cs-copy" data-reveal>
+          <p>We didn’t start from scratch. The brief was an MVP built from existing research, so I started there, then ran workshops with stakeholders and users to agree what had to&nbsp;improve.</p>
+          <p>Whiteboard sketches were matched against user flows, and shared decisions were recorded as&nbsp;actions.</p>
+          <p class="gap">From there I planned the application at a high level: one screen or two, a single layout or several windows, and how advisors would build, save and switch between&nbsp;layouts.</p>
+          <p>Wireframes added detail at each level, refined with the PMs and POs, and a high-level prototype showed how navigation and interaction would&nbsp;work.</p>
+        </div>
+        <div class="cs-media cs-sketch-wide" data-reveal style="--i: 1">
+          <img src="assets/case-studies/wealth/sketch-workshop.jpg" alt="Workshop whiteboard: sticky notes mapping activities and insights across the generic layout" loading="lazy">
+        </div>
+        <div class="cs-media cs-sketch" data-reveal>
+          <img src="assets/case-studies/wealth/sketch-client-360.jpg" alt="Hand-drawn Client 360 sketch: total funds, money in and out, a value chart and investments" loading="lazy">
+        </div>
+        <div class="cs-sketch" data-reveal style="--i: 1">
+          <img src="assets/case-studies/wealth/framework.png" alt="Application framework: user set-up on one or two screens, browser-style windows, layouts and ad-hoc content" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PRODUCT -->
+  <section class="cs-section tall">
+    <div class="cs-wrap cs-stack">
+      <h2 class="cs-title" data-reveal>The Product</h2>
+      <div class="cs-features is-framed">
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img src="assets/case-studies/wealth/feat-practice.png" alt="Practice Management overview with AUM, house views and activities" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/wealth/icon-layout-dashboard.svg" alt="" width="40" height="40"><span>Practice Management brings AUM, house views and activities together at practice level.</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img src="assets/case-studies/wealth/feat-client-360.png" alt="Client 360 view of a single household" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/wealth/icon-house.svg" alt="" width="40" height="40"><span>Client 360 for a single household, with contact details next to the numbers.</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 0">
+          <div class="cs-feature-img"><img src="assets/case-studies/wealth/feat-account.png" alt="Account view in the same card layout" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/wealth/icon-folder-user.svg" alt="" width="40" height="40"><span>Down to a single account, in the same card layout.</span></p>
+        </div>
+        <div class="cs-feature" data-reveal style="--i: 1">
+          <div class="cs-feature-img"><img src="assets/case-studies/wealth/feat-orders.png" alt="Order inquiries table with a row expanded in place" loading="lazy"></div>
+          <p class="cs-feature-text"><img src="assets/case-studies/wealth/icon-grid-3x3.svg" alt="" width="40" height="40"><span>Order inquiries expand in place, so the detail stays in context.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A LIGHTER UI / OFFSHORE TEAMS -->
+  <section class="cs-band grey cs-section tall">
+    <div class="cs-wrap cs-lighter">
+      <div class="cs-stack" data-reveal>
+        <h2 class="cs-title">A lighter UI for client-facing work</h2>
+        <div class="cs-copy">
+          <p>Workspace’s design system was built for dense, dark trading screens. Wealth Advisors use the tool with clients, so they needed something cleaner and more&nbsp;open.</p>
+          <p>We had room to explore what that looked like, and it became the first implementation of Halo Light UI. I shaped the light theme, which Workspace didn’t have yet: bigger headline figures, more space, and charts that read at a glance, built on existing components wherever&nbsp;possible.</p>
+        </div>
+      </div>
+      <div class="cs-stack">
+        <h2 class="cs-title" data-reveal>Building with offshore teams</h2>
+        <div class="cs-copy-media">
+          <div class="cs-copy" data-reveal>
+            <p>I worked directly with the development leads in India, sharing designs against the release roadmap and holding regular reviews. Designs arrived in the order the team would build them, so hand-off kept pace with each&nbsp;release.</p>
+          </div>
+          <figure class="cs-media" data-reveal style="--i: 1">
+            <img src="assets/case-studies/wealth/positions.png" alt="Positions table with daily change, unrealised gain or loss and account type" width="1320" height="917" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE RESULT -->
+  <section class="cs-result is-plain">
+    <div class="cs-wrap">
+      <div class="cs-split">
+        <div class="cs-stack" data-reveal>
+          <h2 class="cs-title">The Result</h2>
+          <div class="cs-copy">
+            <p>TR1 was reworked and integrated into Workspace, giving Wealth Advisors a tool they could use in front of clients. It was also where Halo Light UI started: a light theme I shaped, which Workspace hadn’t had&nbsp;before.</p>
+            <p>The product has been refined further since my&nbsp;involvement.</p>
+          </div>
+        </div>
+        <div class="cs-numbers three">
+          <div class="cs-number" data-reveal style="--i: 0"><strong>New Light UI</strong><span>The 1st use-case for the Halo Light&nbsp;UI.</span></div>
+          <div class="cs-number" data-reveal style="--i: 1"><strong>360 views</strong><span>Overviews, to Activities &amp;&nbsp;Insights.</span></div>
+          <div class="cs-number" data-reveal style="--i: 2"><strong>MVP Launched</strong><span>From existing research to devFrom existing research to dev&nbsp;hand-off.nbsp;hand&#8209;off.</span></div>
+        </div>
+      </div>
+      <div class="cs-media cs-result-img" data-reveal>
+        <img src="assets/case-studies/wealth/result.jpg" alt="Practice Management dashboard on a laptop" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- PREV / NEXT -->
+  <nav class="cs-wrap cs-pager" aria-label="Case studies">
+    <a href="alpha-design-system.html" class="prev"><img src="assets/images/lucide/circle-arrow-right-grey.svg" alt="" width="32" height="32"><span><small>Prev:</small><span class="name">Alpha Design System</span></span></a>
+    <a href="alpha-centauri.html" class="next"><span><small>Next:</small><span class="name">Alpha Centauri</span></span><img src="assets/images/lucide/circle-arrow-right-grey.svg" alt="" width="32" height="32"></a>
+  </nav>
+
+  <!-- MENU -->
+  <div class="menu-overlay" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="menu-top">
+      <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="60" height="60">
+      <button class="menu-close" type="button" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="#010101" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <nav class="menu-links" aria-label="Site">
+      <div class="menu-group">
+        <a href="./" style="--i: 0">Home</a>
+        <a href="./#about" style="--i: 1">About</a>
+        <a href="./#contact" style="--i: 2">Contact</a>
+        <a href="JM-CV.pdf" data-umami-event="Download CV" target="_blank" rel="noopener" style="--i: 3">Download CV</a>
+      </div>
+      <div class="menu-group">
+        <p class="menu-label" style="--i: 4">Case Studies</p>
+        <a href="alpha-centauri.html" style="--i: 5">Alpha Centauri</a>
+        <a href="refuelr.html" style="--i: 6">Refuelr</a>
+        <a href="alpha-design-system.html" style="--i: 7">Alpha Design System</a>
+        <a href="refinitiv-wealth.html" aria-current="page" style="--i: 8">Refinitiv Wealth</a>
+      </div>
+    </nav>
+    <div class="menu-social">
+      <a href="https://www.linkedin.com/in/jonmcghee" data-umami-event="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:jonmcghee@gmail.com" data-umami-event="Email">Email</a>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="assets/js/case-study.js"></script>
+</body>
+</html>
