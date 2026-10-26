@@ -354,7 +354,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 64px;
       gap: 48px;
       overflow-y: auto;
     }
@@ -440,7 +441,7 @@
       .menu-close { width: 24px; height: 24px; }
       .menu-close svg { width: 16px; height: 16px; }
 
-      .menu-links { flex: none; justify-content: flex-start; gap: 60px; margin-top: 32px; overflow: visible; }
+      .menu-links { flex: none; gap: 60px; margin-top: 32px; padding-top: 0; overflow: visible; }
       .menu-group { gap: 28px; }
 
       .menu-links a, .menu-label, .menu-social a { text-box: trim-both cap alphabetic; text-align: center; }
