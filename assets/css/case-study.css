@@ -829,9 +829,11 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-header { padding-top: var(--pad); }
   .menu-overlay { padding-top: var(--pad); }
   /* Intro (Figma 944:5000): label beside value, small tags, square still */
-  .cs-meta { flex-direction: column; gap: 16px; }
+  .cs-meta { flex-direction: column; gap: 12px; }
   .cs-meta div { flex-direction: row; align-items: center; gap: 16px; }
-  .cs-meta dt { min-width: 80px; }
+  /* same sizes as the pager: 13px label, 16px value */
+  .cs-meta dt { min-width: 64px; font-size: 13px; line-height: 20px; }
+  .cs-meta dd { font-size: 16px; line-height: 20px; }
   .cs-heading { gap: 24px; }
   .cs-h1 { font-size: 32px; line-height: 36px; letter-spacing: -0.64px; }
   .cs-badges li { height: 24px; padding: 0 8px; font-size: 14px; }
