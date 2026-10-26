@@ -850,6 +850,13 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .cs-result-img { aspect-ratio: 4 / 3; }
   .cs-feature-text { gap: 16px; }
   .cs-feature-text img { width: 32px; height: 32px; }
+  /* Pager: smaller type, tight wrapped lines, Next text hugs its arrow */
+  .cs-pager { gap: 16px; }
+  .cs-pager a { gap: 8px; font-size: 16px; line-height: 20px; }
+  .cs-pager a > span { gap: 6px; }
+  .cs-pager small { font-size: 13px; }
+  .cs-pager .next > span { align-items: flex-end; text-align: right; }
+  .cs-pager img { width: 28px; height: 28px; flex-shrink: 0; }
   .cs-silos { padding: 24px; }
   .cs-silos-apps { gap: 6px; }
   .cs-silos-issues { flex-wrap: wrap; }
