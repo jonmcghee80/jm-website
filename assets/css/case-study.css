@@ -528,6 +528,8 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .cs-feature-text img { width: 40px; height: 40px; flex-shrink: 0; }
 /* trim the text to cap height so the 40px icon spans the first two lines (as in Figma) */
 .cs-feature-text span { text-box: trim-both cap alphabetic; }
+/* one line is shorter than the icon, so centre it; longer text still starts at the top */
+.cs-feature-text span { align-self: center; }
 
 /* Centauri logo: sits close under The Product */
 .cs-section.cs-logo { padding: 20px 0 60px; }
