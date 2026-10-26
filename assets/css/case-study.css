@@ -828,6 +828,10 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   :root { --pad: 24px; }
   .cs-header { padding-top: var(--pad); }
   .cs-header .logo img, .menu-top img { width: 48px; height: 48px; }
+  /* Full-screen menu: smaller links so it fits short phone screens */
+  .menu-links { gap: 40px; padding-top: 48px; }
+  .menu-group { gap: 20px; }
+  .menu-links a { font-size: 24px; line-height: 30px; letter-spacing: -0.48px; }
   .menu-overlay { padding-top: var(--pad); }
   /* Intro (Figma 944:5000): label beside value, small tags, square still */
   .cs-meta { flex-direction: column; gap: 12px; }
