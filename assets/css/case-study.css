@@ -821,11 +821,11 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .cs-sketch img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
 /* Product screens shown whole, with a thin frame */
-.cs-features.is-framed .cs-feature-img { aspect-ratio: 2880 / 2063; border: 1px solid var(--black); }
+.cs-features.is-framed .cs-feature-img { aspect-ratio: auto; border: 1px solid var(--black); }
+.cs-features.is-framed .cs-feature-img img { position: static; height: auto; }
 
 /* A lighter UI, then offshore teams */
 .cs-lighter { display: flex; flex-direction: column; gap: 60px; }
-.cs-lighter > .cs-stack:first-child { max-width: 660px; }
 
 .cs-numbers.three { grid-template-columns: repeat(3, 1fr); }
 .cs-numbers.three .cs-number { padding: 32px 24px; }
