@@ -189,15 +189,14 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .menu-links a:hover, .menu-social a:hover { color: var(--blue); }
 }
 
-/* Floating panel (Figma 1146:6658): its close button sits over the menu button */
+/* Floating panel (Figma 1146:6658): full height on the right, its close button over the menu button */
 @media (min-width: 901px) {
   .menu-overlay {
-    inset: auto;
-    top: 18px;
-    right: calc(max(0px, (100% - var(--max-w) - 2 * var(--pad)) / 2) + var(--pad) - 26px);
-    width: 280px;
-    max-height: calc(100vh - 36px);
-    padding: 40px;
+    /* --r: distance from the window edge to the menu button's right edge */
+    --r: calc(max(0px, (100vw - var(--max-w) - 2 * var(--pad)) / 2) + var(--pad));
+    inset: 0 0 0 auto;
+    width: calc(254px + var(--r));
+    padding: 58px 40px 40px;
     overflow-y: auto;
     box-shadow: -8px 8px 10px rgba(58, 124, 167, 0.1);
     transform: translateY(-8px);
@@ -211,7 +210,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
   html.menu-open, html.menu-open body { overflow: visible; }
 
-  .menu-top { justify-content: flex-end; }
+  .menu-top { justify-content: flex-end; margin-right: calc(var(--r) - 26px); }
   .menu-top img { display: none; }
   .menu-close { width: 24px; height: 24px; }
   .menu-close svg { width: 16px; height: 16px; }
