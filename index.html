@@ -322,14 +322,14 @@
     /* the menu icon file as a mask, so it takes the button's colour */
     .menu-icon { display: block; width: 20px; height: 20px; background: currentColor; -webkit-mask: url("assets/images/lucide/menu.svg") center / contain no-repeat; mask: url("assets/images/lucide/menu.svg") center / contain no-repeat; }
 
-    /* Hover: a 2px cyan ring draws itself round the button, clockwise from the top */
+    /* Hover: a 3px cyan ring draws itself round the button, clockwise from the top */
     @property --ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
     .menu-button, .menu-close { position: relative; }
     .menu-button::after, .menu-close::after {
       content: "";
       position: absolute;
       inset: 0;
-      border: 2px solid #01fffe;
+      border: 3px solid #01fffe;
       border-radius: 50%;
       pointer-events: none;
       -webkit-mask: conic-gradient(#000 var(--ring), transparent 0);
