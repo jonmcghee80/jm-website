@@ -9,7 +9,7 @@
   <!-- Behind the same password as the homepage: send visitors there first -->
   <script>
     try {
-      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=refinitiv-wealth.html');
+      if (localStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=refinitiv-wealth.html');
     } catch (e) {}
   </script>
 
@@ -249,10 +249,9 @@
             <p>The product has been refined further since my&nbsp;involvement.</p>
           </div>
         </div>
-        <div class="cs-numbers three">
-          <div class="cs-number" data-reveal style="--i: 0"><strong>New Light UI</strong><span>The 1st use-case for the Halo Light&nbsp;UI.</span></div>
-          <div class="cs-number" data-reveal style="--i: 1"><strong>360 views</strong><span>Overviews, to Activities &amp;&nbsp;Insights.</span></div>
-          <div class="cs-number" data-reveal style="--i: 2"><strong>MVP Launched</strong><span>From existing research to dev&nbsp;hand&#8209;off.</span></div>
+        <div class="cs-numbers">
+          <div class="cs-number" data-reveal style="--i: 0"><strong>Light UI Launched in MVP</strong><span>1st use case for the Halo Light UI from research to&nbsp;dev.</span></div>
+          <div class="cs-number" data-reveal style="--i: 1"><strong>360 views</strong><span>Overviews, to Activities &amp; Insights, for both the practice and each client&nbsp;household.</span></div>
         </div>
       </div>
       <div class="cs-media cs-result-img" data-reveal>

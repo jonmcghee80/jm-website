@@ -44,6 +44,20 @@
       --cyan:      #01fffe;
       --max-w:     1440px;
       --pad:       80px;
+
+      /* Type scale (same values as assets/css/case-study.css) */
+      --font-display:    "Bricolage Grotesque", system-ui, sans-serif;
+      --font-body:       "Source Serif 4", Georgia, serif;
+      --text-hero:       clamp(20px, 1.143vw + 15.54px, 32px);   /* 32px on desktop, 20px on phones */
+      --text-page-title: clamp(32px, 2vw + 20px, 52px);
+      --text-h2:         clamp(24px, 1vw + 20px, 28px);
+      --text-quote:      clamp(22px, 0.6vw + 19.5px, 28px);
+      --text-body:       17px;
+      --text-body-lg:    clamp(18px, 0.5vw + 16px, 20px);
+      --text-small:      14px;
+      --text-min:        13px;
+      --leading-body:    1.6;
+      --leading-heading: 1.2;
     }
 
     /* ── PASSWORD GATE ── */
@@ -69,7 +83,7 @@
       display: flex; flex-direction: column; gap: 24px; width: 100%;
     }
     .pg-subtitle {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-weight: 500; font-size: 16px; line-height: 32px;
       letter-spacing: -0.48px; color: #b2b2b2; text-align: center;
@@ -78,7 +92,7 @@
       height: 48px; width: 100%; box-sizing: border-box;
       border: 2px solid #010101; border-radius: 8px;
       padding: 0 16px; outline: none;
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-weight: 500; font-size: 16px; letter-spacing: -0.48px;
       color: #010101; background: transparent;
@@ -92,7 +106,7 @@
     #pw-input.pg-state-error { border-color: #d30000; }
     #pw-input.pg-state-success { border-color: #01fffe; }
     .pg-error-text {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-weight: 500; font-size: 16px; line-height: 18px;
       letter-spacing: -0.48px; color: #d30000; text-align: center;
@@ -116,7 +130,7 @@
     #pw-button {
       height: 48px; width: 100%; border: none;
       border-radius: 40px; background: #b2b2b2; color: #fff;
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px; font-weight: 400; line-height: 28px;
       cursor: default; transition: background 0.2s;
     }
@@ -162,11 +176,13 @@
     .lenis.lenis-smooth iframe { pointer-events: none; }
 
     body {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       color: var(--black);
       background: var(--white);
       overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Avoid orphaned last words */
@@ -259,7 +275,7 @@
     }
 
     .cv-btn {
-      background: var(--black);
+      background: #4d4d4d;
       color: var(--white);
       text-decoration: none;
       padding: 0 16px;
@@ -267,7 +283,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px;
       font-weight: 400;
       line-height: 28px;
@@ -278,8 +294,11 @@
 
     @media (hover: hover) and (min-width: 641px) {
       .cv-wrap:hover .cv-spark { opacity: 1; }
-      .cv-wrap:hover .cv-btn { background: var(--grey-dark); }
+      .cv-wrap:hover .cv-btn { background: var(--black); }
     }
+
+    /* Button states (Figma 417:3111): grey, black with the spark on hover, black while pressed */
+    .cv-btn:active { background: var(--black); }
 
     /* Menu button: full-screen menu up to 900px, floating panel above */
     .menu {
@@ -300,6 +319,10 @@
     }
 
     .menu-button img { display: block; width: 20px; height: 20px; }
+
+    @media (hover: hover) {
+      .menu-button:hover, .menu-close:hover { background: #f0f0f0; }
+    }
 
     /* Full-screen menu overlay */
     .menu-overlay {
@@ -368,7 +391,7 @@
     }
 
     .menu-links a {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-size: 30px;
       font-weight: 400;
@@ -379,7 +402,7 @@
     }
 
     .menu-label {
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px;
       line-height: 24px;
       color: var(--blue);
@@ -404,7 +427,7 @@
     }
 
     .menu-social a {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-size: 18px;
       line-height: 28px;
@@ -467,12 +490,12 @@
 
     .hero-intro {
       max-width: 620px;
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-size: 30px;
+      font-size: var(--text-hero);
       font-weight: 300;
-      line-height: 37px;
-      letter-spacing: -0.9px;
+      line-height: 1.24;
+      letter-spacing: -0.03em;
       text-box: trim-both cap alphabetic;
       color: var(--grey);
     }
@@ -573,7 +596,7 @@
     }
 
     .work-card-cta-label {
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px;
       line-height: 28px;
       white-space: nowrap;
@@ -645,8 +668,8 @@
       align-items: center;
       border: 0.75px solid var(--grey-dark);
       border-radius: 40px;
-      font-family: 'Source Serif 4', serif;
-      font-size: 11.3px;
+      font-family: var(--font-body);
+      font-size: var(--text-min);
       line-height: 20px;
       color: var(--grey-dark);
       white-space: nowrap;
@@ -666,7 +689,7 @@
     }
 
     .work-card-client {
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px;
       font-weight: 400;
       line-height: 28px;
@@ -676,7 +699,7 @@
     }
 
     .work-card-title {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-size: 24px;
       font-weight: 400;
@@ -687,13 +710,13 @@
 
     /* ── SHARED ── */
     .section-label {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-size: 32px;
+      font-size: var(--text-h2);
       font-weight: 400;
       color: var(--blue);
-      letter-spacing: -0.64px;
-      line-height: 60px;
+      letter-spacing: -0.02em;
+      line-height: var(--leading-heading);
       text-box: trim-both cap alphabetic;
     }
 
@@ -825,11 +848,11 @@
     .experience-skills {
       flex: 1 0 0;
       min-width: 0;
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 400;
-      line-height: 26px;
+      line-height: 24px;
       color: var(--blue);
       white-space: nowrap;
       overflow: hidden;
@@ -840,7 +863,7 @@
     .experience-toggle[aria-expanded="true"] .experience-skills { white-space: normal; }
 
     .experience-years {
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px;
       font-weight: 400;
       line-height: 32px;
@@ -866,10 +889,10 @@
       max-width: calc(543px + 280px);
       padding: 0 16px 16px 280px;   /* 16 card padding + 184 lead + 80 gap */
       margin-top: -4px;              /* 12px gap below the row, as in Figma */
-      font-family: 'Source Serif 4', serif;
-      font-size: 16px;
+      font-family: var(--font-body);
+      font-size: var(--text-body);
       font-weight: 400;
-      line-height: 24px;
+      line-height: var(--leading-body);
       color: var(--grey);
     }
 
@@ -935,35 +958,62 @@
     }
 
     .about-lead {
-      font-family: 'Source Serif 4', serif;
-      font-size: 20px;
+      font-family: var(--font-body);
+      font-size: var(--text-body-lg);
       font-weight: 400;
-      line-height: 28px;
+      line-height: 1.4;
       text-box: trim-both cap alphabetic;
       color: var(--black);
     }
 
     .about-body {
-      font-family: 'Source Serif 4', serif;
-      font-size: 16px;
+      font-family: var(--font-body);
+      font-size: var(--text-body);
       font-weight: 400;
-      line-height: 25px;
+      line-height: var(--leading-body);
       text-box: trim-both cap alphabetic;
       color: var(--grey-dark);
     }
 
-    .about-body p + p { margin-top: 25px; }
+    .about-body p + p { margin-top: calc(var(--leading-body) * 1em); }
 
     .about-visual {
       width: 480px;
       flex-shrink: 0;
     }
 
-    .about-visual img {
-      display: block;
+    .about-photo {
+      position: relative;
       width: 410.105px;
-      height: 410.105px;
+    }
+
+    .about-photo > img:first-child {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
       object-fit: cover;
+    }
+
+    /* Face doodle (glasses, moustache, beard): upright, lenses centred on the eyes.
+       Shows on hover, and always on touch screens where there's no hover. */
+    .about-doodle {
+      position: absolute;
+      left: -8.9%;
+      top: 12.1%;
+      width: 94.9%;            /* 389 of 410: the SVG at its own size */
+      height: auto;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
+    }
+
+    @media (hover: hover) {
+      .about-photo:hover .about-doodle { opacity: 1; }
+    }
+
+    @media (hover: none) {
+      .about-doodle { opacity: 1; }
     }
 
     .about-blob {
@@ -1016,7 +1066,7 @@
     }
 
     .contact-tagline {
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px;
       font-weight: 400;
       line-height: 32px;
@@ -1035,7 +1085,7 @@
       display: flex;
       gap: 8px;
       align-items: center;
-      font-family: 'Source Serif 4', serif;
+      font-family: var(--font-body);
       font-size: 16px;
       font-weight: 400;
       line-height: 1.731;
@@ -1123,6 +1173,10 @@
       .about-blob { display: none; }
     }
 
+    @media (max-width: 599px) {
+      .experience-skills { font-size: 16px; line-height: 22px; }
+    }
+
     @media (max-width: 640px) {
       :root { --pad: 24px; }
       /* Header: logo only, equal top and side spacing */
@@ -1134,15 +1188,12 @@
       .menu-links a { font-size: 24px; line-height: 30px; letter-spacing: -0.48px; }
       .menu-overlay { padding-top: var(--pad); }
       .hero-section { padding-top: 80px; padding-bottom: 48px; }
-      .hero-intro { font-size: 24px; line-height: 30px; letter-spacing: -0.72px; }
       .work-blob.one { left: -300px; top: 200px; width: 600px; height: 600px; }
       .work-blob.two { left: 20%; width: 1200px; height: 1200px; }
       /* Smaller type on phones (matches the case-study scale) */
-      .work-card-client { font-size: 13px; }
+      .work-card-client { font-size: var(--text-small); }
       .work-card-title { white-space: normal; font-size: 20px; line-height: 26px; }
-      .experience-skills { font-size: 16px; line-height: 22px; }
-      .experience-years { font-size: 13px; }
-      .about-lead { font-size: 18px; line-height: 26px; }
+      .experience-years { font-size: var(--text-small); }
       .work-grid { row-gap: 48px; }
       /* Experience: logo + years on one line, skills wrap underneath */
       .experience-toggle { flex-wrap: wrap; gap: 12px 16px; }
@@ -1156,7 +1207,7 @@
       .experience-cv-block { display: flex; width: 100%; height: 40px; }
       .experience-desc { padding-left: 16px; }
       .about-visual { width: 100%; }
-      .about-visual img { width: 100%; max-width: 410px; height: auto; aspect-ratio: 1; }
+      .about-photo { width: 100%; max-width: 410px; }
       /* Footer: tighter, logo on the right */
       .contact-section { padding-top: 32px; }
       .contact-inner { padding-bottom: 40px; row-gap: 24px; }
@@ -1217,7 +1268,7 @@
       <!-- Alpha Centauri -->
       <a class="work-card" href="alpha-centauri.html" data-umami-event="Case study: Alpha Centauri">
         <div class="work-card-media">
-          <img src="assets/images/cargill-reporting.jpg" alt="Alpha Centauri – Reporting &amp; Analytics App" loading="lazy">
+          <img src="assets/images/cargill-reporting.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
             <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
@@ -1228,14 +1279,13 @@
             <p class="work-card-client">Cargill</p>
             <h2 class="work-card-title">Alpha Centauri – Reporting &amp; Analytics App</h2>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </a>
 
       <!-- Refuelr -->
       <a class="work-card" href="refuelr.html" data-umami-event="Case study: Refuelr">
         <div class="work-card-media">
-          <img src="assets/images/refuelr.jpg" alt="Refuelr – Fuel Finder App" loading="lazy">
+          <img src="assets/images/refuelr.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
             <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
@@ -1246,14 +1296,13 @@
             <p class="work-card-client">SquaredMc</p>
             <h2 class="work-card-title">Refuelr – Fuel Finder App</h2>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </a>
 
       <!-- Alpha Design System -->
       <a class="work-card" href="alpha-design-system.html" data-umami-event="Case study: Alpha Design System">
         <div class="work-card-media">
-          <video autoplay muted loop playsinline>
+          <video autoplay muted loop playsinline aria-hidden="true">
             <source src="assets/images/cargill-design-system.mov" type="video/mp4">
           </video>
           <span class="work-card-cta" aria-hidden="true">
@@ -1266,14 +1315,13 @@
             <p class="work-card-client">Cargill</p>
             <h2 class="work-card-title">Alpha Design System</h2>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </a>
 
       <!-- Wealth Advisor -->
       <a class="work-card" href="refinitiv-wealth.html" data-umami-event="Case study: Refinitiv Wealth">
         <div class="work-card-media">
-          <img src="assets/images/wealth-advisor.jpg" alt="Wealth Advisor Dashboard App" loading="lazy">
+          <img src="assets/images/wealth-advisor.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
             <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
@@ -1284,14 +1332,13 @@
             <p class="work-card-client">Refinitiv / LSEG</p>
             <h2 class="work-card-title">Wealth Advisor Dashboard App</h2>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
         </div>
       </a>
 
       <!-- Cashflow -->
       <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/cashflow.jpg" alt="Cashflow – App for Payments on the Go" loading="lazy">
+          <img src="assets/images/cashflow.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
             <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
@@ -1309,7 +1356,7 @@
       <!-- Fintech Lab -->
       <div class="work-card is-coming-soon">
         <div class="work-card-media dark">
-          <video autoplay muted loop playsinline>
+          <video autoplay muted loop playsinline aria-hidden="true">
             <source src="assets/images/fintech-lab.mov" type="video/mp4">
           </video>
           <span class="work-card-cta" aria-hidden="true">
@@ -1329,7 +1376,7 @@
       <!-- Halo -->
       <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/halo.jpg" alt="Halo Design System Portal – Guidelines" loading="lazy">
+          <img src="assets/images/halo.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
             <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
@@ -1347,7 +1394,7 @@
       <!-- KogoPay -->
       <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/kogopay.jpg" alt="KogoPay Website &amp; App – Customer/Business" loading="lazy">
+          <img src="assets/images/kogopay.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
             <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
@@ -1365,7 +1412,7 @@
       <!-- Prince's Trust -->
       <div class="work-card is-coming-soon">
         <div class="work-card-media black fit">
-          <video autoplay muted loop playsinline aria-label="Prince’s Trust 40 year anniversary logo animation">
+          <video autoplay muted loop playsinline aria-hidden="true">
             <source src="assets/images/40yrs.mp4?v=2" type="video/mp4">
           </video>
           <span class="work-card-cta" aria-hidden="true">
@@ -1385,7 +1432,7 @@
       <!-- Turner & Townsend -->
       <div class="work-card is-coming-soon">
         <div class="work-card-media">
-          <img src="assets/images/TT-Ipad-2.jpg" alt="Turner &amp; Townsend data-service application on tablets" loading="lazy">
+          <img src="assets/images/TT-Ipad-2.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
             <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
@@ -1477,7 +1524,7 @@
                   <img src="assets/logo/experience/bp.svg" alt="bp">
                 </span>
               </span>
-              <span class="experience-skills">UI/UX, Analytics Dashboards, Data Visualisation, Design Guidelines, Stakeholder Management.</span>
+              <span class="experience-skills">UI/UX, Analytics Dashboards, Data Visualisation, Design Guidelines.</span>
               <span class="experience-years">2021–2022</span>
             </button>
           </h3>
@@ -1531,7 +1578,7 @@
           </h3>
           <div class="experience-panel" id="exp-tt" role="region" aria-labelledby="exp-tt-btn">
             <div class="experience-panel-inner">
-              <p class="experience-desc">Senior product designer that created a bespoke, responsive data-service application for cost managers from concept to delivery. Worked closely with product owners and engineering to simplify complex workflows into a user-centred product.</p>
+              <p class="experience-desc">Senior product designer who created a bespoke, responsive data-service application for cost managers from concept to delivery. Worked closely with product owners and engineering to simplify complex workflows into a user-centred product.</p>
             </div>
           </div>
         </li>
@@ -1554,7 +1601,7 @@
           </h3>
           <div class="experience-panel" id="exp-hcl" role="region" aria-labelledby="exp-hcl-btn">
             <div class="experience-panel-inner">
-              <p class="experience-desc">Creative lead that delivered mobile, web and branding solutions, primarily for a leading global investment bank. Ran agile workshops and client engagement, presented high-fidelity prototypes, and served as brand ambassador after a full company rebrand.</p>
+              <p class="experience-desc">Creative lead who delivered mobile, web and branding solutions, primarily for a leading global investment bank. Ran agile workshops and client engagement, presented high-fidelity prototypes, and served as brand ambassador after a full company rebrand.</p>
             </div>
           </div>
         </li>
@@ -1694,7 +1741,10 @@
       </div>
 
       <div class="about-visual">
-        <img src="assets/images/jon-about.png" alt="Jonathan McGhee" width="410" height="410" loading="lazy">
+        <div class="about-photo">
+          <img src="assets/images/jon-about.png" alt="Jonathan McGhee" width="410" height="410" loading="lazy">
+          <img class="about-doodle" src="assets/images/face-doodle.svg" alt="" width="389" height="305" loading="lazy">
+        </div>
       </div>
     </div>
 
@@ -1824,7 +1874,7 @@
 </script>
 
 <script>
-  // Remember the unlock for this browser tab, so case-study pages and coming
+  // Remember the unlock in this browser (all tabs), so case-study pages and coming
   // back to the homepage don't ask again. Also return visitors to the page
   // they were heading for (?next=) or the section they linked to (#about).
   (function() {
@@ -1833,11 +1883,11 @@
     var safeNext = next && /^[a-z0-9-]+\.html$/.test(next) ? next : null;
 
     function remembered() {
-      try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; }
+      try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; }
     }
 
     document.addEventListener('gate:unlocked', function() {
-      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
       if (safeNext) location.replace(safeNext);
     });
 

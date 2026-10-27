@@ -9,7 +9,7 @@
   <!-- Behind the same password as the homepage: send visitors there first -->
   <script>
     try {
-      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=refuelr.html');
+      if (localStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=refuelr.html');
     } catch (e) {}
   </script>
 
@@ -219,7 +219,10 @@
             <p>Refuelr launched on the App Store in October 2026. It covers every station in the UK’s open price data, with a deliberately small scope and a clear backlog for what comes&nbsp;next.</p>
             <p>The decisions that shaped it were mostly about what to leave out: two finished features, a number plate lookup, and a ranking that would have had to&nbsp;guess.</p>
           </div>
-          <a class="cs-button" href="https://apps.apple.com/gb/app/refuelr/id6796394766" target="_blank" rel="noopener" data-umami-event="App Store: Refuelr" style="margin-top: 40px">Link to App Store</a>
+          <div class="cv-wrap" style="margin-top: 40px; align-self: flex-start">
+            <img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58">
+            <a class="cv-btn" href="https://apps.apple.com/gb/app/refuelr/id6796394766" target="_blank" rel="noopener" data-umami-event="App Store: Refuelr">Link to App Store</a>
+          </div>
         </div>
         <div class="cs-numbers">
           <div class="cs-number" data-reveal style="--i: 0"><strong>8,166</strong><span>UK stations covered from government open&nbsp;data.</span></div>

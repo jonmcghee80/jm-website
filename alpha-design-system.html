@@ -9,7 +9,7 @@
   <!-- Behind the same password as the homepage: send visitors there first -->
   <script>
     try {
-      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=alpha-design-system.html');
+      if (localStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=alpha-design-system.html');
     } catch (e) {}
   </script>
 

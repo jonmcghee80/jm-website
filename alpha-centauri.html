@@ -9,7 +9,7 @@
   <!-- Behind the same password as the homepage: send visitors there first -->
   <script>
     try {
-      if (sessionStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=alpha-centauri.html');
+      if (localStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=alpha-centauri.html');
     } catch (e) {}
   </script>
 
@@ -214,7 +214,7 @@
         </div>
       </div>
       <div class="cs-synopsis" data-reveal>
-        <img src="assets/case-studies/centauri/session-synopsis.png" alt="User session synopsis for a senior analyst: key usage, what’s good and bad, concerns, ideas, automation and actions" width="1441" height="680" loading="lazy">
+        <img src="assets/case-studies/centauri/session-synopsis.svg" alt="User session synopsis for a senior analyst: key usage, what’s good and bad, concerns, ideas, automation and actions" width="1441" height="680" loading="lazy">
       </div>
     </div>
   </section>
