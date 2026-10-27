@@ -28,36 +28,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { overflow-x: hidden; }
 
+    /* Colour, type, control and shared motion tokens: assets/css/tokens.css */
     :root {
-      --black:     #010101;
-      --white:     #ffffff;
-      --grey-dark: #666666;
-      --grey-mid:  #b2b2b2;
-      --grey-bg:   #fafafa;
-      --grey:      #939393;
-      --blue:      #3a7ca7;
-      --cyan:      #01fffe;
-      --max-w:     1440px;
-      --pad:       80px;
-
-      /* Type scale (same values as assets/css/case-study.css) */
-      --font-display:    "Bricolage Grotesque", system-ui, sans-serif;
-      --font-body:       "Source Serif 4", Georgia, serif;
-      --text-hero:       clamp(20px, 1.143vw + 15.54px, 32px);   /* 32px on desktop, 20px on phones */
-      --text-page-title: clamp(32px, 2vw + 20px, 52px);
-      --text-h2:         clamp(24px, 1vw + 20px, 28px);
-      --text-quote:      clamp(22px, 0.6vw + 19.5px, 28px);
-      --text-body:       17px;
-      --text-body-lg:    clamp(18px, 0.5vw + 16px, 20px);
-      --text-small:      14px;
-      --text-min:        13px;
-      --leading-body:    1.6;
-      --leading-heading: 1.2;
+      --pad: 80px;
     }
 
     /* ── PASSWORD GATE ── */
@@ -86,30 +65,30 @@
       font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-weight: 500; font-size: 16px; line-height: 32px;
-      letter-spacing: -0.48px; color: #b2b2b2; text-align: center;
+      letter-spacing: -0.48px; color: var(--grey-mid); text-align: center;
     }
     #pw-input {
       height: 48px; width: 100%; box-sizing: border-box;
-      border: 2px solid #010101; border-radius: 8px;
+      border: 2px solid var(--black); border-radius: 8px;
       padding: 0 16px; outline: none;
       font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-weight: 500; font-size: 16px; letter-spacing: -0.48px;
-      color: #010101; background: transparent;
+      color: var(--black); background: transparent;
       transition: border-color 0.2s;
     }
-    #pw-input::placeholder { color: #b2b2b2; }
+    #pw-input::placeholder { color: var(--grey-mid); }
     /* Bricolage's bullet glyph is tiny - draw the masked dots with a system font */
     #pw-input:not(:placeholder-shown) {
       font-family: Verdana, system-ui, sans-serif; letter-spacing: 2px;
     }
-    #pw-input.pg-state-error { border-color: #d30000; }
-    #pw-input.pg-state-success { border-color: #01fffe; }
+    #pw-input.pg-state-error { border-color: var(--error); }
+    #pw-input.pg-state-success { border-color: var(--cyan); }
     .pg-error-text {
       font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
       font-weight: 500; font-size: 16px; line-height: 18px;
-      letter-spacing: -0.48px; color: #d30000; text-align: center;
+      letter-spacing: -0.48px; color: var(--error); text-align: center;
       display: none;
     }
     .pg-error-text.visible { display: block; }
@@ -120,7 +99,7 @@
       position: absolute; left: -34px;
       width: 20px; height: 20px;
       border: 3px solid rgba(1,255,254,0.25);
-      border-top-color: #01fffe;
+      border-top-color: var(--cyan);
       border-radius: 50%;
       animation: pg-spin 0.8s linear infinite;
       display: none;
@@ -129,31 +108,22 @@
     @keyframes pg-spin { to { transform: rotate(360deg); } }
     #pw-button {
       height: 48px; width: 100%; border: none;
-      border-radius: 40px; background: #b2b2b2; color: #fff;
+      border-radius: 40px; background: var(--grey-mid); color: var(--white);
       font-family: var(--font-body);
       font-size: 16px; font-weight: 400; line-height: 28px;
       cursor: default; transition: background 0.2s;
     }
     /* same states as the other primary buttons: grey, black on hover and press */
-    #pw-button.active { background: #4d4d4d; cursor: pointer; }
-    #pw-button.active:active { background: #010101; }
-    @media (hover: hover) { #pw-button.active:hover { background: #010101; } }
+    #pw-button.active { background: var(--grey-ui); cursor: pointer; }
+    #pw-button.active:active { background: var(--black); }
+    @media (hover: hover) { #pw-button.active:hover { background: var(--black); } }
 
-    /* ── MOTION TOKENS ──
-       Every duration, easing and distance used by the page motion lives here.
+    /* ── MOTION TOKENS (homepage only) ──
+       Easing, entrance and reveal timings are shared, in assets/css/tokens.css.
        JS-only values (Lenis lerp, reveal threshold, anchor offset) are in the
        MOTION object at the top of the motion script near the end of the file. */
     :root {
-      --ease-out:           cubic-bezier(0.22, 1, 0.36, 1);
-
-      /* 1. Page-load entrance (nav → hero → first row of cards) */
-      --enter-duration:     0.7s;
-      --enter-distance:     20px;
-      --enter-stagger:      0.1s;
-
       /* 3. Scroll-reveal project cards */
-      --reveal-duration:    0.7s;
-      --reveal-distance:    24px;
       --reveal-opacity:     0.25;
       --reveal-stagger:     0.1s;
 
@@ -278,11 +248,11 @@
     }
 
     .cv-btn {
-      background: #4d4d4d;
+      background: var(--grey-ui);
       color: var(--white);
       text-decoration: none;
       padding: 0 16px;
-      height: 40px;
+      height: var(--control-size);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -312,8 +282,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: var(--control-size);
+      height: var(--control-size);
       border: 0;
       border-radius: 50px;
       background: transparent;
@@ -340,8 +310,8 @@
     }
     .menu-ring circle {
       fill: none;
-      stroke: #01fffe;
-      stroke-width: 3;
+      stroke: var(--cyan);
+      stroke-width: var(--accent-stroke);
       stroke-linecap: round;
       stroke-dasharray: 1;
       stroke-dashoffset: 1;
@@ -393,8 +363,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;   /* same as the ☰ button */
-      height: 40px;
+      width: var(--control-size);   /* same as the ☰ button */
+      height: var(--control-size);
       border: 0;
       border-radius: 50px;
       background: transparent;
@@ -427,9 +397,9 @@
       font-weight: 400;
       line-height: 37px;
       letter-spacing: -0.9px;
-      color: #4d4d4d;   /* grey, black on hover: same as the primary buttons */
-      text-decoration: underline 3px transparent;   /* cyan on hover, like the button ring */
-      text-underline-offset: 4px;
+      color: var(--grey-ui);   /* black on hover, like the buttons */
+      text-decoration: underline var(--accent-stroke) transparent;   /* cyan on hover */
+      text-underline-offset: var(--underline-offset);
     }
 
     .menu-label {
@@ -464,13 +434,13 @@
       font-size: 18px;
       line-height: 28px;
       color: var(--grey);
-      text-decoration: underline 3px transparent;
-      text-underline-offset: 4px;
+      text-decoration: underline var(--accent-stroke) transparent;
+      text-underline-offset: var(--underline-offset);
       transition: color 0.2s, text-decoration-color 0.2s;
     }
 
     @media (hover: hover) {
-      .menu-links a:hover, .menu-social a:hover { text-decoration-color: #01fffe; }
+      .menu-links a:hover, .menu-social a:hover { text-decoration-color: var(--cyan); }
       .menu-links a:hover, .menu-social a:hover { color: var(--black); }
     }
 
@@ -1242,7 +1212,7 @@
         display: block; order: 3; flex-basis: 100%; white-space: normal; text-align: left;
       }
       .experience-head .cv-wrap { display: none; }
-      .experience-cv-block { display: flex; width: 100%; height: 40px; }
+      .experience-cv-block { display: flex; width: 100%; height: var(--control-size); }
       .experience-desc { padding-left: 16px; }
       .about-visual { width: 100%; }
       .about-photo { width: 100%; max-width: 410px; }

@@ -1,0 +1,50 @@
+/* Design tokens: the one place for colour, type, control sizes and shared motion.
+   Loaded first by every page (index.html and the case studies), so change a value
+   here and it changes everywhere. Each token is shown in use on styleguide.html.
+   Page-only values stay with their page: --pad, and the homepage card/accordion motion. */
+
+:root {
+  /* ── Colour ── */
+  --black:     #010101;
+  --white:     #ffffff;
+  --grey-ui:   #4d4d4d;   /* buttons and menu links at rest; they go black on hover */
+  --grey-dark: #666666;   /* secondary text: About body, Experience descriptions */
+  --grey:      #939393;   /* hero intro, LinkedIn/Email in the full-screen menu */
+  --grey-mid:  #b2b2b2;   /* disabled button, placeholders, borders */
+  --grey-bg:   #fafafa;   /* light bands */
+  --blue:      #3a7ca7;   /* headings, labels */
+  --cyan:      #01fffe;   /* accent: hover ring, link underline, CV spark */
+  --error:     #d30000;
+  --shadow:    0 8px 20px rgba(58, 124, 167, 0.1);
+
+  /* ── Layout ── */
+  --max-w: 1440px;        /* content width; each page sets its own --pad */
+
+  /* ── Type ── */
+  --font-display:    "Bricolage Grotesque", system-ui, sans-serif;   /* headings, nav, labels, buttons */
+  --font-body:       "Source Serif 4", Georgia, serif;               /* long-form text */
+  --text-hero:       clamp(20px, 1.143vw + 15.54px, 32px);           /* 32px desktop, 20px phones */
+  --text-page-title: clamp(32px, 2vw + 20px, 52px);
+  --text-h2:         clamp(24px, 1vw + 20px, 28px);
+  --text-quote:      clamp(22px, 0.6vw + 19.5px, 28px);
+  --text-body:       17px;
+  --text-body-lg:    clamp(18px, 0.5vw + 16px, 20px);
+  --text-small:      14px;
+  --text-min:        13px;   /* nothing smaller, except labels drawn inside diagrams */
+  --leading-body:    1.6;
+  --leading-heading: 1.2;
+
+  /* ── Controls: buttons, the ☰ and × buttons, menu links ──
+     At rest grey (--grey-ui), on hover and press black, with the cyan accent. */
+  --control-size:     40px;   /* button height; ☰ and × are this square */
+  --accent-stroke:    3px;    /* hover ring and link underline thickness */
+  --underline-offset: 4px;    /* gap between text and the hover underline */
+
+  /* ── Motion (shared by every page) ── */
+  --ease-out:        cubic-bezier(0.22, 1, 0.36, 1);
+  --enter-duration:  0.7s;    /* page-load entrance and menu links */
+  --enter-distance:  20px;
+  --enter-stagger:   0.1s;
+  --reveal-duration: 0.7s;    /* scroll reveals */
+  --reveal-distance: 24px;
+}

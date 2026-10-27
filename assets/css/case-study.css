@@ -1,40 +1,9 @@
-/* Case study pages — shared styles (tokens match index.html) */
+/* Case study pages: shared styles. Load tokens.css first; this file uses its values. */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --black:     #010101;
-  --white:     #ffffff;
-  --grey-dark: #666666;
-  --grey-mid:  #b2b2b2;
-  --grey-bg:   #fafafa;
-  --grey:      #939393;
-  --blue:      #3a7ca7;
-  --max-w:     1440px;
-  --pad:       40px;
-  --shadow:    0 8px 20px rgba(58, 124, 167, 0.1);
-
-  /* Type scale (same values as the homepage) */
-  --font-display:    "Bricolage Grotesque", system-ui, sans-serif;
-  --font-body:       "Source Serif 4", Georgia, serif;
-  --text-hero:       clamp(20px, 1.143vw + 15.54px, 32px);
-  --text-page-title: clamp(32px, 2vw + 20px, 52px);
-  --text-h2:         clamp(24px, 1vw + 20px, 28px);
-  --text-quote:      clamp(22px, 0.6vw + 19.5px, 28px);
-  --text-body:       17px;
-  --text-body-lg:    clamp(18px, 0.5vw + 16px, 20px);
-  --text-small:      14px;
-  --text-min:        13px;
-  --leading-body:    1.6;
-  --leading-heading: 1.2;
-
-  /* Motion (same values as the homepage) */
-  --ease-out:        cubic-bezier(0.22, 1, 0.36, 1);
-  --enter-duration:  0.7s;
-  --enter-distance:  20px;
-  --enter-stagger:   0.1s;
-  --reveal-duration: 0.7s;
-  --reveal-distance: 24px;
+  --pad: 40px;   /* everything else comes from tokens.css */
 }
 
 html { scroll-behavior: smooth; overflow-x: hidden; }
@@ -115,14 +84,14 @@ img, video { display: block; max-width: 100%; }
   object-fit: cover;
 }
 
-/* ☰ and ×: the same 40px button, icon colour changes on hover */
+/* ☰ and ×: the same control-size button */
 .menu-button,
 .menu-close {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: var(--control-size);
+  height: var(--control-size);
   border: 0;
   border-radius: 50px;
   background: transparent;
@@ -149,8 +118,8 @@ img, video { display: block; max-width: 100%; }
 }
 .menu-ring circle {
   fill: none;
-  stroke: #01fffe;
-  stroke-width: 3;
+  stroke: var(--cyan);
+  stroke-width: var(--accent-stroke);
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
@@ -180,10 +149,10 @@ img, video { display: block; max-width: 100%; }
 .cv-btn {
   display: inline-flex;
   align-items: center;
-  height: 40px;
+  height: var(--control-size);
   padding: 0 16px;
   border-radius: 40px;
-  background: #4d4d4d;
+  background: var(--grey-ui);
   color: var(--white);
   font-family: var(--font-body);
   font-size: 16px;
@@ -251,9 +220,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   font-size: 30px;
   line-height: 37px;
   letter-spacing: -0.9px;
-  color: #4d4d4d;   /* grey, black on hover: same as the primary buttons */
-  text-decoration: underline 3px transparent;   /* cyan on hover, like the button ring */
-  text-underline-offset: 4px;
+  color: var(--grey-ui);   /* black on hover, like the buttons */
+  text-decoration: underline var(--accent-stroke) transparent;   /* cyan on hover */
+  text-underline-offset: var(--underline-offset);
 }
 
 .menu-label {
@@ -278,10 +247,10 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 }
 
 .menu-social { display: flex; justify-content: space-around; }
-.menu-social a { font-size: 18px; line-height: 28px; color: var(--grey); text-decoration: underline 3px transparent; text-underline-offset: 4px; transition: color 0.2s, text-decoration-color 0.2s; }
+.menu-social a { font-size: 18px; line-height: 28px; color: var(--grey); text-decoration: underline var(--accent-stroke) transparent; text-underline-offset: var(--underline-offset); transition: color 0.2s, text-decoration-color 0.2s; }
 
 @media (hover: hover) {
-  .menu-links a:hover, .menu-social a:hover { text-decoration-color: #01fffe; }
+  .menu-links a:hover, .menu-social a:hover { text-decoration-color: var(--cyan); }
   .menu-links a:hover, .menu-social a:hover { color: var(--black); }
 }
 

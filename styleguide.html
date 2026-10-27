@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Guide · Jonathan McGhee</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Behind the same password as the homepage -->
+  <script>
+    try {
+      if (localStorage.getItem('jm-unlocked') !== '1') location.replace('./?next=styleguide.html');
+    } catch (e) {}
+  </script>
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/case-study.css">
+
+  <!-- Layout for this page only; every value shown comes from tokens.css -->
+  <style>
+    .sg { padding-top: 60px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 80px; }
+    .sg-intro { display: flex; flex-direction: column; gap: 16px; max-width: 700px; }
+    .sg-section { display: flex; flex-direction: column; gap: 32px; }
+    .sg-label { font-family: var(--font-body); font-size: var(--text-small); color: var(--grey-dark); }
+    .sg-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--text-min); color: var(--grey-dark); }
+
+    .sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
+    .sg-swatch { display: flex; flex-direction: column; gap: 10px; }
+    .sg-chip { height: 72px; border-radius: 8px; border: 1px solid #ececec; }
+
+    .sg-type { display: flex; flex-direction: column; gap: 28px; }
+    .sg-type-row { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline; }
+
+    .sg-states { display: flex; flex-wrap: wrap; gap: 40px 56px; align-items: flex-end; }
+    .sg-state { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .sg-state .cv-wrap { margin-left: 28px; }   /* room for the spark */
+    .sg-panel { padding: 32px 40px; border-radius: 8px; background: var(--white); box-shadow: var(--shadow); }
+    .sg-links { display: flex; gap: 40px; flex-wrap: wrap; }
+    .sg-links a { font-size: 20px; line-height: 28px; }
+
+    .sg-tokens { width: 100%; border-collapse: collapse; font-family: var(--font-body); font-size: var(--text-small); }
+    .sg-tokens th, .sg-tokens td { text-align: left; padding: 10px 16px 10px 0; border-bottom: 1px solid #ececec; vertical-align: top; }
+    .sg-tokens th { font-weight: 400; color: var(--grey-dark); }
+
+    /* Static copies of the hover / pressed states, so they can be seen side by side */
+    .is-hover.cv-wrap .cv-spark { opacity: 1; }
+    .is-hover .cv-btn, .is-pressed .cv-btn { background: var(--black); }
+    .is-hover .menu-ring { opacity: 1; }
+    .is-hover .menu-ring circle { stroke-dashoffset: 0; }
+    a.is-hover { color: var(--black); text-decoration-color: var(--cyan); }
+    .sg-pw { height: 48px; width: 241px; border: none; border-radius: 40px; color: var(--white); font-family: var(--font-body); font-size: 16px; }
+
+    @media (max-width: 640px) {
+      .sg-type-row { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="cs-wrap sg">
+
+    <header class="sg-intro">
+      <h1 class="cs-h1"><span>Style Guide</span></h1>
+      <p class="cs-copy">The building blocks of jonathanmcghee.com. Every value lives in <span class="sg-code">assets/css/tokens.css</span>: change it there and it changes on every page. Hover the live examples; the static copies beside them show each state.</p>
+    </header>
+
+    <!-- Colour -->
+    <section class="sg-section">
+      <h2 class="cs-title">Colour</h2>
+      <div class="sg-swatches" data-swatches>
+        <!-- name, usage: filled in from the live token values below -->
+        <div class="sg-swatch" data-token="--black" data-use="Text, buttons on hover"></div>
+        <div class="sg-swatch" data-token="--grey-ui" data-use="Buttons and menu links at rest"></div>
+        <div class="sg-swatch" data-token="--grey-dark" data-use="Secondary text"></div>
+        <div class="sg-swatch" data-token="--grey" data-use="Hero intro, small menu links"></div>
+        <div class="sg-swatch" data-token="--grey-mid" data-use="Disabled, placeholders, borders"></div>
+        <div class="sg-swatch" data-token="--grey-bg" data-use="Light bands"></div>
+        <div class="sg-swatch" data-token="--white" data-use="Page background"></div>
+        <div class="sg-swatch" data-token="--blue" data-use="Headings, labels"></div>
+        <div class="sg-swatch" data-token="--cyan" data-use="Accent: ring, underline, spark"></div>
+        <div class="sg-swatch" data-token="--error" data-use="Errors"></div>
+      </div>
+    </section>
+
+    <!-- Type -->
+    <section class="sg-section">
+      <h2 class="cs-title">Type</h2>
+      <div class="sg-type">
+        <div class="sg-type-row"><span class="sg-code">--text-page-title · display 300</span><p style="font-weight: 300; font-size: var(--text-page-title); line-height: var(--leading-heading); color: var(--blue);">Alpha Centauri</p></div>
+        <div class="sg-type-row"><span class="sg-code">--text-hero · display 300</span><p style="font-weight: 300; font-size: var(--text-hero); line-height: 1.24; letter-spacing: -0.03em; color: var(--grey);"><span style="color: var(--black);">Jonathan McGhee</span> is a lead product designer</p></div>
+        <div class="sg-type-row"><span class="sg-code">--text-quote · display 300</span><p style="font-weight: 300; font-size: var(--text-quote); line-height: var(--leading-heading); color: var(--blue);">Familiar enough to adopt, simpler than what it replaced.</p></div>
+        <div class="sg-type-row"><span class="sg-code">--text-h2 · display 300</span><p class="cs-title">The Result</p></div>
+        <div class="sg-type-row"><span class="sg-code">--text-body-lg · body</span><p style="font-family: var(--font-body); font-size: var(--text-body-lg); line-height: 1.4;">A lead product designer for fintech platforms, digital applications and brand identities.</p></div>
+        <div class="sg-type-row"><span class="sg-code">--text-body · body · --leading-body</span><p class="cs-copy">Long-form text in case studies and About. Never below 16px on any screen, so it stays comfortable to read on a phone.</p></div>
+        <div class="sg-type-row"><span class="sg-code">--text-small · body</span><p style="font-family: var(--font-body); font-size: var(--text-small); color: var(--blue);">Labels, card client names, dates</p></div>
+        <div class="sg-type-row"><span class="sg-code">--text-min · body</span><p style="font-family: var(--font-body); font-size: var(--text-min); color: var(--grey-dark);">The smallest text on the site: footnotes and chart notes</p></div>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="sg-section">
+      <h2 class="cs-title">Primary button</h2>
+      <p class="sg-label">Grey at rest, black with the cyan spark on hover, black while pressed. Height: <span class="sg-code">--control-size</span>.</p>
+      <div class="sg-states">
+        <div class="sg-state"><span class="sg-label">Live</span>
+          <div class="cv-wrap"><img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58"><a class="cv-btn" href="#">Download CV</a></div></div>
+        <div class="sg-state"><span class="sg-label">Rest</span>
+          <div class="cv-wrap"><img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58"><span class="cv-btn">Download CV</span></div></div>
+        <div class="sg-state"><span class="sg-label">Hover</span>
+          <div class="cv-wrap is-hover"><img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58"><span class="cv-btn">Download CV</span></div></div>
+        <div class="sg-state"><span class="sg-label">Pressed</span>
+          <div class="cv-wrap is-pressed"><img src="assets/images/cv-spark.svg" class="cv-spark" aria-hidden="true" width="23" height="58"><span class="cv-btn">Download CV</span></div></div>
+      </div>
+      <p class="sg-label">Password button: disabled until something is typed, then the same states.</p>
+      <div class="sg-states">
+        <div class="sg-state"><span class="sg-label">Disabled</span><button class="sg-pw" style="background: var(--grey-mid);" disabled>Enter</button></div>
+        <div class="sg-state"><span class="sg-label">Ready</span><button class="sg-pw" style="background: var(--grey-ui);">Enter</button></div>
+        <div class="sg-state"><span class="sg-label">Hover / pressed</span><button class="sg-pw" style="background: var(--black);">Enter</button></div>
+      </div>
+    </section>
+
+    <!-- Menu buttons -->
+    <section class="sg-section">
+      <h2 class="cs-title">Menu and close buttons</h2>
+      <p class="sg-label">Both <span class="sg-code">--control-size</span> square. On hover a <span class="sg-code">--accent-stroke</span> cyan ring with round ends draws clockwise from the top in 0.4s; the icon stays black.</p>
+      <div class="sg-states">
+        <div class="sg-state"><span class="sg-label">Live</span>
+          <div style="display: flex; gap: 16px;">
+            <button class="menu-button" type="button" aria-label="Menu (example)"><span class="menu-icon" aria-hidden="true"></span><svg class="menu-ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" pathLength="1"/></svg></button>
+            <button class="menu-close" type="button" aria-label="Close (example)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="menu-ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" pathLength="1"/></svg></button>
+          </div></div>
+        <div class="sg-state"><span class="sg-label">Hover</span>
+          <div style="display: flex; gap: 16px;">
+            <span class="menu-button is-hover"><span class="menu-icon" aria-hidden="true"></span><svg class="menu-ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" pathLength="1"/></svg></span>
+            <span class="menu-close is-hover"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="menu-ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" pathLength="1"/></svg></span>
+          </div></div>
+      </div>
+    </section>
+
+    <!-- Links -->
+    <section class="sg-section">
+      <h2 class="cs-title">Menu links</h2>
+      <p class="sg-label">Grey at rest, black on hover with a <span class="sg-code">--accent-stroke</span> cyan underline <span class="sg-code">--underline-offset</span> below.</p>
+      <div class="sg-panel">
+        <nav class="menu-links" aria-label="Example links" style="padding: 0; margin: 0; flex: none;">
+          <div class="sg-links">
+            <a href="#" style="opacity: 1; transform: none;">Live link</a>
+            <a href="#" style="opacity: 1; transform: none;" tabindex="-1">Rest</a>
+            <a href="#" class="is-hover" style="opacity: 1; transform: none;" tabindex="-1">Hover</a>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Tokens -->
+    <section class="sg-section">
+      <h2 class="cs-title">Sizes and motion</h2>
+      <table class="sg-tokens" data-token-table>
+        <thead><tr><th>Token</th><th>Value</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr data-token="--control-size"><td></td><td></td><td>Button height; ☰ and × size</td></tr>
+          <tr data-token="--accent-stroke"><td></td><td></td><td>Hover ring and underline thickness</td></tr>
+          <tr data-token="--underline-offset"><td></td><td></td><td>Gap under link text</td></tr>
+          <tr data-token="--max-w"><td></td><td></td><td>Content width</td></tr>
+          <tr data-token="--ease-out"><td></td><td></td><td>Easing for entrances and reveals</td></tr>
+          <tr data-token="--enter-duration"><td></td><td></td><td>Page-load entrance, menu links</td></tr>
+          <tr data-token="--reveal-duration"><td></td><td></td><td>Scroll reveals</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script>
+    // Fill in each swatch and token row from the live values in tokens.css
+    (function() {
+      var css = getComputedStyle(document.documentElement);
+      document.querySelectorAll('.sg-swatch').forEach(function(el) {
+        var name = el.dataset.token, value = css.getPropertyValue(name).trim();
+        el.innerHTML = '<div class="sg-chip" style="background: var(' + name + ')"></div>' +
+          '<span class="sg-code">' + name + ' · ' + value + '</span>' +
+          '<span class="sg-label">' + el.dataset.use + '</span>';
+      });
+      document.querySelectorAll('[data-token-table] tr[data-token]').forEach(function(row) {
+        var name = row.dataset.token;
+        row.cells[0].innerHTML = '<span class="sg-code">' + name + '</span>';
+        row.cells[1].textContent = css.getPropertyValue(name).trim();
+      });
+      // live examples link nowhere
+      document.querySelectorAll('.sg a[href="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) { e.preventDefault(); });
+      });
+    })();
+  </script>
+</body>
+</html>
