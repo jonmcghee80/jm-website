@@ -130,12 +130,11 @@ img, video { display: block; max-width: 100%; }
 
 .menu-button img { width: 20px; height: 20px; }
 
-/* Hover circle: 40px inside the 52px tap target, closer to the CV button's 32px */
-.menu-button { position: relative; isolation: isolate; }
-.menu-button::before { content: ""; position: absolute; inset: 6px; z-index: -1; border-radius: 50%; transition: background 0.2s ease-out; }
+/* 40px round button, closer to the CV button's 32px */
+.menu-button { width: 40px; height: 40px; transition: background 0.2s ease-out; }
 
 @media (hover: hover) {
-  .menu-button:hover::before, .menu-close:hover { background: #f0f0f0; }
+  .menu-button:hover, .menu-close:hover { background: #f0f0f0; }
 }
 
 /* Download CV beside the menu button (same as the homepage); hidden up to 900px */
