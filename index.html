@@ -134,7 +134,10 @@
       font-size: 16px; font-weight: 400; line-height: 28px;
       cursor: default; transition: background 0.2s;
     }
-    #pw-button.active { background: #010101; cursor: pointer; }
+    /* same states as the other primary buttons: grey, black on hover and press */
+    #pw-button.active { background: #4d4d4d; cursor: pointer; }
+    #pw-button.active:active { background: #010101; }
+    @media (hover: hover) { #pw-button.active:hover { background: #010101; } }
 
     /* ── MOTION TOKENS ──
        Every duration, easing and distance used by the page motion lives here.
@@ -463,12 +466,12 @@
       color: var(--grey);
       text-decoration: underline 3px transparent;
       text-underline-offset: 4px;
-      transition: text-decoration-color 0.2s;
+      transition: color 0.2s, text-decoration-color 0.2s;
     }
 
     @media (hover: hover) {
       .menu-links a:hover, .menu-social a:hover { text-decoration-color: #01fffe; }
-      .menu-links a:hover { color: var(--black); }
+      .menu-links a:hover, .menu-social a:hover { color: var(--black); }
     }
 
     /* Floating panel (Figma 1170:28155): about a third of the screen, full height on the right */

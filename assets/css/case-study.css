@@ -278,11 +278,11 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 }
 
 .menu-social { display: flex; justify-content: space-around; }
-.menu-social a { font-size: 18px; line-height: 28px; color: var(--grey); text-decoration: underline 3px transparent; text-underline-offset: 4px; transition: text-decoration-color 0.2s; }
+.menu-social a { font-size: 18px; line-height: 28px; color: var(--grey); text-decoration: underline 3px transparent; text-underline-offset: 4px; transition: color 0.2s, text-decoration-color 0.2s; }
 
 @media (hover: hover) {
   .menu-links a:hover, .menu-social a:hover { text-decoration-color: #01fffe; }
-  .menu-links a:hover { color: var(--black); }
+  .menu-links a:hover, .menu-social a:hover { color: var(--black); }
 }
 
 /* Floating panel (Figma 1170:28155): about a third of the screen, full height on the right */
