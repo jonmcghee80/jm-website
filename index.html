@@ -314,14 +314,15 @@
       border: 0;
       border-radius: 50px;
       background: transparent;
+      color: var(--black);
       cursor: pointer;
-      transition: background 0.2s ease-out;
+      transition: color 0.2s ease-out;
     }
 
-    .menu-button img { display: block; width: 20px; height: 20px; }
+    .menu-button svg, .menu-close svg { display: block; width: 20px; height: 20px; }
 
     @media (hover: hover) {
-      .menu-button:hover, .menu-close:hover { background: #01fffe; }   /* the CV spark's cyan */
+      .menu-button:hover, .menu-close:hover { color: #01fffe; }   /* icon turns the CV spark's cyan */
     }
 
     /* Full-screen menu overlay */
@@ -364,12 +365,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 52px;
-      height: 52px;
+      width: 40px;   /* same as the ☰ button */
+      height: 40px;
       border: 0;
       border-radius: 50px;
       background: transparent;
+      color: var(--black);
       cursor: pointer;
+      transition: color 0.2s ease-out;
     }
 
     .menu-links {
@@ -461,11 +464,9 @@
 
       html.menu-open, html.menu-open body { overflow: visible; }
 
-      /* the × (24px, right-aligned) is centred on the ☰ button, JS sets --menu-x/y; links centre in the panel */
-      .menu-top { justify-content: flex-end; margin: max(0px, calc(var(--menu-y, 52px) - 52px)) max(0px, calc(var(--menu-x, 52px) - 52px)) 0 0; }
+      /* the × (40px, right-aligned) is centred on the ☰ button, JS sets --menu-x/y; links centre in the panel */
+      .menu-top { justify-content: flex-end; margin: max(0px, calc(var(--menu-y, 60px) - 60px)) max(0px, calc(var(--menu-x, 60px) - 60px)) 0 0; }
       .menu-top img { display: none; }
-      .menu-close { width: 24px; height: 24px; }
-      .menu-close svg { width: 16px; height: 16px; }
 
       .menu-links { flex: none; gap: 60px; margin-top: 32px; padding-top: 0; overflow: visible; }
       .menu-links, .menu-social { margin-right: var(--gutter); }
@@ -1244,7 +1245,7 @@
     <!-- Menu button (Figma 867:6820) -->
     <div class="menu">
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
-        <img src="assets/images/menu.svg" alt="" width="20" height="20">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.333 4.167h13.334M3.333 10h13.334M3.333 15.833h13.334" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
   </header>
@@ -1760,7 +1761,7 @@
     <div class="menu-top">
       <img src="assets/logo/jm-logo.png" alt="Jonathan McGhee" width="60" height="60">
       <button class="menu-close" type="button" aria-label="Close menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="#010101" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
     <nav class="menu-links" aria-label="Site">

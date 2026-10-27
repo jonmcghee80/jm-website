@@ -115,26 +115,26 @@ img, video { display: block; max-width: 100%; }
   object-fit: cover;
 }
 
+/* ☰ and ×: the same 40px button, icon colour changes on hover */
 .menu-button,
 .menu-close {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
+  width: 40px;
+  height: 40px;
   border: 0;
   border-radius: 50px;
   background: transparent;
+  color: var(--black);
   cursor: pointer;
+  transition: color 0.2s ease-out;
 }
 
-.menu-button img { width: 20px; height: 20px; }
-
-/* 40px round button, closer to the CV button's 32px */
-.menu-button { width: 40px; height: 40px; transition: background 0.2s ease-out; }
+.menu-button svg, .menu-close svg { display: block; width: 20px; height: 20px; }
 
 @media (hover: hover) {
-  .menu-button:hover, .menu-close:hover { background: #01fffe; }   /* the CV spark's cyan */
+  .menu-button:hover, .menu-close:hover { color: #01fffe; }   /* icon turns the CV spark's cyan */
 }
 
 /* Download CV beside the menu button (same as the homepage); hidden up to 900px */
@@ -279,11 +279,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
   html.menu-open, html.menu-open body { overflow: visible; }
 
-  /* the × (24px, right-aligned) is centred on the ☰ button, JS sets --menu-x/y; links centre in the panel */
-  .menu-top { justify-content: flex-end; margin: max(0px, calc(var(--menu-y, 52px) - 52px)) max(0px, calc(var(--menu-x, 52px) - 52px)) 0 0; }
+  /* the × (40px, right-aligned) is centred on the ☰ button, JS sets --menu-x/y; links centre in the panel */
+  .menu-top { justify-content: flex-end; margin: max(0px, calc(var(--menu-y, 60px) - 60px)) max(0px, calc(var(--menu-x, 60px) - 60px)) 0 0; }
   .menu-top img { display: none; }
-  .menu-close { width: 24px; height: 24px; }
-  .menu-close svg { width: 16px; height: 16px; }
 
   .menu-links { flex: none; gap: 60px; margin-top: 32px; padding-top: 0; overflow: visible; }
   .menu-links, .menu-social { margin-right: var(--gutter); }
