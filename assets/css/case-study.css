@@ -251,7 +251,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   font-size: 30px;
   line-height: 37px;
   letter-spacing: -0.9px;
-  color: var(--black);
+  color: #4d4d4d;   /* grey, black on hover: same as the primary buttons */
   text-decoration: underline 3px transparent;   /* cyan on hover, like the button ring */
   text-underline-offset: 4px;
 }
@@ -266,7 +266,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .menu-links a, .menu-label {
   opacity: 0;
   transform: translateY(var(--enter-distance));
-  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out), text-decoration-color 0.2s;
+  transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out), color 0.2s, text-decoration-color 0.2s;
 }
 
 .menu-overlay.is-open :is(.menu-links a, .menu-label) {
@@ -274,7 +274,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   transform: none;
   transition: opacity var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger) / 2),
               transform var(--enter-duration) var(--ease-out) calc(0.05s + var(--i) * var(--enter-stagger) / 2),
-              text-decoration-color 0.2s;
+              color 0.2s, text-decoration-color 0.2s;
 }
 
 .menu-social { display: flex; justify-content: space-around; }
@@ -282,6 +282,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 @media (hover: hover) {
   .menu-links a:hover, .menu-social a:hover { text-decoration-color: #01fffe; }
+  .menu-links a:hover { color: var(--black); }
 }
 
 /* Floating panel (Figma 1170:28155): about a third of the screen, full height on the right */
