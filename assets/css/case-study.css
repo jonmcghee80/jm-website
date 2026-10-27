@@ -134,7 +134,7 @@ img, video { display: block; max-width: 100%; }
 .menu-button { width: 40px; height: 40px; transition: background 0.2s ease-out; }
 
 @media (hover: hover) {
-  .menu-button:hover, .menu-close:hover { background: #f0f0f0; }
+  .menu-button:hover, .menu-close:hover { background: #01fffe; }   /* the CV spark's cyan */
 }
 
 /* Download CV beside the menu button (same as the homepage); hidden up to 900px */
