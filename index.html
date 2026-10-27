@@ -421,7 +421,9 @@
     @media (min-width: 901px) {
       .menu-overlay {
         inset: 0 0 0 auto;
-        width: min(100vw, max(32vw, calc(var(--menu-x, 52px) + 228px)));   /* 655 of 2048, never narrower than the column needs */
+        /* past the max page width, the panel grows by the side margin so it keeps its place beside the ☰ */
+        --gutter: max(0px, calc((100vw - var(--max-w) - 2 * var(--pad)) / 2));
+        width: min(100vw, max(calc(0.32 * (100vw - 2 * var(--gutter)) + var(--gutter)), calc(var(--menu-x, 52px) + 228px)));
         padding: 40px;
         overflow-y: auto;
         box-shadow: -8px 8px 10px rgba(58, 124, 167, 0.1);
@@ -443,6 +445,7 @@
       .menu-close svg { width: 16px; height: 16px; }
 
       .menu-links { flex: none; gap: 60px; margin-top: 32px; padding-top: 0; overflow: visible; }
+      .menu-links, .menu-social { margin-right: var(--gutter); }
       .menu-group { gap: 28px; }
 
       .menu-links a, .menu-label, .menu-social a { text-box: trim-both cap alphabetic; text-align: center; }
