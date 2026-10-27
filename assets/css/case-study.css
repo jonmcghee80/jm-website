@@ -253,7 +253,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   letter-spacing: -0.9px;
   color: var(--black);
   text-decoration: underline 3px transparent;   /* cyan on hover, like the button ring */
-  text-underline-offset: 2px;
+  text-underline-offset: 4px;
 }
 
 .menu-label {
@@ -278,7 +278,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 }
 
 .menu-social { display: flex; justify-content: space-around; }
-.menu-social a { font-size: 18px; line-height: 28px; color: var(--grey); text-decoration: underline 3px transparent; text-underline-offset: 2px; transition: text-decoration-color 0.2s; }
+.menu-social a { font-size: 18px; line-height: 28px; color: var(--grey); text-decoration: underline 3px transparent; text-underline-offset: 4px; transition: text-decoration-color 0.2s; }
 
 @media (hover: hover) {
   .menu-links a:hover, .menu-social a:hover { text-decoration-color: #01fffe; }
