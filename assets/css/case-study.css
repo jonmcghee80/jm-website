@@ -131,7 +131,9 @@ img, video { display: block; max-width: 100%; }
   transition: color 0.2s ease-out;
 }
 
-.menu-button svg, .menu-close svg { display: block; width: 20px; height: 20px; }
+.menu-close svg { display: block; width: 20px; height: 20px; }
+/* the menu icon file as a mask, so it takes the button's colour */
+.menu-icon { display: block; width: 20px; height: 20px; background: currentColor; -webkit-mask: url("../images/lucide/menu.svg") center / contain no-repeat; mask: url("../images/lucide/menu.svg") center / contain no-repeat; }
 
 @media (hover: hover) {
   .menu-button:hover, .menu-close:hover { color: #01fffe; }   /* icon turns the CV spark's cyan */

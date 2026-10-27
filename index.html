@@ -319,7 +319,9 @@
       transition: color 0.2s ease-out;
     }
 
-    .menu-button svg, .menu-close svg { display: block; width: 20px; height: 20px; }
+    .menu-close svg { display: block; width: 20px; height: 20px; }
+    /* the menu icon file as a mask, so it takes the button's colour */
+    .menu-icon { display: block; width: 20px; height: 20px; background: currentColor; -webkit-mask: url("assets/images/lucide/menu.svg") center / contain no-repeat; mask: url("assets/images/lucide/menu.svg") center / contain no-repeat; }
 
     @media (hover: hover) {
       .menu-button:hover, .menu-close:hover { color: #01fffe; }   /* icon turns the CV spark's cyan */
@@ -1245,7 +1247,7 @@
     <!-- Menu button (Figma 867:6820) -->
     <div class="menu">
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.333 4.167h13.334M3.333 10h13.334M3.333 15.833h13.334" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="menu-icon" aria-hidden="true"></span>
       </button>
     </div>
   </header>
