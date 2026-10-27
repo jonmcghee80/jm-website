@@ -1003,13 +1003,13 @@
     .about-body p + p { margin-top: calc(var(--leading-body) * 1em); }
 
     .about-visual {
-      width: 480px;
+      width: 565px;   /* 495 photo + 70 for the doodle and blob */
       flex-shrink: 0;
     }
 
     .about-photo {
       position: relative;
-      width: 410.105px;
+      width: 495px;   /* square: as tall as the About text at 1440 */
     }
 
     .about-photo > img:first-child {
@@ -1181,6 +1181,12 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      /* narrower screens: the smaller photo keeps it beside the text */
+      .about-visual { width: 480px; }
+      .about-photo { width: 410.105px; }
+    }
+
     @media (max-width: 1024px) {
       :root { --pad: 40px; }
       /* Experience: skills line sits centred, with equal gaps to logo and dates */
