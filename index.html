@@ -436,9 +436,8 @@
 
       html.menu-open, html.menu-open body { overflow: visible; }
 
-      /* a 200px column whose × (24px, right-aligned) is centred on the ☰ button; JS sets --menu-x/y */
-      .menu-overlay > * { width: 200px; margin-left: auto; margin-right: max(0px, calc(var(--menu-x, 52px) - 52px)); }
-      .menu-top { justify-content: flex-end; margin-top: max(0px, calc(var(--menu-y, 52px) - 52px)); }
+      /* the × (24px, right-aligned) is centred on the ☰ button, JS sets --menu-x/y; links centre in the panel */
+      .menu-top { justify-content: flex-end; margin: max(0px, calc(var(--menu-y, 52px) - 52px)) max(0px, calc(var(--menu-x, 52px) - 52px)) 0 0; }
       .menu-top img { display: none; }
       .menu-close { width: 24px; height: 24px; }
       .menu-close svg { width: 16px; height: 16px; }
