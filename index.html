@@ -417,11 +417,11 @@
       .menu-links a:hover, .menu-social a:hover { color: var(--blue); }
     }
 
-    /* Floating panel (Figma 1146:6658): 280px wide, full height on the right */
+    /* Floating panel (Figma 1170:28155): 655px wide, full height on the right */
     @media (min-width: 901px) {
       .menu-overlay {
         inset: 0 0 0 auto;
-        width: 280px;
+        width: 655px;
         padding: 40px;
         overflow-y: auto;
         box-shadow: -8px 8px 10px rgba(58, 124, 167, 0.1);
@@ -436,6 +436,7 @@
 
       html.menu-open, html.menu-open body { overflow: visible; }
 
+      .menu-overlay > * { width: 200px; }   /* links sit in a 200px column on the panel's left */
       .menu-top { justify-content: flex-end; }
       .menu-top img { display: none; }
       .menu-close { width: 24px; height: 24px; }
