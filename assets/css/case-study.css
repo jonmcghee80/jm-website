@@ -229,11 +229,11 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   .menu-links a:hover, .menu-social a:hover { color: var(--blue); }
 }
 
-/* Floating panel (Figma 1170:28155): 655px wide, full height on the right */
+/* Floating panel (Figma 1170:28155): about a third of the screen, full height on the right */
 @media (min-width: 901px) {
   .menu-overlay {
     inset: 0 0 0 auto;
-    width: 655px;
+    width: min(100vw, max(32vw, calc(var(--menu-x, 52px) + 228px)));   /* 655 of 2048, never narrower than the column needs */
     padding: 40px;
     overflow-y: auto;
     box-shadow: -8px 8px 10px rgba(58, 124, 167, 0.1);
@@ -248,8 +248,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
   html.menu-open, html.menu-open body { overflow: visible; }
 
-  .menu-overlay > * { width: 200px; }   /* links sit in a 200px column on the panel's left */
-  .menu-top { justify-content: flex-end; }
+  /* a 200px column whose × (24px, right-aligned) is centred on the ☰ button; JS sets --menu-x/y */
+  .menu-overlay > * { width: 200px; margin-left: auto; margin-right: max(0px, calc(var(--menu-x, 52px) - 52px)); }
+  .menu-top { justify-content: flex-end; margin-top: max(0px, calc(var(--menu-y, 52px) - 52px)); }
   .menu-top img { display: none; }
   .menu-close { width: 24px; height: 24px; }
   .menu-close svg { width: 16px; height: 16px; }

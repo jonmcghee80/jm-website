@@ -26,12 +26,22 @@
 
   function setMenu(open) {
     if (open === menuOverlay.classList.contains('is-open')) return;
+    if (open) alignClose();
     menuOverlay.classList.toggle('is-open', open);
     root.classList.toggle('menu-open', open);
     menuButton.setAttribute('aria-expanded', open);
     if (lenis) open ? lenis.stop() : lenis.start();
     (open ? menuClose : menuButton).focus({ preventScroll: true });
   }
+
+  // the panel's × sits over the ☰ button, wherever the header puts it
+  function alignClose() {
+    var r = menuButton.getBoundingClientRect();
+    root.style.setProperty('--menu-x', (root.clientWidth - (r.left + r.right) / 2) + 'px');
+    root.style.setProperty('--menu-y', (r.top + window.scrollY + r.height / 2) + 'px');
+  }
+  alignClose();
+  window.addEventListener('resize', alignClose);
 
   menuButton.addEventListener('click', function() { setMenu(true); });
   menuClose.addEventListener('click', function() { setMenu(false); });
