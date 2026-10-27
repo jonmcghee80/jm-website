@@ -980,13 +980,13 @@
     .about-body p + p { margin-top: calc(var(--leading-body) * 1em); }
 
     .about-visual {
-      width: 565px;   /* 495 photo + 70 for the doodle and blob */
+      width: 538px;   /* 468 photo + 70 of breathing room for the blob */
       flex-shrink: 0;
     }
 
     .about-photo {
       position: relative;
-      width: 495px;   /* square: as tall as the About text at 1440 */
+      width: 468px;   /* square: as tall as the About text at 1440 */
     }
 
     .about-photo > img:first-child {
@@ -995,27 +995,6 @@
       height: auto;
       aspect-ratio: 1;
       object-fit: cover;
-    }
-
-    /* Face doodle (glasses, moustache, beard): upright, lenses centred on the eyes.
-       Shows on hover, and always on touch screens where there's no hover. */
-    .about-doodle {
-      position: absolute;
-      left: -8.9%;
-      top: 12.1%;
-      width: 94.9%;            /* 389 of 410: the SVG at its own size */
-      height: auto;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.25s ease-out;
-    }
-
-    @media (hover: hover) {
-      .about-photo:hover .about-doodle { opacity: 1; }
-    }
-
-    @media (hover: none) {
-      .about-doodle { opacity: 1; }
     }
 
     .about-blob {
@@ -1744,14 +1723,13 @@
         <div class="about-body">
           <p>With over 20 years of experience in design, I’ve worked across a wide range of projects, from advertising campaigns for O2 and Coca-Cola to building design systems and trading applications for Cargill, bp and&nbsp;LSEG.</p>
           <p>For the past decade, I’ve specialised in enterprise product design for capital markets, working closely with traders, analysts and engineering teams to turn complex, data-heavy workflows into intuitive interfaces. My background in agency design means attention to detail and visual quality are always part of the&nbsp;process.</p>
-          <p>Based in Richmond, West London. Usually found doodling at home, on a road bike somewhere hillier than planned, or walking my miniature&nbsp;dachshund.</p>
+          <p>Based in Richmond, West London. Usually found on a road bike somewhere hillier than planned, or walking my miniature&nbsp;dachshund.</p>
         </div>
       </div>
 
       <div class="about-visual">
         <div class="about-photo">
           <img src="assets/images/jon-about.png" alt="Jonathan McGhee" width="410" height="410" loading="lazy">
-          <img class="about-doodle" src="assets/images/face-doodle.svg" alt="" width="389" height="305" loading="lazy">
         </div>
       </div>
     </div>
