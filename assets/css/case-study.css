@@ -903,7 +903,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 /* ── Responsive ── */
 @media (max-width: 1100px) {
   .cs-split, .cs-cols { flex-direction: column; gap: 40px; }
-  .cs-split > * { max-width: none; }
+  .cs-split > * { flex: none; max-width: none; }   /* flex-basis 0 collapsed aspect-ratio boxes to 0px */
   .cs-features { grid-template-columns: 1fr; }
   .cs-tldr-grid { grid-template-columns: 1fr; }
   .cs-saved .cs-split { flex-direction: column-reverse; }
