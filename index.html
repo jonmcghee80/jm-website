@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jonathan McGhee — Product Design Lead</title>
+  <title>Jonathan McGhee – Product Design Lead</title>
   <meta name="description" content="Lead product designer specialising in fintech, design systems and brand. Creating work that works.">
 
   <!-- Icons -->
@@ -14,7 +14,7 @@
   <!-- Link previews (WhatsApp, iMessage, LinkedIn, Slack…) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jonathanmcghee.com/">
-  <meta property="og:title" content="Jonathan McGhee — Product Design Lead">
+  <meta property="og:title" content="Jonathan McGhee – Product Design Lead">
   <meta property="og:description" content="Lead product designer specialising in fintech, design systems and brand. Creating work that works.">
   <meta property="og:image" content="https://jonathanmcghee.com/assets/share/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -710,11 +710,53 @@
       color: var(--black);
     }
 
+    /* One-line outcome under the title, always visible */
+    .work-card-outcome {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      text-box: trim-both cap alphabetic;
+      color: var(--grey-dark);
+    }
+
+    /* More work: projects without a case study, one line each, not links */
+    .more-work {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 120px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .more-work-head { display: flex; flex-direction: column; gap: 16px; }
+
+    .more-work-sub {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 24px;
+      text-box: trim-both cap alphabetic;
+      color: var(--grey-dark);
+    }
+
+    /* Smaller cards, three to a row */
+    .more-work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 56px 32px;
+    }
+
+    .more-work .work-card { gap: 20px; }
+    .more-work .work-card-info { flex: 1 1 100%; gap: 12px; }
+    .more-work .work-card-title { font-size: 20px; line-height: 26px; white-space: normal; }
+
     /* ── SHARED ── */
     .section-label {
       font-family: var(--font-display);
       font-variation-settings: 'opsz' 14, 'wdth' 100;
-      font-size: var(--text-h2);
+      font-size: var(--text-hero);   /* same as the hero line */
       font-weight: 400;
       color: var(--blue);
       letter-spacing: -0.02em;
@@ -846,6 +888,18 @@
     }
 
     .logo-lseg-inner img { width: 100%; height: 100%; }
+
+    /* Job title, always visible next to the logo */
+    .experience-role {
+      width: 260px;
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-variation-settings: 'opsz' 14, 'wdth' 100;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--black);
+    }
 
     .experience-skills {
       flex: 1 0 0;
@@ -1154,7 +1208,15 @@
 
     @media (max-width: 900px) {
       .header-right { display: none; }
+      /* Experience: title beside the logo; skills join the open row, above the description */
+      .experience-toggle { flex-wrap: wrap; row-gap: 12px; }
+      .experience-role { flex: 1 0 0; width: auto; min-width: 0; }
+      .experience-skills { display: none; }
+      .experience-toggle[aria-expanded="true"] .experience-skills {
+        display: block; order: 3; flex-basis: 100%; padding-left: 136px; white-space: normal; text-align: left;
+      }
       .work-grid { grid-template-columns: 1fr; }
+      .more-work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .about-text { min-width: 0; flex-basis: 100%; }
       /* the portrait has its own glow; the extra circle fights it */
       .about-blob { display: none; }
@@ -1183,13 +1245,19 @@
       .experience-years { font-size: var(--text-small); }
       .work-grid { row-gap: 48px; }
       /* Experience: logo + years on one line, skills wrap underneath */
-      .experience-toggle { flex-wrap: wrap; gap: 12px 16px; }
-      .experience-lead { width: auto; flex: 1 0 auto; }
-      /* skills only show once a row is open */
-      .experience-skills { display: none; }
-      .experience-toggle[aria-expanded="true"] .experience-skills {
-        display: block; order: 3; flex-basis: 100%; white-space: normal; text-align: left;
-      }
+      /* logo beside the title, years under the title; skills follow once a row is open */
+      .experience-toggle { display: grid; grid-template-columns: auto 1fr; gap: 2px 24px; }
+      .experience-lead { width: auto; gap: 12px; grid-row: 1 / 3; }
+      .experience-role { grid-column: 2; font-size: 15px; line-height: 20px; }
+      .experience-years { grid-column: 2; line-height: 20px; text-box: none; }
+      .experience-toggle[aria-expanded="true"] .experience-skills { grid-column: 1 / -1; margin-top: 10px; }
+      .experience-toggle[aria-expanded="true"] .experience-skills { padding-left: 0; }
+      .work-card-outcome { font-size: 15px; line-height: 22px; }
+      .more-work { margin-top: 80px; gap: 24px; }
+      .more-work-grid { gap: 32px 16px; }
+      .more-work .work-card { gap: 16px; }
+      .more-work .work-card-info { gap: 10px; }
+      .more-work .work-card-title { font-size: 16px; line-height: 20px; }
       .experience-head .cv-wrap { display: none; }
       .experience-cv-block { display: flex; width: 100%; height: var(--control-size); }
       .experience-desc { padding-left: 16px; }
@@ -1257,7 +1325,6 @@
         <div class="work-card-media">
           <img src="assets/images/cargill-reporting.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
           </span>
         </div>
@@ -1265,23 +1332,7 @@
           <div class="work-card-info">
             <p class="work-card-client">Cargill</p>
             <h2 class="work-card-title">Alpha Centauri – Reporting &amp; Analytics App</h2>
-          </div>
-        </div>
-      </a>
-
-      <!-- Refuelr -->
-      <a class="work-card" href="refuelr.html" data-umami-event="Case study: Refuelr">
-        <div class="work-card-media">
-          <img src="assets/images/refuelr.jpg" alt="" loading="lazy">
-          <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
-            <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
-          </span>
-        </div>
-        <div class="work-card-meta">
-          <div class="work-card-info">
-            <p class="work-card-client">SquaredMc</p>
-            <h2 class="work-card-title">Refuelr – Fuel Finder App</h2>
+            <p class="work-card-outcome">One reporting platform for commodity traders, live in six&nbsp;months.</p>
           </div>
         </div>
       </a>
@@ -1293,7 +1344,6 @@
             <source src="assets/images/cargill-design-system.mov" type="video/mp4">
           </video>
           <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
           </span>
         </div>
@@ -1301,6 +1351,7 @@
           <div class="work-card-info">
             <p class="work-card-client">Cargill</p>
             <h2 class="work-card-title">Alpha Design System</h2>
+            <p class="work-card-outcome">One design system behind 20+ trading&nbsp;apps.</p>
           </div>
         </div>
       </a>
@@ -1310,7 +1361,6 @@
         <div class="work-card-media">
           <img src="assets/images/wealth-advisor.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
           </span>
         </div>
@@ -1318,122 +1368,145 @@
           <div class="work-card-info">
             <p class="work-card-client">Refinitiv / LSEG</p>
             <h2 class="work-card-title">Wealth Advisor Dashboard App</h2>
+            <p class="work-card-outcome">The first light theme for LSEG&nbsp;Workspace.</p>
           </div>
         </div>
       </a>
 
-      <!-- Cashflow -->
-      <div class="work-card is-coming-soon">
+      <!-- Refuelr -->
+      <a class="work-card" href="refuelr.html" data-umami-event="Case study: Refuelr">
         <div class="work-card-media">
-          <img src="assets/images/cashflow.jpg" alt="" loading="lazy">
+          <img src="assets/images/refuelr.jpg" alt="" loading="lazy">
           <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
             <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
           </span>
         </div>
         <div class="work-card-meta">
           <div class="work-card-info">
-            <p class="work-card-client">HCLTech &amp; DB</p>
-            <h2 class="work-card-title">Cashflow – App for Payments on the&nbsp;Go</h2>
+            <p class="work-card-client">SquaredMc</p>
+            <h2 class="work-card-title">Refuelr – Fuel Finder App</h2>
+            <p class="work-card-outcome">Designed and built solo, now on the App&nbsp;Store.</p>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
         </div>
-      </div>
+      </a>
 
-      <!-- Fintech Lab -->
-      <div class="work-card is-coming-soon">
-        <div class="work-card-media dark">
-          <video autoplay muted loop playsinline aria-hidden="true">
-            <source src="assets/images/fintech-lab.mov" type="video/mp4">
-          </video>
-          <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
-            <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
-          </span>
-        </div>
-        <div class="work-card-meta">
-          <div class="work-card-info">
-            <p class="work-card-client">HCL Tech</p>
-            <h2 class="work-card-title">Fintech LAB Branding</h2>
+    </div>
+
+    <!-- More work: projects without a case study yet -->
+    <div class="more-work">
+      <div class="more-work-head">
+        <h2 class="section-label">More Work</h2>
+        <p class="more-work-sub">Case studies coming soon</p>
+      </div>
+      <div class="more-work-grid">
+
+        <!-- Cashflow -->
+        <div class="work-card is-coming-soon">
+          <div class="work-card-media">
+            <img src="assets/images/cashflow.jpg" alt="" loading="lazy">
+            <span class="work-card-cta" aria-hidden="true">
+              <span class="work-card-cta-label">Case study coming soon</span>
+              <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
+            </span>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
-        </div>
-      </div>
-
-      <!-- Halo -->
-      <div class="work-card is-coming-soon">
-        <div class="work-card-media">
-          <img src="assets/images/halo.jpg" alt="" loading="lazy">
-          <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
-            <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
-          </span>
-        </div>
-        <div class="work-card-meta">
-          <div class="work-card-info">
-            <p class="work-card-client">Refinitiv / LSEG</p>
-            <h2 class="work-card-title">Halo Design System Portal – Guidelines</h2>
+          <div class="work-card-meta">
+            <div class="work-card-info">
+              <p class="work-card-client">HCLTech &amp; DB</p>
+              <h2 class="work-card-title">Cashflow – App for Payments on the&nbsp;Go</h2>
+            </div>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
         </div>
-      </div>
 
-      <!-- KogoPay -->
-      <div class="work-card is-coming-soon">
-        <div class="work-card-media">
-          <img src="assets/images/kogopay.jpg" alt="" loading="lazy">
-          <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
-            <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
-          </span>
-        </div>
-        <div class="work-card-meta">
-          <div class="work-card-info">
-            <p class="work-card-client">KogoPay</p>
-            <h2 class="work-card-title">Website &amp; App – Customer/Business</h2>
+        <!-- Fintech Lab -->
+        <div class="work-card is-coming-soon">
+          <div class="work-card-media dark">
+            <video autoplay muted loop playsinline aria-hidden="true">
+              <source src="assets/images/fintech-lab.mov" type="video/mp4">
+            </video>
+            <span class="work-card-cta" aria-hidden="true">
+              <span class="work-card-cta-label">Case study coming soon</span>
+              <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
+            </span>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
-        </div>
-      </div>
-
-      <!-- Prince's Trust -->
-      <div class="work-card is-coming-soon">
-        <div class="work-card-media black fit">
-          <video autoplay muted loop playsinline aria-hidden="true">
-            <source src="assets/images/40yrs.mp4?v=2" type="video/mp4">
-          </video>
-          <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
-            <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
-          </span>
-        </div>
-        <div class="work-card-meta">
-          <div class="work-card-info">
-            <p class="work-card-client">The &amp; Partnership</p>
-            <h2 class="work-card-title">Prince’s Trust 40 Year Logo</h2>
+          <div class="work-card-meta">
+            <div class="work-card-info">
+              <p class="work-card-client">HCLTech</p>
+              <h2 class="work-card-title">Fintech LAB Branding</h2>
+            </div>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
         </div>
-      </div>
 
-      <!-- Turner & Townsend -->
-      <div class="work-card is-coming-soon">
-        <div class="work-card-media">
-          <img src="assets/images/TT-Ipad-2.jpg" alt="" loading="lazy">
-          <span class="work-card-cta" aria-hidden="true">
-            <span class="work-card-cta-label">Case study coming soon</span>
-            <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
-          </span>
-        </div>
-        <div class="work-card-meta">
-          <div class="work-card-info">
-            <p class="work-card-client">Turner &amp; Townsend</p>
-            <h2 class="work-card-title">Data-service Application</h2>
+        <!-- Halo -->
+        <div class="work-card is-coming-soon">
+          <div class="work-card-media">
+            <img src="assets/images/halo.jpg" alt="" loading="lazy">
+            <span class="work-card-cta" aria-hidden="true">
+              <span class="work-card-cta-label">Case study coming soon</span>
+              <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
+            </span>
           </div>
-          <span class="work-card-badge">Case study coming soon</span>
+          <div class="work-card-meta">
+            <div class="work-card-info">
+              <p class="work-card-client">Refinitiv / LSEG</p>
+              <h2 class="work-card-title">Halo Design System Portal – Guidelines</h2>
+            </div>
+          </div>
         </div>
-      </div>
 
+        <!-- KogoPay -->
+        <div class="work-card is-coming-soon">
+          <div class="work-card-media">
+            <img src="assets/images/kogopay.jpg" alt="" loading="lazy">
+            <span class="work-card-cta" aria-hidden="true">
+              <span class="work-card-cta-label">Case study coming soon</span>
+              <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
+            </span>
+          </div>
+          <div class="work-card-meta">
+            <div class="work-card-info">
+              <p class="work-card-client">KogoPay</p>
+              <h2 class="work-card-title">Website &amp; App – Customer/Business</h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prince's Trust -->
+        <div class="work-card is-coming-soon">
+          <div class="work-card-media black fit">
+            <video autoplay muted loop playsinline aria-hidden="true">
+              <source src="assets/images/40yrs.mp4?v=2" type="video/mp4">
+            </video>
+            <span class="work-card-cta" aria-hidden="true">
+              <span class="work-card-cta-label">Case study coming soon</span>
+              <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
+            </span>
+          </div>
+          <div class="work-card-meta">
+            <div class="work-card-info">
+              <p class="work-card-client">The &amp; Partnership</p>
+              <h2 class="work-card-title">Prince’s Trust 40 Year Logo</h2>
+            </div>
+          </div>
+        </div>
+
+        <!-- Turner & Townsend -->
+        <div class="work-card is-coming-soon">
+          <div class="work-card-media">
+            <img src="assets/images/TT-Ipad-2.jpg" alt="" loading="lazy">
+            <span class="work-card-cta" aria-hidden="true">
+              <span class="work-card-cta-label">Case study coming soon</span>
+              <img class="work-card-cta-arrow" src="assets/images/lucide/circle-arrow-right.svg" alt="" width="40" height="40">
+            </span>
+          </div>
+          <div class="work-card-meta">
+            <div class="work-card-info">
+              <p class="work-card-client">Turner &amp; Townsend</p>
+              <h2 class="work-card-title">Data-service Application</h2>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -1462,8 +1535,9 @@
                   <img class="mark" src="assets/logo/experience/squaredmc.png" alt="SquaredMc">
                 </span>
               </span>
+              <span class="experience-role">Founder &amp; Design Lead</span>
               <span class="experience-skills">Mobile Apps, iOS, Product Strategy, Open Data, AI Tooling.</span>
-              <span class="experience-years">2025–2026</span>
+              <span class="experience-years">2025–Present</span>
             </button>
           </h3>
           <div class="experience-panel" id="exp-squaredmc" role="region" aria-labelledby="exp-squaredmc-btn">
@@ -1488,7 +1562,8 @@
                     </span>
                 </span>
               </span>
-              <span class="experience-skills">UI/UX, SaaS Web Apps, AI Tools, Design Systems, Brand Design, Strategy.</span>
+              <span class="experience-role">Lead Product Designer</span>
+              <span class="experience-skills">SaaS Web Apps, AI Tools, Design Systems, Brand Design, Strategy.</span>
               <span class="experience-years">2022–2026</span>
             </button>
           </h3>
@@ -1511,7 +1586,8 @@
                   <img src="assets/logo/experience/bp.svg" alt="bp">
                 </span>
               </span>
-              <span class="experience-skills">UI/UX, Analytics Dashboards, Data Visualisation, Design Guidelines.</span>
+              <span class="experience-role">Lead Product Designer</span>
+              <span class="experience-skills">Analytics Dashboards, Data Visualisation, Design Guidelines.</span>
               <span class="experience-years">2021–2022</span>
             </button>
           </h3>
@@ -1536,7 +1612,8 @@
                     </span>
                 </span>
               </span>
-              <span class="experience-skills">UI/UX, Financial Data Platforms, Component Libraries, Prototyping, Workshops.</span>
+              <span class="experience-role">Senior Product Designer</span>
+              <span class="experience-skills">Financial Data Platforms, Component Libraries, Prototyping, Workshops.</span>
               <span class="experience-years">2020–2021</span>
             </button>
           </h3>
@@ -1559,7 +1636,8 @@
                   <img src="assets/logo/experience/tt-long.svg" alt="Turner &amp; Townsend">
                 </span>
               </span>
-              <span class="experience-skills">UI/UX, Responsive Web Apps, Data Services, Workflow Design.</span>
+              <span class="experience-role">Senior Designer</span>
+              <span class="experience-skills">Responsive Web Apps, Data Services, Workflow Design.</span>
               <span class="experience-years">2019–2020</span>
             </button>
           </h3>
@@ -1582,7 +1660,8 @@
                   <img src="assets/logo/experience/hcltech.svg" alt="HCLTech">
                 </span>
               </span>
-              <span class="experience-skills">UI/UX, Mobile &amp; Web, Investment Banking, Brand Design, Prototyping.</span>
+              <span class="experience-role">Creative Lead</span>
+              <span class="experience-skills">Mobile &amp; Web, Investment Banking, Brand Design, Prototyping.</span>
               <span class="experience-years">2016–2019</span>
             </button>
           </h3>
@@ -1605,6 +1684,7 @@
                   <img class="mark" src="assets/logo/experience/vccp.png" alt="VCCP">
                 </span>
               </span>
+              <span class="experience-role">Senior Designer</span>
               <span class="experience-skills">Design, Advertising, Illustration, Typography – Karhoo, O2, Hellmann’s, TfL.</span>
               <span class="experience-years">2016</span>
             </button>
@@ -1628,6 +1708,7 @@
                   <img class="mark" src="assets/logo/experience/bates-chi.png" alt="CHI &amp; Partners">
                 </span>
               </span>
+              <span class="experience-role">Senior Designer</span>
               <span class="experience-skills">Design, Advertising, Illustration, Typography – Prince’s Trust, Lexus, TalkTalk, Carphone Warehouse, GSK, British&nbsp;Gas.</span>
               <span class="experience-years">2015–2016</span>
             </button>
@@ -1651,13 +1732,14 @@
                   <img src="assets/logo/experience/hcltech.svg" alt="HCLTech">
                 </span>
               </span>
+              <span class="experience-role">Senior Visual Designer</span>
               <span class="experience-skills">Visual Design, Mobile &amp; Web, Investment Banking.</span>
               <span class="experience-years">2015</span>
             </button>
           </h3>
           <div class="experience-panel" id="exp-hcl-2015" role="region" aria-labelledby="exp-hcl-2015-btn">
             <div class="experience-panel-inner">
-              <p class="experience-desc">Senior visual designer on contract for a leading investment bank, before joining HCL Tech as Creative Lead in&nbsp;2016.</p>
+              <p class="experience-desc">Senior visual designer on contract for a leading investment bank, before joining HCLTech as Creative Lead in&nbsp;2016.</p>
             </div>
           </div>
         </li>
@@ -1674,6 +1756,7 @@
                   <img class="mark" src="assets/logo/experience/dlkw-lowe.png" alt="Mullen (DLKW) Lowe">
                 </span>
               </span>
+              <span class="experience-role">Deputy Head of Design</span>
               <span class="experience-skills">Design, Advertising, Illustration, Typography – Rémy Martin, Morrisons, COI, Unilever, Calor Gas, Persil.</span>
               <span class="experience-years">2013–2015</span>
             </button>
@@ -1697,6 +1780,7 @@
                   <img class="mark" src="assets/logo/experience/vccp.png" alt="VCCP">
                 </span>
               </span>
+              <span class="experience-role">Senior Designer</span>
               <span class="experience-skills">Design, Advertising, Illustration, Typography – O2, Müller, Carling, Compare the Market, McDonald’s, Maclaren, Coca&#8209;Cola.</span>
               <span class="experience-years">2006–2013</span>
             </button>
@@ -1759,9 +1843,9 @@
       <div class="menu-group">
         <p class="menu-label" style="--i: 4">Case Studies</p>
         <a href="alpha-centauri.html" style="--i: 5">Alpha Centauri</a>
-        <a href="refuelr.html" style="--i: 6">Refuelr</a>
-        <a href="alpha-design-system.html" style="--i: 7">Alpha Design System</a>
-        <a href="refinitiv-wealth.html" style="--i: 8">Refinitiv Wealth</a>
+        <a href="alpha-design-system.html" style="--i: 6">Alpha Design System</a>
+        <a href="refinitiv-wealth.html" style="--i: 7">Refinitiv Wealth</a>
+        <a href="refuelr.html" style="--i: 8">Refuelr</a>
       </div>
     </nav>
     <div class="menu-social">
