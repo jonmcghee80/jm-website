@@ -509,7 +509,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .cs-ratio { position: relative; overflow: hidden; border-radius: 8px; }
 .cs-ratio img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-.cs-listing { width: 100%; max-width: min(1220px, calc(80vh * 1509 / 1590)); margin: 0 auto; aspect-ratio: 1509 / 1590; border-radius: 16px; overflow: hidden; }
+.cs-listing { width: 100%; max-width: min(1220px, calc(80vh * 1511 / 1356)); margin: 0 auto; aspect-ratio: 1511 / 1356; border-radius: 16px; overflow: hidden; }
 .cs-listing img { width: 100%; height: 100%; object-fit: cover; }
 
 .cs-copy-media { display: flex; justify-content: space-between; gap: 60px; align-items: flex-start; }
