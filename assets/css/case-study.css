@@ -477,7 +477,7 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 .cs-prototype { aspect-ratio: 1220 / 179.9; }
 .cs-prototype img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Speech bubble + emoji (Refuelr's question) */
+/* Speech bubble + emoji (NearEmpty's question) */
 .cs-ask { display: flex; align-items: flex-end; gap: 16px; margin-top: 8px; }
 
 .cs-bubble {
